@@ -50,7 +50,8 @@ function progressoVirus(tempo){
         num = numeroAleatorio(min,max);
         $('.loaded-bar').css('width', num + '%');
         $('.porcentagem').html(num + '%');
-        $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)')
+        $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
+        scrollMax();
         
     }, tempo);
 }
