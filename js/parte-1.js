@@ -3,14 +3,16 @@ var levelSlct;
 var nome;
 var level;
 var limite;
+var senha;
 
 setTimeout(() => {
-    $('.screen').append(
+    $('.screen').append('<div class="game-screen"></div>')
+    $('.game-screen').append(
         '<div class="introducao">\
             <div class="nome">\
                 <p>IDENTIFIQUE-SE:</p>\
                 <div class="name-wraper">\
-                    <input id="name" type="text">\
+                    <input id="name" type="text" autocomplete="off">\
                 </div><!--name-wraper-->\
             </div><!--nome-->\
         </div><!--introducao-->'
@@ -83,14 +85,29 @@ function levelSelect(){
                 $('.niveis span').css('cursor', 'auto');
                 level = Number($(this).attr('id'));
                 limite = definirLimite(level);
-
-                $('.screen').append('<div class="game-screen"></div>')
+                senha = gerarSenha(level);
 
                 inicializar();
             }
         })
     }, 500);
 };
+
+function gerarSenha(level){
+    let min, max;
+
+    if(level == 1){
+        [min, max] = [1, 8]
+
+    }else if(level == 2){
+        [min, max] = [1, 16]
+
+    }else{
+        [min, max] = [1, 24]
+    }
+    
+    return numeroAleatorio(min, max);
+}
 
 function scrollMax(){
     $('html, body').animate({

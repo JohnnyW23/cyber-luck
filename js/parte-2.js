@@ -1,4 +1,4 @@
-var tentativa = 0;
+var tentativas;
 
 function numeroAleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -18,27 +18,27 @@ function progressoVirus(tempo){
         let max;
         let num;
 
-        if(tentativa == 0){
+        if(tentativas == 6){
             min = 2
             max = 3;
 
-        }else if(tentativa == 1){
+        }else if(tentativas == 5){
             min = 10;
             max = 21;
 
-        }else if(tentativa == 2){
+        }else if(tentativas == 4){
             min = 22;
             max = 41;
             
-        }else if(tentativa == 3){
+        }else if(tentativas == 3){
             min = 42;
             max = 61;
             
-        }else if(tentativa == 4){
+        }else if(tentativas == 2){
             min = 62;
             max = 81;
             
-        }else if(tentativa == 5){
+        }else if(tentativas == 1){
             min = 82;
             max = 99;
             
@@ -106,8 +106,23 @@ function chatCyber(destino, tempo){
     inserir(destino, 'span', 'cYber_death0', tempo, 'color: white');
 }
 
+function inputCodigo(destino, tempo){
+    inserir(destino, 'p', 'TENTATIVAS: ' + tentativas, tempo);
+    inserir(destino, 'p', 'CÓDIGO:', tempo + 1);
+    setTimeout(() => {
+        destino.append('\
+        <div class="codigo-wraper">\
+            <input id="codigo" type="text" autocomplete="off">\
+        </div>\
+        ');
+        $('#codigo').trigger('focus');
+        verificador();
+    }, tempo + 2);
+}
+
 function entrada_hacker(){
     let el = $('.game-screen');
+    tentativas = 6;
     pularLinha(el, 500)
     inserir(el, 'p', '//AVISO DO LOG// cYber_death0 conectou ao sistema há 5 minutos.', 501);
     pularLinha(el, 1500);
@@ -120,6 +135,8 @@ function entrada_hacker(){
     inserir(el, 'p', 'DETECTADO CÓDIGO DE NÚMERO ENTRE ' + limite + '.', 4000);
     pularLinha(el, 4500);
     progressoVirus(4501);
-    pularLinha(el, 5000);
-    DataHora(5500);
+    pularLinha(el, 4502);
+    DataHora(5000);
+    pularLinha(el, 5499);
+    inputCodigo(el, 5500);
 }
