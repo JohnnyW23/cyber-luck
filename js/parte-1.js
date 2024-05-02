@@ -126,7 +126,7 @@ function inserir(destino, tag, conteudo, tempo, style=false, br=false){
             }
             destino.append(first_tag +conteudo+'</'+tag+'>')
         }else{
-            destino.append('<' + tag + '>' + conteudo)
+            destino.append('<' + tag + '>' + conteudo);
         };
         scrollMax();
         
