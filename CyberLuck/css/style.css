@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body {
+    height: 100%;
+    font-family: JB;
+    font-weight: 400;
+    background-color: black;
+    color: lime;
+}
+@font-face {
+    font-family: JB;
+    src: url(../font/JetBrainsMono[wght].ttf);
+}
+input[type=text] {
+    font-family: JB;
+    font-size: 16px;
+    border: 0;
+    background-color: rgba(0, 0, 0, 0);
+    color: lime;
+}
+input[type=text]:focus {
+    outline: 0;
+}
+.screen {
+    width: 70%;
+    min-width: 500px;
+    height: max-content;
+    min-height: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgb(0, 19, 0);
+}
+.titulo {
+    text-align: center;
+    margin: 20px;
+}
+.titulo h1 {
+    font-weight: 400;
+}
+#name {
+    width: 200px;
+    margin-top: 5px;
+}
+.nivel {
+    margin: 20px 0;
+}
+.niveis {
+    margin: 10px 0;
+}
+.niveis span {
+    margin: 0 10px;
+    cursor: pointer;
+}
+.game-screen {
+    width: 100%;
+    max-width: 1000px;
+
+}
+
+.virus-bar-wraper {
+    width: 70%;
+    min-width: 275px;
+}
+.virus-bar {
+    margin-top: 5px;
+    width: 100%;
+}
+.virus-bar .bar-space {
+    float: right;
+    height: 20px;
+    background-color: white;
+}
+.virus-bar .loaded-bar {
+    height: 100%;
+    background-color: lime;
+}
+
+@media screen and (max-width: 500px) {
+    .screen {
+        width: 100%;
+        min-width: auto;
+    }
+    .titulo h1 {
+        font-size: 25px;
+    }
+}
