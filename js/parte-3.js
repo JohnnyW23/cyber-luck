@@ -50,7 +50,7 @@ function verificador(){
 
                     }else{
                         vitoria = false
-                        inserir(el, 'p', 'HAHAHA, PERDEU!', 3000);
+                        inserir(el, 'p', 'HAHAHA, PERDEU! A SENHA ERA <span style="color: white">' + senha + '</span>', 3000);
                     }
                 }, 3800);
             }
