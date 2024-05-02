@@ -5,23 +5,16 @@ function verificador(){
     let palpite;
 
     $('#codigo').keyup(function(e) {
-    
-        console.log('Apertei qualquer tecla');
 
         if(e.which == 13){
-
-            console.log('apertei enter')
     
             palpite = $('#codigo').val();
 
             if(palpite == ''){
-                console.log('RESPOSTA VAZIA')
                 return false;
 
             }else if(palpite == senha){
-                console.log('RESPOSTA CERTA')
                 vitoria = true;
-                console.log('Reconheceu vitoria como true');
                 $('.codigo-wraper').html('<p style="color: white">' + palpite  + '</p>');
 
                 setTimeout(() => {
@@ -30,25 +23,22 @@ function verificador(){
                 }, 2000);
 
             }else{
-                console.log('RESPOSTA ERRADA')
                 tentativas--;
 
                 $('.codigo-wraper').html('<p style="color: white">' + palpite  + '</p>');
 
-                if(tentativas > 0){
-                    setTimeout(() => {
-                        $('.game-screen').html('');
+                setTimeout(() => {
+                    $('.game-screen').html('');
+
+                    if(tentativas > 0){
                         $('.game-screen').append('ERRADO!');
                         inputCodigo($('.game-screen'), 500);
-                    }, 2000);
-                    
-                }else{
-                    console.log('ACABARAM AS TENTATIVAS')
-                    vitoria = false
-                    console.log('Reconheceu vitoria como false')
-                    $('.game-screen').html('');
-                    $('.game-screen').append('HAHAHA PERDEU!!');
-                }
+
+                    }else{
+                        vitoria = false
+                        $('.game-screen').append('HAHAHA PERDEU!!');
+                    }
+                }, 2000);
             }
         }
     });
