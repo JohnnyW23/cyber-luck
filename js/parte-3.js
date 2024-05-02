@@ -60,8 +60,9 @@ function verificador(){
 
 function descriptografando(tempo){
     setTimeout(() => {
-        el = $('.game-screen');
-        el.html('');
+        $('.game-screen').html('');
+        $('.game-screen').append('<div class="decrypt"></div>');
+        let el = $('.decrypt');
         inserir(el, 'p', 'DESCRIPTOGRAFANDO...', 0);
         
         let linha1 = gerarCriptografiaAleatoria();

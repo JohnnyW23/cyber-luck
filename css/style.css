@@ -57,6 +57,7 @@ input[type=text]:focus {
 .game-screen {
     width: 100%;
     max-width: 1000px;
+    word-wrap: break-word;
 }
 
 .virus-bar-wraper {

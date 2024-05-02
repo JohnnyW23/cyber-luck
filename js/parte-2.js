@@ -6,8 +6,8 @@ function numeroAleatorio(min, max) {
 
 function progressoVirus(tempo){
     setTimeout(() => {
+        $('.game-screen').append('<p>Progresso do vírus no sistema:</p>');
         $('.game-screen').append('<div class="virus-bar-wraper"></div>');
-        $('.virus-bar-wraper').append('<p>Progresso do vírus no sistema:</p>');
         $('.virus-bar-wraper').append('<div class="virus-bar"></div>');
         $('.virus-bar').append('<span class="porcentagem"></span>');
         $('.virus-bar').append('<div class="bar-space"></div>');
