@@ -51,7 +51,6 @@ function progressoVirus(tempo){
         $('.loaded-bar').css('width', num + '%');
         $('.porcentagem').html(num + '%');
         $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)')
-        console.log(tentativa, min, max, num);
         
     }, tempo);
 }
@@ -76,6 +75,7 @@ function DataHora(tempo){
         $('.game-screen').append('<div class="tempo"></div>');
         $('.tempo').append('<p>' + dia + '-' + mes + '-' + ano + '</p>\
         <p>' + horas + ':' + minutos + ':' + segundos + '</p>');
+        scrollMax();
         
     }, tempo);
 }

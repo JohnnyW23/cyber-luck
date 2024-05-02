@@ -92,6 +92,12 @@ function levelSelect(){
     }, 500);
 };
 
+function scrollMax(){
+    $('html, body').animate({
+        scrollTop: $(document).height()
+    }, 0);
+}
+
 function inserir(destino, tag, conteudo, tempo, style=false, br=false){
     setTimeout(() => {
         if(br == false){
@@ -104,7 +110,8 @@ function inserir(destino, tag, conteudo, tempo, style=false, br=false){
             destino.append(first_tag +conteudo+'</'+tag+'>')
         }else{
             destino.append('<' + tag + '>' + conteudo)
-        }
+        };
+        scrollMax();
         
     }, tempo);
 }
