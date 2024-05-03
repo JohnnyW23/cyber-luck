@@ -6,51 +6,84 @@ function numeroAleatorio(min, max) {
 
 function progressoVirus(tempo){
     setTimeout(() => {
-        $('.game-screen').append('<p>Progresso do vírus no sistema:</p>');
-        $('.game-screen').append('<div class="virus-bar-wraper"></div>');
-        $('.virus-bar-wraper').append('<div class="virus-bar"></div>');
-        $('.virus-bar').append('<span class="porcentagem"></span>');
-        $('.virus-bar').append('<div class="bar-space"></div>');
-        $('.bar-space').append('<div class="loaded-bar" style="float: left"></div>');
-        $('.virus-bar').append('<div style="clear: both"></div>');
 
-        let min;
-        let max;
-        let num;
+        if(tentativas < 6){
+            oldnum = num;
+            $('.virus-mensagem').show();
+            $('.virus-bar-wraper').show();
+            $('.virus-mensagem').appendTo('.game-screen');
+            $('.virus-bar-wraper').appendTo('.game-screen');
 
-        if(tentativas == 6){
-            min = 2
-            max = 3;
-
-        }else if(tentativas == 5){
-            min = 10;
-            max = 21;
-
-        }else if(tentativas == 4){
-            min = 22;
-            max = 41;
-            
-        }else if(tentativas == 3){
-            min = 42;
-            max = 61;
-            
-        }else if(tentativas == 2){
-            min = 62;
-            max = 81;
-            
-        }else if(tentativas == 1){
-            min = 82;
-            max = 99;
-            
         }else{
-            min = 100;
-            max = 100;
+            oldnum = 0;
+            
+            $('.game-screen').append('<p class="virus-mensagem">Progresso do vírus no sistema:</p>');
+            $('.game-screen').append('<div class="virus-bar-wraper"></div>');
+            $('.virus-bar-wraper').append('<div class="virus-bar"></div>');
+            $('.virus-bar').append('<span class="porcentagem"></span>');
+            $('.virus-bar').append('<div class="bar-space"></div>');
+            $('.bar-space').append('<div class="loaded-bar" style="float: left"></div>');
+            $('.virus-bar').append('<div style="clear: both"></div>');
+        }
+        
+        if(!vitoria){
+
+            let min;
+            let max;
+
+            if(tentativas == 6){
+                min = 2
+                max = 3;
+
+            }else if(tentativas == 5){
+                min = 10;
+                max = 21;
+
+            }else if(tentativas == 4){
+                min = 22;
+                max = 41;
+                
+            }else if(tentativas == 3){
+                min = 42;
+                max = 61;
+                
+            }else if(tentativas == 2){
+                min = 62;
+                max = 81;
+                
+            }else if(tentativas == 1){
+                min = 82;
+                max = 99;
+                
+            }else{
+                min = 100;
+                max = 100;
+            }
+
+            num = numeroAleatorio(min, max);
         }
 
-        num = numeroAleatorio(min,max);
-        $('.loaded-bar').css('width', num + '%');
-        $('.porcentagem').html(num + '%');
-        $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
+        intervalnum = oldnum + 1;
+
+        if(vitoria){
+            intervalnum--;
+        }
+
+        interval = setInterval(() => {
+            $('.loaded-bar').animate({
+                width: intervalnum + '%'
+    
+            }, 100, "linear");
+            $('.porcentagem').html(intervalnum + '%');
+            $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
+            
+            if(intervalnum == num){
+                clearInterval(interval)
+            }
+
+            intervalnum++;
+            
+        }, 100);
         scrollMax();
         
     }, tempo);

@@ -11,14 +11,13 @@ function verificador(){
     
             palpite = $('#codigo').val();
 
+
             if(palpite == ''){
                 return false;
             }
 
             $('.codigo-wraper').html('<p style="color: white">' + palpite  + '</p>');
             descriptografando(1000);
-
-
 
             if(palpite == senha){
                 vitoria = true;
@@ -60,6 +59,10 @@ function verificador(){
 
 function descriptografando(tempo){
     setTimeout(() => {
+        $('.virus-mensagem').insertAfter('.screen');
+        $('.virus-bar-wraper').insertAfter('.screen');
+        $('.virus-mensagem').hide();
+        $('.virus-bar-wraper').hide();
         $('.game-screen').html('');
         $('.game-screen').append('<div class="decrypt"></div>');
         let el = $('.decrypt');

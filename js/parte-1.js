@@ -4,6 +4,9 @@ var nome;
 var level;
 var limite;
 var senha;
+var num;
+var oldnum;
+var intervalnum;
 
 setTimeout(() => {
     $('.screen').append('<div class="game-screen"></div>')
