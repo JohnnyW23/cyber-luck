@@ -82,6 +82,7 @@ input[type=text]:focus {
 }
 .decrypt {
     width: fit-content;
+    max-width: 100%;
 }
 
 @media screen and (max-width: 500px) {
