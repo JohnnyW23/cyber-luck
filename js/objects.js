@@ -26,7 +26,6 @@ function criarHacker(){
             "Se esconda atrás de sua interface, se quiser. Mas não poderá escapar de mim. Meu controle está próximo.",
             "Cada tentativa falha de quebrar meu vírus é um passo mais perto de sua derrota! XD",
             "MWAHAHAHAHAHAHA! Seu dispositivo foi infectado pelo meu vírus! Ele está sendo carregado no seu sistema neste momento e não há nada que você possa fazer! A não ser que... Impossível. Você não vai adivinhar o código secreto a tempo, " + jogo.nome +  " hahaha!",
-            "O que? Você conseguiu?! Isso é impossível... Não... Maldição. " + jogo.nome + "... Se prepare para a próxima vez.\
-            CONEXÃO DE SERVIDOR COM " + hacker.nome + " REMOVIDA POR FIREWALL DO SISTEMA."
+            "O que? Você conseguiu?! Isso é impossível... Não... Maldição. " + jogo.nome + "... Se prepare para a próxima vez.</p><br><p>CONEXÃO DE SERVIDOR COM " + hacker.nome + " REMOVIDA POR FIREWALL DO SISTEMA."
         ]
 }
