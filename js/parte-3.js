@@ -1,8 +1,8 @@
 var vitoria;
 
 function verificador(){
-    let el = $('.game-screen');
-    console.log('A SENHA É ' + senha)
+    var gs = $('.game-screen');
+    console.log('A SENHA É ' + jogo.senha)
     let palpite;
 
     $('#codigo').keyup(function(e) {
@@ -11,50 +11,62 @@ function verificador(){
     
             palpite = $('#codigo').val();
 
-
             if(palpite == ''){
                 return false;
             }
 
+            /* Descriptografar dura 2,8 segundos, na realidade */
             $('.codigo-wraper').html('<p style="color: white">' + palpite  + '</p>');
             descriptografando(1000);
 
-            if(palpite == senha){
+            if(palpite == jogo.senha){
                 vitoria = true;
 
                 setTimeout(() => {
-                    inserir(el, 'p', 'RESPOSTA CERTA!', 0);
-                    pularLinha(el, 999);
-                    progressoVirus(1000);
-                    pularLinha(el, 1499);
-                    DataHora(2000);
-                    pularLinha(el, 2499);
-                    inserir(el, 'p', 'PARABÉNS, VOCÊ GANHOU!', 3000);
+                    respostaCerta(gs);
 
                 }, 3800);
 
             }else{
-                tentativas--;
+                jogo.tentativas--;
 
                 setTimeout(() => {
-                    inserir(el, 'p', 'RESPOSTA ERRADA!', 0);
-                    pularLinha(el, 999);
-                    progressoVirus(1000);
-                    pularLinha(el, 1499);
-                    DataHora(2000);
-                    pularLinha(el, 2499);
+                    respostaErrada(gs);
 
-                    if(tentativas > 0){
-                        inputCodigo(el, 3000);
+                    if(jogo.tentativas > 0){
+                        inputCodigo(gs, 3000);
 
                     }else{
                         vitoria = false
-                        inserir(el, 'p', 'HAHAHA, PERDEU! A SENHA ERA <span style="color: white">' + senha + '</span>', 3000);
+                        inserir(gs, 'p', 'VOCÊ PERDEU!', 3000);
                     }
+                    
                 }, 3800);
             }
         }
     });
+}
+
+function respostaCerta(el){
+    inserir(el, 'p', '//FIREWALL DECODE SUCCESS: CÓDIGO CORRETO//', 0);
+    pularLinha(el, 999);
+    jogo.tentativas = 7;
+    chatCyber(el, 1000);
+    progressoVirus(1500);
+    pularLinha(el, 1501);
+    DataHora(2000);
+    pularLinha(el, 2499);
+    inserir(el, 'p', 'VOCÊ VENCEU!', 3000);
+}
+
+function respostaErrada(el){
+    inserir(el, 'p', '//FIREWALL ERROR EXCEPTION: CÓDIGO INCORRETO//', 0);
+    pularLinha(el, 999);
+    chatCyber(el, 1000);
+    progressoVirus(1500);
+    pularLinha(el, 1501);
+    DataHora(2000);
+    pularLinha(el, 2499);
 }
 
 function descriptografando(tempo){
@@ -82,10 +94,6 @@ function descriptografando(tempo){
         pularLinha(el, 1801);
 
     }, tempo);
-}
-
-function respostaErrada(){
-
 }
 
 // Função para gerar uma criptografia aleatória de 50 caracteres

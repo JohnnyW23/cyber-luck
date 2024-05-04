@@ -1,13 +1,3 @@
-var nameSlct;
-var levelSlct;
-var nome;
-var level;
-var limite;
-var senha;
-var num;
-var oldnum;
-var intervalnum;
-
 setTimeout(() => {
     $('.screen').append('<div class="game-screen"></div>')
     $('.game-screen').append(
@@ -23,7 +13,7 @@ setTimeout(() => {
     $('#name').trigger('focus');
     
     $('body').click(function(){
-        if(nameSlct != true){
+        if(jogo.nomeSelect != true){
             $('#name').trigger('focus');
         }
     })
@@ -37,19 +27,19 @@ function nameSelect(){
         // Verifica se a tecla pressionada é a tecla Enter (código 13)
         if (e.which == 13) {
 
-            nome = $('#name').val();
+            jogo.nome = $('#name').val();
     
-            if(nome == ''){
+            if(jogo.nome == ''){
                 return false;
             }
             
-            let amount = nome.length
+            let amount = jogo.nome.length
 
             if(amount > 1 && amount < 20){
-                if(nome.match(/^[A-Za-z0-9]+$/)){
-                    $('.name-wraper').html('<p style="margin-top: 5px; color: white">' + nome  + '</p>');
+                if(jogo.nome.match(/^[A-Za-z0-9]+$/)){
+                    $('.name-wraper').html('<p style="margin-top: 5px; color: white">' + jogo.nome  + '</p>');
 
-                    nameSlct = true;
+                    jogo.nomeSelect = true;
 
                     levelSelect();
 
@@ -82,14 +72,14 @@ function levelSelect(){
         </div><!--nivel-->'
         )
         $('.niveis span').click(function(){
-            if(levelSlct != true){
-                levelSlct = true;
+            if(jogo.nivelSelect != true){
+                jogo.nivelSelect = true;
                 $(this).css('color', 'white');
                 $('.niveis span').css('cursor', 'auto');
-                level = Number($(this).attr('id'));
-                limite = definirLimite(level);
-                senha = gerarSenha(level);
-
+                jogo.nivel = Number($(this).attr('id'));
+                jogo.limite = definirLimite(jogo.nivel);
+                jogo.senha = gerarSenha(jogo.nivel);
+                criarHacker();
                 inicializar();
             }
         })
@@ -138,7 +128,7 @@ function inserir(destino, tag, conteudo, tempo, style=false, br=false){
 
 function inicializar(){
     let el = $('.game-screen');
-    inserir(el, 'p', 'Boas-vindas, ' + nome + '.', 500);
+    inserir(el, 'p', 'Boas-vindas, ' + jogo.nome + '.', 500);
     inserir(el, 'p', 'Executando algoritmo de verificação de segurança...', 1000);
     inserir(el, 'p', 'Carregando módulos do firewall...', 1500);
     inserir(el, 'p', 'import time', 1800);

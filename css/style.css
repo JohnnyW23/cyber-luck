@@ -59,7 +59,10 @@ input[type=text]:focus {
     max-width: 1000px;
     word-wrap: break-word;
 }
-
+.hacker {
+    width: 100%;
+    max-width: 720px
+}
 .virus-bar-wraper {
     width: 70%;
     min-width: 275px;
@@ -76,6 +79,9 @@ input[type=text]:focus {
 .virus-bar .loaded-bar {
     height: 100%;
     background-color: lime;
+}
+.decrypt {
+    width: fit-content;
 }
 
 @media screen and (max-width: 500px) {

@@ -1,5 +1,3 @@
-var tentativas;
-
 function numeroAleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
@@ -7,15 +5,15 @@ function numeroAleatorio(min, max) {
 function progressoVirus(tempo){
     setTimeout(() => {
 
-        if(tentativas < 6){
-            oldnum = num;
+        if(jogo.tentativas < 6 || jogo.tentativas == 7){
+            jogo.porcentagemAntiga = jogo.porcentagemAtual;
             $('.virus-mensagem').show();
             $('.virus-bar-wraper').show();
             $('.virus-mensagem').appendTo('.game-screen');
             $('.virus-bar-wraper').appendTo('.game-screen');
 
         }else{
-            oldnum = 0;
+            jogo.porcentagemAntiga = 0;
             
             $('.game-screen').append('<p class="virus-mensagem">Progresso do vírus no sistema:</p>');
             $('.game-screen').append('<div class="virus-bar-wraper"></div>');
@@ -31,27 +29,27 @@ function progressoVirus(tempo){
             let min;
             let max;
 
-            if(tentativas == 6){
+            if(jogo.tentativas == 6){
                 min = 2
                 max = 3;
 
-            }else if(tentativas == 5){
+            }else if(jogo.tentativas == 5){
                 min = 10;
                 max = 21;
 
-            }else if(tentativas == 4){
+            }else if(jogo.tentativas == 4){
                 min = 22;
                 max = 41;
                 
-            }else if(tentativas == 3){
+            }else if(jogo.tentativas == 3){
                 min = 42;
                 max = 61;
                 
-            }else if(tentativas == 2){
+            }else if(jogo.tentativas == 2){
                 min = 62;
                 max = 81;
                 
-            }else if(tentativas == 1){
+            }else if(jogo.tentativas == 1){
                 min = 82;
                 max = 99;
                 
@@ -60,30 +58,26 @@ function progressoVirus(tempo){
                 max = 100;
             }
 
-            num = numeroAleatorio(min, max);
-        }
+            jogo.porcentagemAtual = numeroAleatorio(min, max);
 
-        intervalnum = oldnum + 1;
+            jogo.porcentagemDinamica = jogo.porcentagemAntiga + 1;
 
-        if(vitoria){
-            intervalnum--;
-        }
-
-        interval = setInterval(() => {
-            $('.loaded-bar').animate({
-                width: intervalnum + '%'
+            interval = setInterval(() => {
+                $('.loaded-bar').animate({
+                    width: jogo.porcentagemDinamica + '%'
+        
+                }, 100, "linear");
+                $('.porcentagem').html(jogo.porcentagemDinamica + '%');
+                $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
+                
+                if(jogo.porcentagemDinamica == jogo.porcentagemAtual){
+                    clearInterval(interval)
+                }
     
-            }, 100, "linear");
-            $('.porcentagem').html(intervalnum + '%');
-            $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
-            
-            if(intervalnum == num){
-                clearInterval(interval)
-            }
-
-            intervalnum++;
-            
-        }, 100);
+                jogo.porcentagemDinamica++;
+                
+            }, 100);
+        }
         scrollMax();
         
     }, tempo);
@@ -136,11 +130,14 @@ function pularLinha(destino, tempo, duas=false){
 }
 
 function chatCyber(destino, tempo){
-    inserir(destino, 'span', 'cYber_death0', tempo, 'color: white');
+    setTimeout(() => {
+        destino.append('<p class="hacker"><span style="color: white">' + hacker.nome + '</span><span>: ' + hacker.mensagens[jogo.tentativas] + '</span></p>');
+    }, tempo);
+    pularLinha(destino, tempo + 1);
 }
 
 function inputCodigo(destino, tempo){
-    inserir(destino, 'p', 'TENTATIVAS: ' + tentativas, tempo);
+    inserir(destino, 'p', 'TENTATIVAS: ' + jogo.tentativas, tempo);
     inserir(destino, 'p', 'CÓDIGO:', tempo + 1);
     setTimeout(() => {
         destino.append('\
@@ -155,17 +152,15 @@ function inputCodigo(destino, tempo){
 
 function entrada_hacker(){
     let el = $('.game-screen');
-    tentativas = 6;
+    jogo.tentativas = 6;
     pularLinha(el, 500)
-    inserir(el, 'p', '//AVISO DO LOG// cYber_death0 conectou ao sistema há 5 minutos.', 501);
+    inserir(el, 'p', '//AVISO DO LOG// ' + hacker.nome + ' conectou ao sistema há 5 minutos.', 501);
     pularLinha(el, 1500);
-    chatCyber(el, 1501);
-    inserir(el, 'span', ': MWAHAHAHAHAHAHA! Seu PC foi infectado pelo meu vírus! Ele está sendo carregado no seu sistema neste momento e não há nada que você possa fazer! A não ser que... Impossível. Você não vai adivinhar o código secreto a tempo, ' + nome +  ' hahaha!', 1502);
-    pularLinha(el, 2500, true);
+    chatCyber(el, 1501); 
     inserir(el, 'p', '//FIREWALL DETECTOU CARREGAMENTO DE VÍRUS LETAL AO SISTEMA//', 2501)
     inserir(el, 'p', '//TENTATIVA DE NEUTRALIZAR VÍRUS EM ANDAMENTO//', 3000);
-    inserir(el, 'p', 'AVISO: FIREWALL SOBRECARREGADO. ENTRADA MANUAL NECESSÁRIA DE [USER ' + nome + '].', 3500);
-    inserir(el, 'p', 'DETECTADO CÓDIGO DE NÚMERO ENTRE ' + limite + '.', 4000);
+    inserir(el, 'p', 'AVISO: FIREWALL SOBRECARREGADO. ENTRADA MANUAL NECESSÁRIA DE [USER ' + jogo.nome + '].', 3500);
+    inserir(el, 'p', 'DETECTADO CÓDIGO DE NÚMERO ENTRE ' + jogo.limite + '.', 4000);
     pularLinha(el, 4500);
     progressoVirus(4501);
     pularLinha(el, 4502);
