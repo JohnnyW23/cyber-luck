@@ -19,13 +19,13 @@ function novoJogo(){
         $('#name').trigger('focus');
         var nameWp = $('.name-wraper').html()
         
-        nameSelect(nameWp);
+        nameSelect();
     
     }, 1000);
 }
 
 
-function nameSelect(el){
+function nameSelect(){
     $('#name').keyup(function(e) {
         // Verifica se a tecla pressionada é a tecla Enter (código 13)
         if (e.which == 13) {
@@ -34,20 +34,26 @@ function nameSelect(el){
             
             let amount = jogo.nome.length
 
-            if(amount > 1 && amount < 20){
+            if(amount > 3 && amount < 20){
                 jogo.nomeTamanho = true;
-                $('.nome-tamanho').html('')
+                $('.nome-tamanho').html('');
 
             }else{
                 jogo.nomeTamanho = false;
+                if(amount < 4){
+                    $('.nome-tamanho').html('<p>MIN 4 CARACTERES</p>');
+                }else{
+                    $('.nome-tamanho').html('<p>MAX 20 CARACTERES</p>');
+                }
             }
 
             if(jogo.nome.match(/^[A-Za-z0-9]+$/)){
                 jogo.nomeSintaxe = true;
-                $('.nome-sintaxe').html('')
+                $('.nome-sintaxe').html('');
 
             }else{
-                jogo.nomeSintaxe = false
+                jogo.nomeSintaxe = false;
+                $('.nome-sintaxe').html('<p>APENAS LETRAS E NÚMEROS</p>');
             }
 
             if(jogo.nomeSintaxe && jogo.nomeTamanho){
@@ -55,14 +61,6 @@ function nameSelect(el){
                 jogo.nomeSelect = true;
 
                 levelSelect();
-
-            }else{
-                if(!jogo.nomeSintaxe){
-                    $('.nome-sintaxe').html('<p>APENAS LETRAS E NÚMEROS.</p>');
-                }
-                if(!jogo.nomeTamanho){
-                    $('.nome-tamanho').html('<p>MAX 20 CARACTERES.</p>')
-                }
             }
         }
     });
