@@ -66,6 +66,7 @@ function verificador(){
 
 
 function respostaCerta(el){
+    $('.virus-bar-wraper').append('<p>//PROCESSO INTERROMPIDO//</p>')
     inserir(el, 'p', '//FIREWALL DECODE SUCCESS: CÓDIGO CORRETO//', 0);
     pularLinha(el, 999);
     jogo.tentativas = 7;
@@ -93,8 +94,7 @@ function descriptografando(tempo){
         $('.virus-bar-wraper').insertAfter('.screen');
         $('.virus-mensagem').hide();
         $('.virus-bar-wraper').hide();
-        $('.game-screen').html('');
-        $('.game-screen').append('<div class="decrypt"></div>');
+        $('.game-screen').html('<div class="decrypt"></div>');
         let el = $('.decrypt');
         inserir(el, 'p', 'DESCRIPTOGRAFANDO...', 0);
         
