@@ -10,44 +10,59 @@ function novoJogo(){
                     <p>IDENTIFIQUE-SE:</p>\
                     <div class="name-wraper">\
                         <span>> </span><input id="name" type="text" autocomplete="off" style="color: ' + paleta.selected + '">\
+                        <div class="nome-sintaxe"></div>\
+                        <div class="nome-tamanho"></div>\
                     </div><!--name-wraper-->\
                 </div><!--nome-->\
             </div><!--introducao-->'
         );
         $('#name').trigger('focus');
+        var nameWp = $('.name-wraper').html()
         
-        nameSelect();
+        nameSelect(nameWp);
     
     }, 1000);
 }
 
 
-function nameSelect(){
+function nameSelect(el){
     $('#name').keyup(function(e) {
         // Verifica se a tecla pressionada é a tecla Enter (código 13)
         if (e.which == 13) {
 
             jogo.nome = $('#name').val();
-    
-            if(jogo.nome == ''){
-                return false;
-            }
             
             let amount = jogo.nome.length
 
             if(amount > 1 && amount < 20){
-                if(jogo.nome.match(/^[A-Za-z0-9]+$/)){
-                    $('.name-wraper').html('<p style="margin-top: 5px; color: white">' + '> ' + jogo.nome  + '</p>');
+                jogo.nomeTamanho = true;
+                $('.nome-tamanho').html('')
 
-                    jogo.nomeSelect = true;
-
-                    levelSelect();
-
-                }else{
-                    return false;
-                }
             }else{
-                return false;
+                jogo.nomeTamanho = false;
+            }
+
+            if(jogo.nome.match(/^[A-Za-z0-9]+$/)){
+                jogo.nomeSintaxe = true;
+                $('.nome-sintaxe').html('')
+
+            }else{
+                jogo.nomeSintaxe = false
+            }
+
+            if(jogo.nomeSintaxe && jogo.nomeTamanho){
+                $('.name-wraper').html('<p style="margin-top: 5px; color: white">' + '> ' + jogo.nome  + '</p>');
+                jogo.nomeSelect = true;
+
+                levelSelect();
+
+            }else{
+                if(!jogo.nomeSintaxe){
+                    $('.nome-sintaxe').html('<p>APENAS LETRAS E NÚMEROS.</p>');
+                }
+                if(!jogo.nomeTamanho){
+                    $('.nome-tamanho').html('<p>MAX 20 CARACTERES.</p>')
+                }
             }
         }
     });

@@ -43,6 +43,8 @@ function criarJogo(){
     jogo = {
         nome: null,
         nomeSelect: null,
+        nomeSintaxe: null,
+        nomeTamanho: null,
         nivel: null,
         nivelSelect: null,
         senha: null,
