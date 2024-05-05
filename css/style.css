@@ -19,30 +19,88 @@ input[type=text] {
     font-size: 16px;
     border: 0;
     background-color: rgba(0, 0, 0, 0);
-    color: lime;
 }
 input[type=text]:focus {
     outline: 0;
+}
+header {
+    width: 70%;
+    min-width: 500px;
+    height:50px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: rgb(0, 10, 0);
+}
+header > nav {
+    position: relative;
+}
+header > nav > ul, .cores ul {
+    list-style-type: none;
+}
+header > nav > ul > li {
+    float: left;
+    margin-left: 20px;
+}
+header img {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+.cores {
+    width: fit-content;
+    height: fit-content;
+    background-color: rgb(0, 40, 0);
+    position: absolute;
+    left: 15px;
+    border-bottom: 2px solid #000;
+    border-right: 2px solid #000;
+    display: none;
+}
+.cores li {
+    padding: 7px 10px 7px 25px;
+    font-weight: 400;
+    position: relative;
+    cursor: pointer;
+}
+.cores-selected {
+    position: absolute;
+    left: 7px;
+}
+#cor0 {
+    color: lime;
+}
+#cor1 {
+    color: aqua;
+}
+#cor2 {
+    color: red;
+}
+#cor3 {
+    color: hotpink;
 }
 .screen {
     width: 70%;
     min-width: 500px;
     height: max-content;
-    min-height: 100%;
+    min-height: calc(100% - 50px);
     margin: 0 auto;
     padding: 20px;
     background-color: rgb(0, 19, 0);
 }
 .titulo {
     text-align: center;
-    margin: 20px;
+    margin: 0 20px 20px 20px;
 }
 .titulo h1 {
     font-weight: 400;
 }
+.titulo h5 {
+    font-weight: lighter;
+}
 #name {
     width: 200px;
     margin-top: 5px;
+    display: inline-block;
 }
 .nivel {
     margin: 20px 0;
@@ -53,6 +111,10 @@ input[type=text]:focus {
 .niveis span {
     margin: 0 10px;
     cursor: pointer;
+    transition: 0.25s all;
+}
+.niveis span:hover {
+    color: white;
 }
 .game-screen {
     width: 100%;
@@ -65,7 +127,7 @@ input[type=text]:focus {
 }
 .virus-bar-wraper {
     width: 70%;
-    min-width: 275px;
+    min-width: 400px;
 }
 .virus-bar {
     margin: 5px 0;
@@ -76,21 +138,40 @@ input[type=text]:focus {
     height: 20px;
     background-color: white;
 }
-.virus-bar .loaded-bar {
+.loaded-bar {
     height: 100%;
-    background-color: lime;
 }
 .decrypt {
     width: fit-content;
     max-width: 100%;
 }
+#codigo {
+    display: inline-block;
+}
+#novo-jogo {
+    font-family: JB;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    transition: 0.25s all;
+}
+#novo-jogo:hover {
+    border: 2px solid white !important;
+    color: white !important;
+}
 
-@media screen and (max-width: 500px) {
-    .screen {
+@media screen and (max-width: 520px) {
+    header, .screen {
         width: 100%;
         min-width: auto;
     }
     .titulo h1 {
         font-size: 25px;
+    }
+    .virus-bar-wraper {
+        width: 90%;
+        min-width: auto;
     }
 }

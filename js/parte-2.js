@@ -20,11 +20,11 @@ function progressoVirus(tempo){
             $('.virus-bar-wraper').append('<div class="virus-bar"></div>');
             $('.virus-bar').append('<span class="porcentagem"></span>');
             $('.virus-bar').append('<div class="bar-space"></div>');
-            $('.bar-space').append('<div class="loaded-bar" style="float: left"></div>');
+            $('.bar-space').append('<div class="loaded-bar" style="float: left; background-color:' + paleta.selected + '"></div>');
             $('.virus-bar').append('<div style="clear: both"></div>');
         }
         
-        if(!vitoria){
+        if(!jogo.vitoria){
 
             let min;
             let max;
@@ -142,7 +142,7 @@ function inputCodigo(destino, tempo){
     setTimeout(() => {
         destino.append('\
         <div class="codigo-wraper">\
-            <input id="codigo" type="text" autocomplete="off">\
+            <span>> </span><input id="codigo" type="text" autocomplete="off" style="color: ' + paleta.selected + '">\
         </div>\
         ');
         $('#codigo').trigger('focus');

@@ -1,5 +1,3 @@
-var vitoria;
-
 function verificador(){
     var gs = $('.game-screen');
     console.log('A SENHA É ' + jogo.senha)
@@ -16,11 +14,11 @@ function verificador(){
             }
 
             /* Descriptografar dura 2,8 segundos, na realidade */
-            $('.codigo-wraper').html('<p style="color: white">' + palpite  + '</p>');
+            $('.codigo-wraper').html('<p style="color: white">' + '> ' + palpite  + '</p>');
             descriptografando(1000);
 
             if(palpite == jogo.senha){
-                vitoria = true;
+                jogo.vitoria = true;
 
                 setTimeout(() => {
                     respostaCerta(gs);
@@ -37,15 +35,35 @@ function verificador(){
                         inputCodigo(gs, 3000);
 
                     }else{
-                        vitoria = false
+                        jogo.vitoria = false;
                         inserir(gs, 'p', 'VOCÊ PERDEU!', 3000);
                     }
                     
                 }, 3800);
             }
+
+            if(jogo.vitoria != null){
+                setTimeout(() => {
+                    gs.append('<br>');
+                    gs.append('<button id="novo-jogo" style="color: ' + paleta.selected + '; border: 2px solid ' + paleta.selected + '">JOGAR NOVAMENTE</button>');
+                    scrollMax();
+                    $('#novo-jogo').click(() => {
+                        gs.html('');
+                        novoJogo();
+                    })
+
+                }, 7800);
+            }
         }
     });
 }
+
+/* CRONOLOGIA DOS FATOS:
+1 segundo: descriptografar - duração 2,8 segundos
+3,8 segundos: Caso de vitória, derrota ou novo código - duração 3 segundos
+7,8 segundos: Botão de novo jogo (1 segundo após a ação anterior)
+*/
+
 
 function respostaCerta(el){
     inserir(el, 'p', '//FIREWALL DECODE SUCCESS: CÓDIGO CORRETO//', 0);
@@ -55,7 +73,7 @@ function respostaCerta(el){
     progressoVirus(1500);
     pularLinha(el, 1501);
     DataHora(2000);
-    pularLinha(el, 2499);
+    pularLinha(el, 2999);
     inserir(el, 'p', 'VOCÊ VENCEU!', 3000);
 }
 
@@ -66,7 +84,7 @@ function respostaErrada(el){
     progressoVirus(1500);
     pularLinha(el, 1501);
     DataHora(2000);
-    pularLinha(el, 2499);
+    pularLinha(el, 2999);
 }
 
 function descriptografando(tempo){

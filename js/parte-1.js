@@ -1,26 +1,26 @@
-setTimeout(() => {
-    $('.screen').append('<div class="game-screen"></div>')
-    $('.game-screen').append(
-        '<div class="introducao">\
-            <div class="nome">\
-                <p>IDENTIFIQUE-SE:</p>\
-                <div class="name-wraper">\
-                    <input id="name" type="text" autocomplete="off">\
-                </div><!--name-wraper-->\
-            </div><!--nome-->\
-        </div><!--introducao-->'
-    );
-    $('#name').trigger('focus');
-    
-    $('body').click(function(){
-        if(jogo.nomeSelect != true){
-            $('#name').trigger('focus');
-        }
-    })
-    
-    nameSelect();
+novoJogo();
 
-}, 1000);
+function novoJogo(){
+    criarJogo();
+
+    setTimeout(() => {
+        $('.game-screen').append(
+            '<div class="introducao">\
+                <div class="nome">\
+                    <p>IDENTIFIQUE-SE:</p>\
+                    <div class="name-wraper">\
+                        <span>> </span><input id="name" type="text" autocomplete="off" style="color: ' + paleta.selected + '">\
+                    </div><!--name-wraper-->\
+                </div><!--nome-->\
+            </div><!--introducao-->'
+        );
+        $('#name').trigger('focus');
+        
+        nameSelect();
+    
+    }, 1000);
+}
+
 
 function nameSelect(){
     $('#name').keyup(function(e) {
@@ -37,7 +37,7 @@ function nameSelect(){
 
             if(amount > 1 && amount < 20){
                 if(jogo.nome.match(/^[A-Za-z0-9]+$/)){
-                    $('.name-wraper').html('<p style="margin-top: 5px; color: white">' + jogo.nome  + '</p>');
+                    $('.name-wraper').html('<p style="margin-top: 5px; color: white">' + '> ' + jogo.nome  + '</p>');
 
                     jogo.nomeSelect = true;
 

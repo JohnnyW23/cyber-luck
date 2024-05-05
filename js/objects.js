@@ -1,12 +1,57 @@
-jogo = {
-    nome: null,
-    nomeSelect: null,
-    nivel: null,
-    nivelSelect: null,
-    senha: null,
-    limite: null,
-    tentativas: null,
+paleta = {
+    open: false,
+    selected: 'lime',
+    cores: [
+        {
+            id: 'cor0',
+            color: 'lime',
+            loadedBarBGColor: 'lime',
+            novoJogoBdColor: 'lime',
+            headerBGColor: 'rgb(0, 10, 0)',
+            screenBGColor: 'rgb(0, 19, 0)',
+            coresBGColor: 'rgb(0, 40, 0)'
+        },{
+            id: 'cor1',
+            color: 'aqua',
+            loadedBarBGColor: 'aqua',
+            novoJogoBdColor: 'aqua',
+            headerBGColor: 'rgb(0, 10, 10)',
+            screenBGColor: 'rgb(0, 19, 19)',
+            coresBGColor: 'rgb(0, 40, 40)'
+        },{
+            id: 'cor2',
+            color: 'red',
+            loadedBarBGColor: 'red',
+            novoJogoBdColor: 'red',
+            headerBGColor: 'rgb(10, 0, 0)',
+            screenBGColor: 'rgb(19, 0, 0)',
+            coresBGColor: 'rgb(40, 0, 0)'
+        },{
+            id: 'cor3',
+            color: 'hotpink',
+            loadedBarBGColor: 'hotpink',
+            novoJogoBdColor: 'hotpink',
+            headerBGColor: 'rgb(10, 5, 7)',
+            screenBGColor: 'rgb(19, 10, 14)',
+            coresBGColor: 'rgb(40, 19, 25)'
+        }
+    ]
 }
+
+
+function criarJogo(){
+    jogo = {
+        nome: null,
+        nomeSelect: null,
+        nivel: null,
+        nivelSelect: null,
+        senha: null,
+        limite: null,
+        tentativas: null,
+        vitoria: null
+    }
+}
+
 
 progressBar = {
     porcentagemAtual: null,
