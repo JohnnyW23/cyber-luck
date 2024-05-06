@@ -68,9 +68,11 @@ function nameSelect(){
 function levelSelect(){
     setTimeout(() => {
         $('.introducao').append(
-            '<div class="nivel">\
+            '<br>\
+            <div class="nivel">\
             <p>SELECIONE NÍVEL DE ACESSO AO SISTEMA:</p>\
-            <div class="niveis">\
+            <br>\
+            <div class="niveis-unselected">\
                 <span id="1">\
                     [1]\
                 </span>\
@@ -83,11 +85,12 @@ function levelSelect(){
             </div><!--niveis-->\
         </div><!--nivel-->'
         )
-        $('.niveis span').click(function(){
+        $('.niveis-unselected span').click(function(){
             if(jogo.nivelSelect != true){
                 jogo.nivelSelect = true;
                 $(this).css('color', 'white');
-                $('.niveis span').css('cursor', 'auto');
+                $('.niveis-unselected span').css('cursor', 'auto');
+                $('.niveis-unselected').attr('class', 'niveis-selected');
                 jogo.nivel = Number($(this).attr('id'));
                 jogo.limite = definirLimite(jogo.nivel);
                 jogo.senha = gerarSenha(jogo.nivel);
@@ -140,6 +143,7 @@ function inserir(destino, tag, conteudo, tempo, style=false, br=false){
 
 function inicializar(){
     let el = $('.game-screen');
+    pularLinha(el, 0);
     inserir(el, 'p', 'Boas-vindas, ' + jogo.nome + '.', 500);
     inserir(el, 'p', 'Executando algoritmo de verificação de segurança...', 1000);
     inserir(el, 'p', 'Carregando módulos do firewall...', 1500);

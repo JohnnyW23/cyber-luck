@@ -102,18 +102,12 @@ header img {
     margin-top: 5px;
     display: inline-block;
 }
-.nivel {
-    margin: 20px 0;
-}
-.niveis {
-    margin: 10px 0;
-}
-.niveis span {
-    margin: 0 10px;
+.niveis-unselected span {
     cursor: pointer;
     transition: 0.25s all;
 }
-.niveis span:hover {
+.niveis-unselected span:hover,
+.dolphin-analise-unselected span:hover {
     color: white;
 }
 .game-screen {
@@ -162,7 +156,7 @@ header img {
     color: white !important;
 }
 
-.dolphin-analise span {
+.dolphin-analise-unselected span {
     cursor: pointer;
 }
 

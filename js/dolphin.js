@@ -16,9 +16,9 @@ function intelDolphin(el, tempo){
         inserir(el, 'p', '<span style="color: white">I</span>ntelligence and', 3500);
         inserir(el, 'p', '<span style="color: white">N</span>eural-defense', 4000);
         pularLinha(el, 4999);
-        inserir(el, 'p', '//INICIANDO PROCESSO//', 5000);
+        inserir(el, 'p', '//EXECUTANDO DOLPHIN//', 5000);
         pularLinha(el, 5499);
-        inserir(el, 'p', 'ALERTA: IDENTIFIQUE OS CÓDIGOS DIVERGENTES', 5500);
+        inserir(el, 'p', 'OLÁ, ' + jogo.nome + '. SEU DISPOSITIVO ESTÁ SOFRENDO UM GRAVE ATAQUE DDOS. POR FAVOR, SELECIONE OS CÓDIGOS DIVERGENTES PARA COMPILAÇÃO.', 5500);
         pularLinha(el, 5999);
 
         for(x = 2; x < 1000; x++){
@@ -38,8 +38,10 @@ function intelDolphin(el, tempo){
         }
 
         setTimeout(() => {
-            el.append('<div class="dolphin-analise"></div>');
-            analiseDolphin($('.dolphin-analise'))
+            progressoVirusDinamico();
+            el.append('<br><div class="dolphin-analise"></div>');
+            $('.dolphin-analise').append($('<div class="dolphin-analise-unselected"></div>'))
+            analiseDolphin($('.dolphin-analise-unselected'))
 
         }, 6000);
 
@@ -47,27 +49,52 @@ function intelDolphin(el, tempo){
 }
 
 
+function progressoVirusDinamico(){
+    jogo.porcentagemAntiga = jogo.porcentagemAtual;
+
+    $('.virus-mensagem').show();
+    $('.virus-bar-wraper').show();
+    $('.virus-mensagem').appendTo('.game-screen');
+    $('.virus-bar-wraper').appendTo('.game-screen');
+
+    $('.loaded-bar').animate({
+        width: 100 + '%'
+
+    }, 120000, "linear");
+
+    dolphinProgBar = setInterval(() => {
+        $('.porcentagem').html(Math.floor(($('.loaded-bar').width() / $('.bar-space').width()) * 100) + '%');
+        $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
+
+        if($('.loaded-bar').width() == $('.bar-space').width()){
+            dolphinResultado($('.dolphin-analise'))
+        }
+
+    }, 10);
+    scrollMax();
+}
+
+
 function analiseDolphin(el){
-    dolphin.primoSelect[dolphin.analise] = false;
     dolphinOpcoes();
 
     inserir(el, 'p', '//1q743...")//9817kjha9h21q743...")//9817kjha9h2//', 0);
+    inserir(el, 'p', 'ITERAÇÃO ' + (dolphin.analise + 1) + '/' + dolphin.acertosMinimos, 1);
     pularLinha(el, 499);
 
     setTimeout(() => {
-        let save = el.html();
         el.append('\
-            <div id="' + dolphin.analise + '">\
             <span>[' + dolphin.opcoes[0] + ']</span>\
             <span>[' + dolphin.opcoes[1] + ']</span>\
             <span>[' + dolphin.opcoes[2] + ']</span>\
-            </div>\
         ')
         scrollMax();
 
-        $('.dolphin-analise div[id="' + dolphin.analise + '"] span').click(function(){
-            if(dolphin.primoSelect[dolphin.analise] == false){
-                dolphin.primoSelect[dolphin.analise] = true;
+        $('.dolphin-analise-unselected span').click(function(){
+            if(dolphin.primoSelect == false){
+                dolphin.primoSelect = true;
+
+                $('.dolphin-analise-unselected').attr('class', 'dolphin-analise-selected');
                 
                 let numero;
                 if($(this).html().length == 5){
@@ -84,32 +111,64 @@ function analiseDolphin(el){
                     dolphin.acertos ++;
                 }
                 $(this).css('color', 'white');
-                $('.dolphin-analise span').css('cursor', 'auto');
 
-                el.html(save + $('.dolphin-analise div[id="' + dolphin.analise + '"]').html() + '<br>')
+                dolphin.analise++;
+
+                setTimeout(() => {
+                    if(dolphin.analise < dolphin.acertosMinimos){
+                        $('.dolphin-analise-selected').html('');
+                        $('.dolphin-analise-selected').attr('class', 'dolphin-analise-unselected');
+                        dolphin.primoSelect = false;
+                        analiseDolphin(el)
+
+                    }else{
+                        dolphinResultado($('.dolphin-analise'));
+                    }
+
+                }, 1000);
             }
-            dolphin.analise++;
-
-            setTimeout(() => {
-                if(dolphin.analise < dolphin.acertosMinimos){
-                    pularLinha(el, 0)
-                    analiseDolphin(el)
-
-                }else{
-                    dolphinResultado($('.game-screen'));
-                }
-
-            }, 1000);
         })
+
     }, 500);
 }
 
 function dolphinResultado(el){
     el.html('');
+    $('.loaded-bar').stop();
     if(dolphin.acertos == dolphin.acertosMinimos){
-        el.append('VOCE GANHOU O MODO DOLPHIN')
+        clearInterval(dolphinProgBar);
+        inserir(el, 'p', 'CARREGAMENTO INTERROMPIDO', 0);
+        jogarNovamente(el, 2000);
+
     }else{
-        el.append('VOCE PERDEU O MODO DOLPHIN')
+        if($('.loaded-bar').width() != $('.bar-space').width()){
+            $('.loaded-bar').animate({
+                width: 100 + '%'
+    
+            }, 2000);
+            setTimeout(() => {
+                clearInterval(dolphinProgBar);
+                $('.porcentagem').html('100%');
+                $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
+            }, 2000);
+
+        }else{
+            clearInterval(dolphinProgBar);
+            $('.porcentagem').html('100%');
+            $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
+            dolphin.tempoLimite = false;
+        }
+
+        if(dolphin.tempoLimite){
+            inserir(el, 'p', 'CARREGAMENTO CONCLUÍDO', 2500);
+            inserir(el, 'p', 'VOCÊ PERDEU O MODO DOLPHIN', 3500);
+            jogarNovamente(el, 4500)
+
+        }else{
+            inserir(el, 'p', 'CARREGAMENTO CONCLUÍDO ANTES DE ANALISE DOLPHIN', 500);
+            inserir(el, 'p', 'VOCÊ PERDEU O MODO DOLPHIN', 1500);
+            jogarNovamente(el, 2500)
+        }
     }
 }
 
@@ -122,7 +181,7 @@ function dolphinOpcoes(){
     dolphin.opcoes = []
     dolphin.opcoes.push(dolphin.naoprimos[numeroAleatorio(0, 232)]);
     dolphin.opcoes.push(dolphin.naoprimos[numeroAleatorio(0, 232)]);
-    dolphin.opcoes.push(dolphin.primos[numeroAleatorio(0, 166)]);
+    dolphin.opcoes.push(dolphin.primos[numeroAleatorio(0, 165)]);
 
     while(op2 == op1){
         op2 = numeroAleatorio(0, 2);

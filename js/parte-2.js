@@ -67,6 +67,7 @@ function progressoVirus(tempo){
                     width: jogo.porcentagemDinamica + '%'
         
                 }, 100, "linear");
+                
                 $('.porcentagem').html(jogo.porcentagemDinamica + '%');
                 $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
                 
@@ -145,7 +146,7 @@ function inputCodigo(destino, tempo){
             <span>> </span><input id="codigo" type="text" autocomplete="off" style="color: ' + paleta.selected + '">\
         </div>\
         ');
-        $('#codigo').trigger('focus');
+        scrollMax();
         verificador();
     }, tempo + 2);
 }
