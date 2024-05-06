@@ -18,7 +18,7 @@ function intelDolphin(el, tempo){
         pularLinha(el, 4999);
         inserir(el, 'p', '//EXECUTANDO DOLPHIN//', 5000);
         pularLinha(el, 5499);
-        inserir(el, 'p', 'OLÁ, ' + jogo.nome + '. SEU DISPOSITIVO ESTÁ SOFRENDO UM GRAVE ATAQUE DDOS. POR FAVOR, SELECIONE OS CÓDIGOS DIVERGENTES PARA COMPILAÇÃO.', 5500);
+        inserir(el, 'p', 'OLÁ, ' + jogo.nome + '. SEU DISPOSITIVO ESTÁ SOFRENDO UM GRAVE ATAQUE DDOS. POR FAVOR, SELECIONE OS CÓDIGOS DIVERGENTES PARA COMPILAÇÃO. AH! PERMITA-ME LHE PERGUNTAR, ' + jogo.nome + '. COMO VÃO SEUS PRIMOS?', 5500);
         pularLinha(el, 5999);
 
         for(x = 2; x < 1000; x++){
