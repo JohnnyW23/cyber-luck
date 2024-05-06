@@ -55,10 +55,12 @@ function criarJogo(){
 }
 
 
-progressBar = {
-    porcentagemAtual: null,
-    porcentagemAntiga: null,
-    porcentagemDinamica: null,
+function criarProgBar(){
+    progressBar = {
+        porcentagemAtual: null,
+        porcentagemAntiga: null,
+        porcentagemDinamica: null,
+    }
 }
 
 
