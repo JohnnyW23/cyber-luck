@@ -162,6 +162,10 @@ header img {
     color: white !important;
 }
 
+.dolphin-analise span {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 520px) {
     header, .screen {
         width: 100%;

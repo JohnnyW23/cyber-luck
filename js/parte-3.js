@@ -2,6 +2,7 @@ function verificador(){
     var gs = $('.game-screen');
     console.log('A SENHA É ' + jogo.senha)
     let palpite;
+    let delay = 0;
 
     $('#codigo').keyup(function(e) {
 
@@ -13,8 +14,20 @@ function verificador(){
                 return false;
             }
 
+            if(jogo.tentativas == 6 && palpite == 'DOLPHIN'){
+                $('.codigo-wraper').html('<p style="color: white">' + '> ' + palpite + '</p>');
+                intelDolphin(gs, 1000);
+                return;
+            }
+
+            jogo.tentativas--;
+
+            if(jogo.tentativas == 0){
+                delay = 4000
+            }
+
             /* Descriptografar dura 2,8 segundos, na realidade */
-            $('.codigo-wraper').html('<p style="color: white">' + '> ' + palpite  + '</p>');
+            $('.codigo-wraper').html('<p style="color: white">' + '> ' + palpite + '</p>');
             descriptografando(1000);
 
             if(palpite == jogo.senha){
@@ -22,11 +35,11 @@ function verificador(){
 
                 setTimeout(() => {
                     respostaCerta(gs);
+                    jogarNovamente(gs, 4000)
 
-                }, 3800);
+                }, 3800 + delay);
 
             }else{
-                jogo.tentativas--;
 
                 setTimeout(() => {
                     respostaErrada(gs);
@@ -37,22 +50,10 @@ function verificador(){
                     }else{
                         jogo.vitoria = false;
                         inserir(gs, 'p', 'VOCÊ PERDEU!', 3000);
+                        jogarNovamente(gs, 4000);
                     }
                     
-                }, 3800);
-            }
-
-            if(jogo.vitoria != null){
-                setTimeout(() => {
-                    gs.append('<br>');
-                    gs.append('<button id="novo-jogo" style="color: ' + paleta.selected + '; border: 2px solid ' + paleta.selected + '">JOGAR NOVAMENTE</button>');
-                    scrollMax();
-                    $('#novo-jogo').click(() => {
-                        gs.html('');
-                        novoJogo();
-                    })
-
-                }, 7800);
+                }, 3800 + delay);
             }
         }
     });
@@ -62,8 +63,22 @@ function verificador(){
 1 segundo: descriptografar - duração 2,8 segundos
 3,8 segundos: Caso de vitória, derrota ou novo código - duração 3 segundos
 7,8 segundos: Botão de novo jogo (1 segundo após a ação anterior)
+Se for a última tentativa, à partir da descriptografia leva 4 segundos a mais
 */
 
+
+function jogarNovamente(el, tempo){
+    setTimeout(() => {
+        el.append('<br>');
+        el.append('<button id="novo-jogo" style="color: ' + paleta.selected + '; border: 2px solid ' + paleta.selected + '">JOGAR NOVAMENTE</button>');
+        scrollMax();
+        $('#novo-jogo').click(() => {
+            el.html('');
+            novoJogo();
+        })
+
+    }, tempo);
+}
 
 function respostaCerta(el){
     $('.virus-bar-wraper').append('<p>//PROCESSO INTERROMPIDO//</p>')
@@ -85,7 +100,12 @@ function respostaErrada(el){
     progressoVirus(1500);
     pularLinha(el, 1501);
     DataHora(2000);
-    pularLinha(el, 2999);
+    pularLinha(el, 2499);
+
+    if(jogo.tentativas == 5){
+        inserir(el, 'p', '//CÓDIGO DOLPHIN INDISPONÍVEL: TEMPO DE ATIVAÇÃO EXCEDIDO//', 2500);
+        pularLinha(el, 2999);
+    }
 }
 
 function descriptografando(tempo){
@@ -111,6 +131,11 @@ function descriptografando(tempo){
         inserir(el, 'p', linha5, 1800);
         pularLinha(el, 1801);
 
+        if(jogo.tentativas == 0){
+            inserir(el, 'p', '//TEMPERATURA DO DISPOSITIVO ACIMA DO RECOMENDADO//', 2800);
+            inserir(el, 'p', '//ANALISE FINAL DA SEGURANÇA DO DISPOSITIVO//', 2801);
+            pularLinha(el, 2802)
+        }
     }, tempo);
 }
 

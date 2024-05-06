@@ -126,7 +126,7 @@ function pularLinha(destino, tempo, duas=false){
     }else{
         inserir(destino, 'br', '', tempo, false, true);
         inserir(destino, 'br', '', tempo, false, true);
-    }   
+    }
 }
 
 function chatCyber(destino, tempo){

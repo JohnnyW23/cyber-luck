@@ -17,7 +17,6 @@ function novoJogo(){
             </div><!--introducao-->'
         );
         $('#name').trigger('focus');
-        var nameWp = $('.name-wraper').html()
         
         nameSelect();
     
