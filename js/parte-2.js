@@ -6,7 +6,7 @@ function progressoVirus(tempo){
     setTimeout(() => {
 
         if(jogo.tentativas < 6 || jogo.tentativas == 7){
-            jogo.porcentagemAntiga = jogo.porcentagemAtual;
+            progressBar.porcentagemAntiga = progressBar.porcentagemAtual;
             $('.virus-mensagem').show();
             $('.virus-bar-wraper').show();
             $('.virus-mensagem').appendTo('.game-screen');
@@ -14,7 +14,7 @@ function progressoVirus(tempo){
 
         }else{
             criarProgBar();
-            jogo.porcentagemAntiga = 0;
+            progressBar.porcentagemAntiga = 0;
             
             $('.game-screen').append('<p class="virus-mensagem">Progresso do vírus no sistema:</p>');
             $('.game-screen').append('<div class="virus-bar-wraper"></div>');
@@ -59,24 +59,24 @@ function progressoVirus(tempo){
                 max = 100;
             }
 
-            jogo.porcentagemAtual = numeroAleatorio(min, max);
+            progressBar.porcentagemAtual = numeroAleatorio(min, max);
 
-            jogo.porcentagemDinamica = jogo.porcentagemAntiga + 1;
+            progressBar.porcentagemDinamica = progressBar.porcentagemAntiga + 1;
 
             interval = setInterval(() => {
                 $('.loaded-bar').animate({
-                    width: jogo.porcentagemDinamica + '%'
+                    width: progressBar.porcentagemDinamica + '%'
         
                 }, 100, "linear");
                 
-                $('.porcentagem').html(jogo.porcentagemDinamica + '%');
+                $('.porcentagem').html(progressBar.porcentagemDinamica + '%');
                 $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
                 
-                if(jogo.porcentagemDinamica == jogo.porcentagemAtual){
+                if(progressBar.porcentagemDinamica == progressBar.porcentagemAtual){
                     clearInterval(interval)
                 }
     
-                jogo.porcentagemDinamica++;
+                progressBar.porcentagemDinamica++;
                 
             }, 100);
         }
