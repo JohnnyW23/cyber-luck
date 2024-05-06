@@ -138,7 +138,7 @@ function dolphinResultado(el){
     if(dolphin.acertos == dolphin.acertosMinimos){
         clearInterval(dolphinProgBar);
         inserir(el, 'p', 'CARREGAMENTO INTERROMPIDO', 0);
-        jogarNovamente(el, 2000);
+        jogarNovamente(2000);
 
     }else{
         if($('.loaded-bar').width() != $('.bar-space').width()){
@@ -162,12 +162,12 @@ function dolphinResultado(el){
         if(dolphin.tempoLimite){
             inserir(el, 'p', 'CARREGAMENTO CONCLUÍDO', 2500);
             inserir(el, 'p', 'VOCÊ PERDEU O MODO DOLPHIN', 3500);
-            jogarNovamente(el, 4500)
+            jogarNovamente(4500)
 
         }else{
             inserir(el, 'p', 'CARREGAMENTO CONCLUÍDO ANTES DE ANALISE DOLPHIN', 500);
             inserir(el, 'p', 'VOCÊ PERDEU O MODO DOLPHIN', 1500);
-            jogarNovamente(el, 2500)
+            jogarNovamente(2500)
         }
     }
 }
