@@ -35,7 +35,7 @@ function verificador(){
 
                 setTimeout(() => {
                     respostaCerta(gs);
-                    jogarNovamente(gs, 4000)
+                    jogarNovamente(4000)
 
                 }, 3800 + delay);
 
@@ -45,12 +45,12 @@ function verificador(){
                     respostaErrada(gs);
 
                     if(jogo.tentativas > 0){
-                        inputCodigo(gs, 3000);
+                        inputCodigo(3000);
 
                     }else{
                         jogo.vitoria = false;
                         inserir(gs, 'p', 'VOCÊ PERDEU!', 3000);
-                        jogarNovamente(gs, 4000);
+                        jogarNovamente(4000);
                     }
                     
                 }, 3800 + delay);
@@ -67,13 +67,13 @@ Se for a última tentativa, à partir da descriptografia leva 4 segundos a mais
 */
 
 
-function jogarNovamente(el, tempo){
+function jogarNovamente(tempo){
     setTimeout(() => {
-        el.append('<br>');
-        el.append('<button id="novo-jogo" style="color: ' + paleta.selected + '; border: 2px solid ' + paleta.selected + '">JOGAR NOVAMENTE</button>');
+        $('.game-screen').append('<br>');
+        $('.game-screen').append('<button id="novo-jogo" style="color: ' + paleta.selected + '; border: 2px solid ' + paleta.selected + '">JOGAR NOVAMENTE</button>');
         scrollMax();
         $('#novo-jogo').click(() => {
-            el.html('');
+            $('.game-screen').html('');
             novoJogo();
         })
 
