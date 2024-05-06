@@ -13,6 +13,7 @@ function progressoVirus(tempo){
             $('.virus-bar-wraper').appendTo('.game-screen');
 
         }else{
+            criarProgBar();
             jogo.porcentagemAntiga = 0;
             
             $('.game-screen').append('<p class="virus-mensagem">Progresso do vírus no sistema:</p>');
