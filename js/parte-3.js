@@ -45,7 +45,7 @@ function verificador(){
                     respostaErrada(gs);
 
                     if(jogo.tentativas > 0){
-                        inputCodigo(3000);
+                        inputCodigo(gs, 3000);
 
                     }else{
                         jogo.vitoria = false;
