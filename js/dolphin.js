@@ -58,7 +58,7 @@ function progressoVirusDinamico(){
     $('.loaded-bar').animate({
         width: 100 + '%'
 
-    }, 120000, "linear");
+    }, 12000 * dolphin.acertosMinimos, "linear");
 
     dolphinProgBar = setInterval(() => {
         $('.porcentagem').html(Math.floor(($('.loaded-bar').width() / $('.bar-space').width()) * 100) + '%');
@@ -105,7 +105,6 @@ function analiseDolphin(el){
                 }else{
                     numero = ' ' + $(this).html().substring(1, 2) + ' '
                 }
-                console.log('O numero:' + numero + '.')
 
                 if(dolphin.primos.includes(Number(numero))){
                     dolphin.acertos++;
@@ -137,6 +136,16 @@ function analiseDolphin(el){
     }, 500);
 }
 
+
+function embaralhaLista(lista) {
+    for (let i = lista.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [lista[i], lista[j]] = [lista[j], lista[i]];
+    }
+    return lista;
+}
+
+
 function dolphinResultado(el){
     el.html('');
     var vs = $('.virus-state');
@@ -153,27 +162,37 @@ function dolphinResultado(el){
                 if(i == 0)
                     dolphin.compilacao.push('<span style="color: white">' + dolphin.codigos[c] + '</span>');
                 else
-                dolphin.compilacao.push('<span>' + dolphin.codigos[c] + '</span>');
+                dolphin.compilacao.push('<span class="num-resto">' + dolphin.codigos[c] + '</span>');
             }
-        }
-
-        var compScreen = '';
-
-        for(i = 1; i < (dolphin.acertosMinimos * 15) + 1; i++){
-            if(i % 10 == 0){
-                compScreen += dolphin.compilacao[i - 1] + '<br>'
-            }else{
-                compScreen += dolphin.compilacao[i - 1] + ' ';
-            }
-            console.log(dolphin.compilacao[i - 1]),
-            console.log(compScreen)
         }
 
         el.append('<p class="dolphin-msg">ESTOU DESCOMPILANDO OS CÓDIGOS. QUEIRA DEUS QUE VOCÊ TENHA ESCOLHIDO CERTO.</p>');
-        el.append('<br><div class="compilado"><p></p><br></div>')
+        el.append('<br><div class="compilado"><p></p><br></div>');
 
-        setTimeout(() => {
+        randomComp = setInterval(() => {
+            dolphin.compRound++;
+
+            dolphin.compilacao = embaralhaLista(dolphin.compilacao);
+
+            var compScreen = '';
+
+            for(i = 1; i < (dolphin.acertosMinimos * 15) + 1; i++){
+                if(i % 10 == 0){
+                    compScreen += dolphin.compilacao[i - 1] + '<br>'
+                }else{
+                    compScreen += dolphin.compilacao[i - 1] + ' ';
+                }
+            }
+
             $('.compilado p').html(compScreen)
+            
+            if(dolphin.compRound == 1){
+                scrollMax();
+            }
+
+            if(dolphin.compRound == 10){
+                clearInterval(randomComp)
+            }
 
         }, 500);
 
@@ -201,8 +220,11 @@ function dolphinResultado(el){
                     $('.porcentagem').html('100%');
                     $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
                     vs.html('//PROCESSO CONCLUÍDO//');
-                    $('.dolphin-msg').html('VOCÊ FALHOU, E AGORA IREI ME AUTO-DESTRUIR.')
-                    $('.compilado').fadeOut(4000);
+                    $('.dolphin-msg').html('VOCÊ FALHOU, E AGORA IREI ME AUTO-DESTRUIR.');
+
+                    $('.num-resto').animate({
+                        opacity: 0.1
+                    }, 2500)
 
                 }, 2000);
     

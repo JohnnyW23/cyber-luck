@@ -89,6 +89,7 @@ function criarDolphin(){
         analise: 0,
         primoSelect: false,
         tempoLimite: true,
-        codigos: []
+        codigos: [],
+        compRound: 0
     }
 }
