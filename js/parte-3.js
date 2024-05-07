@@ -66,7 +66,6 @@ function verificador(){
 Se for a última tentativa, à partir da descriptografia leva 4 segundos a mais
 */
 
-
 function jogarNovamente(tempo){
     setTimeout(() => {
         $('.game-screen').append('<br>');
@@ -81,7 +80,7 @@ function jogarNovamente(tempo){
 }
 
 function respostaCerta(el){
-    $('.virus-bar-wraper').append('<p>//PROCESSO INTERROMPIDO//</p>')
+    $('.virus-state').html('//PROCESSO INTERROMPIDO//')
     inserir(el, 'p', '//FIREWALL DECODE SUCCESS: CÓDIGO CORRETO//', 0);
     pularLinha(el, 999);
     jogo.tentativas = 7;

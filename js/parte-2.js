@@ -22,6 +22,7 @@ function progressoVirus(tempo){
             $('.virus-bar').append('<span class="porcentagem"></span>');
             $('.virus-bar').append('<div class="bar-space"></div>');
             $('.bar-space').append('<div class="loaded-bar" style="float: left; background-color:' + paleta.selected + '"></div>');
+            $('.virus-bar-wraper').append('<p class="virus-state"></p>')
             $('.virus-bar').append('<div style="clear: both"></div>');
         }
         
@@ -61,9 +62,11 @@ function progressoVirus(tempo){
 
             progressBar.porcentagemAtual = numeroAleatorio(min, max);
 
-            progressBar.porcentagemDinamica = progressBar.porcentagemAntiga + 1;
+            progressBar.porcentagemDinamica = progressBar.porcentagemAntiga;
 
             interval = setInterval(() => {
+                progressBar.porcentagemDinamica++;
+
                 $('.loaded-bar').animate({
                     width: progressBar.porcentagemDinamica + '%'
         
@@ -71,14 +74,17 @@ function progressoVirus(tempo){
                 
                 $('.porcentagem').html(progressBar.porcentagemDinamica + '%');
                 $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
+
+                if(progressBar.porcentagemDinamica == 100){
+                    $('.virus-state').html('//PROCESSO CONCLUÍDO//')
+                }
                 
                 if(progressBar.porcentagemDinamica == progressBar.porcentagemAtual){
                     clearInterval(interval)
                 }
-    
-                progressBar.porcentagemDinamica++;
                 
             }, 100);
+
         }
         scrollMax();
         

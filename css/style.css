@@ -98,8 +98,7 @@ header img {
     font-weight: lighter;
 }
 #name {
-    width: 200px;
-    margin-top: 5px;
+    width: calc(100% - 19.2px);
     display: inline-block;
 }
 .niveis-unselected span {

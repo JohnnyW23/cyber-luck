@@ -56,7 +56,7 @@ function nameSelect(){
             }
 
             if(jogo.nomeSintaxe && jogo.nomeTamanho){
-                $('.name-wraper').html('<p style="margin-top: 5px; color: white">' + '> ' + jogo.nome  + '</p>');
+                $('.name-wraper').html('<p style="color: white">' + '> ' + jogo.nome  + '</p>');
                 jogo.nomeSelect = true;
 
                 levelSelect();

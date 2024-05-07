@@ -50,8 +50,6 @@ function intelDolphin(el, tempo){
 
 
 function progressoVirusDinamico(){
-    jogo.porcentagemAntiga = jogo.porcentagemAtual;
-
     $('.virus-mensagem').show();
     $('.virus-bar-wraper').show();
     $('.virus-mensagem').appendTo('.game-screen');
@@ -66,7 +64,8 @@ function progressoVirusDinamico(){
         $('.porcentagem').html(Math.floor(($('.loaded-bar').width() / $('.bar-space').width()) * 100) + '%');
         $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
 
-        if($('.loaded-bar').width() == $('.bar-space').width()){
+        if($('.loaded-bar').width() == $('.bar-space').width() && !dolphin.primoSelect){
+            dolphin.tempoLimite = false;
             dolphinResultado($('.dolphin-analise'))
         }
 
@@ -112,63 +111,110 @@ function analiseDolphin(el){
                 }
                 $(this).css('color', 'white');
 
+                dolphin.codigos[dolphin.analise] = numero;
+
                 dolphin.analise++;
 
-                setTimeout(() => {
-                    if(dolphin.analise < dolphin.acertosMinimos){
-                        $('.dolphin-analise-selected').html('');
-                        $('.dolphin-analise-selected').attr('class', 'dolphin-analise-unselected');
-                        dolphin.primoSelect = false;
-                        analiseDolphin(el)
+                if(dolphin.analise < dolphin.acertosMinimos){
+                    setTimeout(() => {
+                        if(dolphin.tempoLimite){
+                            $('.dolphin-analise-selected').html('');
+                            $('.dolphin-analise-selected').attr('class', 'dolphin-analise-unselected');
+                            dolphin.primoSelect = false;
+                            analiseDolphin(el);
 
-                    }else{
-                        dolphinResultado($('.dolphin-analise'));
-                    }
-
-                }, 1000);
+                        }else{
+                            dolphinResultado($('.dolphin-analise'));
+                        }
+                    }, 1000);
+                    
+                }else{
+                    dolphinResultado($('.dolphin-analise'));
+                }
             }
         })
-
     }, 500);
 }
 
 function dolphinResultado(el){
     el.html('');
+    var vs = $('.virus-state');
     $('.loaded-bar').stop();
-    if(dolphin.acertos == dolphin.acertosMinimos){
-        clearInterval(dolphinProgBar);
-        inserir(el, 'p', 'CARREGAMENTO INTERROMPIDO', 0);
-        jogarNovamente(2000);
+    vs.html('//BACKDOOR DNS:' + numeroAleatorio(100, 999) + ':' + numeroAleatorio(10, 99) + '//');
+
+    if(dolphin.tempoLimite){
+        /* Caso tenha escolhido todos os códigos a tempo */
+
+        dolphin.compilacao = []
+
+        for(i = 0; i < 15; i++){
+            for(c = 0; c < dolphin.acertosMinimos; c++){
+                dolphin.compilacao.push(dolphin.codigos[c]);
+            }
+        }
+
+        var compScreen = '';
+
+        for(i = 1; i < (dolphin.acertosMinimos * 15) + 1; i++){
+            if(i % 10 == 0){
+                compScreen += dolphin.compilacao[i - 1] + '<br>'
+            }else{
+                compScreen += dolphin.compilacao[i - 1] + ' ';
+            }
+        }
+
+        el.html('<p class="dolphin-msg">ESTOU DESCOMPILANDO OS CÓDIGOS. QUEIRA DEUS QUE VOCÊ TENHA ESCOLHIDO CERTO.</p><br>');
+        el.append('<div class="compilado"><p></p><br></div>')
+
+        setTimeout(() => {
+            $('.compilado p').html(compScreen)
+
+        }, 500);
+
+        setTimeout(() => {
+            if(dolphin.acertos == dolphin.acertosMinimos){
+                /* Caso tenha escolhido tudo certo */
+
+                vs.html('//PROCESSO INTERROMPIDO//')
+                clearInterval(dolphinProgBar);
+                inserir(el, 'p', 'CARREGAMENTO DE MALWARE MAL-SUCEDIDO', 0);
+                inserir(el, 'p', 'VOCÊ VENCEU O MODO DOLPHIN!', 1000);
+                jogarNovamente(2000);
+        
+            }else{
+                /* Em caso de derrota */
+                
+                $('.loaded-bar').animate({
+                    width: 100 + '%'
+        
+                }, 2000);
+                setTimeout(() => {
+                    clearInterval(dolphinProgBar);
+                    $('.porcentagem').html('100%');
+                    $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
+                    vs.html('//PROCESSO CONCLUÍDO//');
+                    $('.dolphin-msg').html('VOCÊ FALHOU, E AGORA IREI ME AUTO-DESTRUIR.')
+                    $('.compilado').fadeOut(4000);
+
+                }, 2000);
+    
+                inserir(el, 'p', 'CARREGAMENTO DE MALWARE BEM-SUCEDIDO', 2500);
+                inserir(el, 'p', 'VOCÊ PERDEU O MODO DOLPHIN', 3500);
+                jogarNovamente(4500)
+            }
+        }, 5000);
 
     }else{
-        if($('.loaded-bar').width() != $('.bar-space').width()){
-            $('.loaded-bar').animate({
-                width: 100 + '%'
-    
-            }, 2000);
-            setTimeout(() => {
-                clearInterval(dolphinProgBar);
-                $('.porcentagem').html('100%');
-                $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
-            }, 2000);
+        /* Em caso de derrota depois da barra atingir 100% */
 
-        }else{
-            clearInterval(dolphinProgBar);
-            $('.porcentagem').html('100%');
-            $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
-            dolphin.tempoLimite = false;
-        }
+        clearInterval(dolphinProgBar);
+        $('.porcentagem').html('100%');
+        $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
 
-        if(dolphin.tempoLimite){
-            inserir(el, 'p', 'CARREGAMENTO CONCLUÍDO', 2500);
-            inserir(el, 'p', 'VOCÊ PERDEU O MODO DOLPHIN', 3500);
-            jogarNovamente(4500)
-
-        }else{
-            inserir(el, 'p', 'CARREGAMENTO CONCLUÍDO ANTES DE ANALISE DOLPHIN', 500);
-            inserir(el, 'p', 'VOCÊ PERDEU O MODO DOLPHIN', 1500);
-            jogarNovamente(2500)
-        }
+        vs.html('//PROCESSO CONCLUÍDO//');
+        inserir(el, 'p', 'CARREGAMENTO DE MALWARE BEM-SUCEDIDO // EXCEPTION(E): DOLPHIN COM DADOS INSUFICIENTES PARA COMPILAÇÃO', 500);
+        inserir(el, 'p', 'VOCÊ PERDEU O MODO DOLPHIN', 1500);
+        jogarNovamente(2500)
     }
 }
 
