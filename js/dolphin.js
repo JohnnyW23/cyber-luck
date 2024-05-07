@@ -200,8 +200,11 @@ function dolphinResultado(el){
             if(dolphin.acertos == dolphin.acertosMinimos){
                 /* Caso tenha escolhido tudo certo */
 
-                vs.html('//PROCESSO INTERROMPIDO//')
+                vs.html('//PROCESSO INTERROMPIDO//');
                 clearInterval(dolphinProgBar);
+                $('.num-resto').animate({
+                    color: 'white'
+                }, 2000);
                 inserir(el, 'p', 'CARREGAMENTO DE MALWARE MAL-SUCEDIDO', 0);
                 inserir(el, 'p', 'VOCÊ VENCEU O MODO DOLPHIN!', 1000);
                 jogarNovamente(2000);
@@ -220,7 +223,7 @@ function dolphinResultado(el){
                     $('.porcentagem').html('100%');
                     $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
                     vs.html('//PROCESSO CONCLUÍDO//');
-                    $('.dolphin-msg').html('VOCÊ FALHOU, E AGORA IREI ME AUTO-DESTRUIR.');
+                    $('.dolphin-msg').html('CÓDIGOS DIVERGENTES: ' + dolphin.acertos + '. VOCÊ FALHOU, E AGORA IREI ME AUTO-DESTRUIR.');
 
                     $('.num-resto').animate({
                         opacity: 0.1

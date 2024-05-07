@@ -34,6 +34,14 @@ paleta = {
             headerBGColor: 'rgb(10, 5, 7)',
             screenBGColor: 'rgb(19, 10, 14)',
             coresBGColor: 'rgb(40, 19, 25)'
+        },{
+            id: 'cor4',
+            color: 'fuchsia',
+            loadedBarBGColor: 'fuchsia',
+            novoJogoBdColor: 'fuchsia',
+            headerBGColor: 'rgb(10, 0, 10)',
+            screenBGColor: 'rgb(19, 0, 19)',
+            coresBGColor: 'rgb(40, 0, 40)'
         }
     ]
 }
