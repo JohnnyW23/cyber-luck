@@ -111,7 +111,6 @@ header img {
 }
 .game-screen {
     width: 100%;
-    max-width: 1000px;
     word-wrap: break-word;
 }
 .hacker {
@@ -157,6 +156,10 @@ header img {
 
 .dolphin-analise-unselected span {
     cursor: pointer;
+}
+
+.compilado span {
+    white-space: pre;
 }
 
 @media screen and (max-width: 520px) {

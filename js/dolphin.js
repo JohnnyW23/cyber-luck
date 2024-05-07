@@ -100,14 +100,15 @@ function analiseDolphin(el){
                     numero = $(this).html().substring(1, 4)
 
                 }else if($(this).html().length == 4){
-                    numero = $(this).html().substring(1, 3)
+                    numero = $(this).html().substring(1, 3) + ' '
 
                 }else{
-                    numero = $(this).html().substring(1, 2)
+                    numero = ' ' + $(this).html().substring(1, 2) + ' '
                 }
+                console.log('O numero:' + numero + '.')
 
                 if(dolphin.primos.includes(Number(numero))){
-                    dolphin.acertos ++;
+                    dolphin.acertos++;
                 }
                 $(this).css('color', 'white');
 
@@ -140,7 +141,7 @@ function dolphinResultado(el){
     el.html('');
     var vs = $('.virus-state');
     $('.loaded-bar').stop();
-    vs.html('//BACKDOOR DNS:' + numeroAleatorio(100, 999) + ':' + numeroAleatorio(10, 99) + '//');
+    vs.html('//BACKDOOR DNS/' + numeroAleatorio(100, 999) + ':' + numeroAleatorio(10, 99) + '//');
 
     if(dolphin.tempoLimite){
         /* Caso tenha escolhido todos os códigos a tempo */
@@ -149,7 +150,10 @@ function dolphinResultado(el){
 
         for(i = 0; i < 15; i++){
             for(c = 0; c < dolphin.acertosMinimos; c++){
-                dolphin.compilacao.push(dolphin.codigos[c]);
+                if(i == 0)
+                    dolphin.compilacao.push('<span style="color: white">' + dolphin.codigos[c] + '</span>');
+                else
+                dolphin.compilacao.push('<span>' + dolphin.codigos[c] + '</span>');
             }
         }
 
@@ -161,10 +165,12 @@ function dolphinResultado(el){
             }else{
                 compScreen += dolphin.compilacao[i - 1] + ' ';
             }
+            console.log(dolphin.compilacao[i - 1]),
+            console.log(compScreen)
         }
 
-        el.html('<p class="dolphin-msg">ESTOU DESCOMPILANDO OS CÓDIGOS. QUEIRA DEUS QUE VOCÊ TENHA ESCOLHIDO CERTO.</p><br>');
-        el.append('<div class="compilado"><p></p><br></div>')
+        el.append('<p class="dolphin-msg">ESTOU DESCOMPILANDO OS CÓDIGOS. QUEIRA DEUS QUE VOCÊ TENHA ESCOLHIDO CERTO.</p>');
+        el.append('<br><div class="compilado"><p></p><br></div>')
 
         setTimeout(() => {
             $('.compilado p').html(compScreen)
@@ -183,6 +189,8 @@ function dolphinResultado(el){
         
             }else{
                 /* Em caso de derrota */
+
+                vs.html('');
                 
                 $('.loaded-bar').animate({
                     width: 100 + '%'
