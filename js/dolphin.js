@@ -100,15 +100,16 @@ function analiseDolphin(el){
                     numero = $(this).html().substring(1, 4)
 
                 }else if($(this).html().length == 4){
-                    numero = $(this).html().substring(1, 3) + ' '
+                    numero = $(this).html().substring(1, 3)
 
                 }else{
-                    numero = ' ' + $(this).html().substring(1, 2) + ' '
+                    numero = $(this).html().substring(1, 2)
                 }
 
                 if(dolphin.primos.includes(Number(numero))){
                     dolphin.acertos++;
                 }
+
                 $(this).css('color', 'white');
 
                 dolphin.codigos[dolphin.analise] = numero;
@@ -146,6 +147,18 @@ function embaralhaLista(lista) {
 }
 
 
+function adequarNum(num){
+    if(num.length == 2){
+        num = num + ' '
+
+    }else if(num.length == 1){
+        num = ' ' + num + ' '
+    }
+    console.log('_' + num + '_')
+    return num
+}
+
+
 function dolphinResultado(el){
     el.html('');
     var vs = $('.virus-state');
@@ -159,10 +172,13 @@ function dolphinResultado(el){
 
         for(i = 0; i < 15; i++){
             for(c = 0; c < dolphin.acertosMinimos; c++){
-                if(i == 0)
-                    dolphin.compilacao.push('<span style="color: white">' + dolphin.codigos[c] + '</span>');
-                else
-                dolphin.compilacao.push('<span class="num-resto">' + dolphin.codigos[c] + '</span>');
+
+                if(i == 0){
+                    dolphin.compilacao.push('<span style="color: white">' + adequarNum(dolphin.codigos[c]) + '</span>');
+                } 
+                else{
+                    dolphin.compilacao.push('<span class="num-resto">' + adequarNum(numeroAleatorio(2, 999) + "") + '</span>');
+                }
             }
         }
 
