@@ -30,7 +30,6 @@ function intelDolphin(el, tempo){
                     dolphin.naoprimos.push(x)
                     break
                 }
-
                 if(y == x - 1){
                     dolphin.primos.push(x)
                 }
@@ -40,12 +39,62 @@ function intelDolphin(el, tempo){
         setTimeout(() => {
             progressoVirusDinamico();
             el.append('<br><div class="dolphin-analise"></div>');
-            $('.dolphin-analise').append($('<div class="dolphin-analise-unselected"></div>'))
+            $('.dolphin-analise').append($('<div class="dolphin-analise-unselected"></div>'));
             analiseDolphin($('.dolphin-analise-unselected'))
+            inserirImg($('.screen'))
 
         }, 6000);
 
     }, tempo);
+}
+
+
+function inserirImg(el){
+    el.append('\
+        <img class="dolphin-img" id="dol-img-1" src="../assets/img-dolphin.jpg">\
+        <img class="dolphin-img" id="dol-img-2" src="../assets/img-dolphin.jpg">\
+        <img class="dolphin-img" id="dol-img-3" src="../assets/img-dolphin.jpg">\
+        <img class="dolphin-img" id="dol-img-4" src="../assets/img-dolphin.jpg">\
+        <img class="dolphin-img" id="dol-img-5" src="../assets/img-dolphin.jpg">\
+        <img class="dolphin-img" id="dol-img-6" src="../assets/img-dolphin.jpg">\
+        <img class="dolphin-img" id="dol-img-7" src="../assets/img-dolphin.jpg">\
+        <img class="dolphin-img" id="dol-img-8" src="../assets/img-dolphin.jpg">\
+    ')
+    animarImg($('#dol-img-1'));
+    setTimeout(() => {animarImg($('#dol-img-2'));}, 100);
+    setTimeout(() => {animarImg($('#dol-img-3'));}, 200);
+    setTimeout(() => {animarImg($('#dol-img-4'));}, 300);
+    setTimeout(() => {animarImg($('#dol-img-4'));}, 400);
+    setTimeout(() => {animarImg($('#dol-img-4'));}, 500);
+    setTimeout(() => {animarImg($('#dol-img-4'));}, 600);
+    setTimeout(() => {animarImg($('#dol-img-4'));}, 700);
+}
+
+
+function animarImg(img){
+    if(jogo.vitoria == null){
+        let tempo = numeroAleatorio(10, 15) * 100 + 700
+        let valor = Number($('.screen').css('width').substring(0, $('.screen').width().length - 2));
+
+        if(valor > 1000){
+            img.css('width', numeroAleatorio(20, 25) + '%');
+        }else if(valor > 800){
+            img.css('width', numeroAleatorio(25, 30) + '%');
+        }else if(valor > 600){
+            img.css('width', numeroAleatorio(30, 35) + '%');
+        }else{
+            img.css('width', numeroAleatorio(35, 40) + '%');
+        }
+        img.css('height', 'auto');
+        img.css('left', (numeroAleatorio(0, 100) - ((img.width() / $('.screen').width()) * 100) / 2) + '%');
+        img.css('top', (numeroAleatorio(0, 100) - ((img.height() / $('.screen').height()) * 100) / 2) + '%');
+
+        setTimeout(() => {
+            img.show();
+            img.fadeOut(700);
+            animarImg(img)
+        }, tempo);
+    }
 }
 
 
@@ -154,7 +203,6 @@ function adequarNum(num){
     }else if(num.length == 1){
         num = ' ' + num + ' '
     }
-    console.log('_' + num + '_')
     return num
 }
 
@@ -216,6 +264,7 @@ function dolphinResultado(el){
             if(dolphin.acertos == dolphin.acertosMinimos){
                 /* Caso tenha escolhido tudo certo */
 
+                jogo.vitoria = true;
                 vs.html('//PROCESSO INTERROMPIDO//');
                 clearInterval(dolphinProgBar);
                 $('.num-resto').animate({
@@ -227,6 +276,8 @@ function dolphinResultado(el){
         
             }else{
                 /* Em caso de derrota */
+
+                jogo.vitoria = false;
 
                 vs.html('');
                 
@@ -255,6 +306,8 @@ function dolphinResultado(el){
 
     }else{
         /* Em caso de derrota depois da barra atingir 100% */
+
+        jogo.vitoria = false;
 
         clearInterval(dolphinProgBar);
         $('.porcentagem').html('100%');

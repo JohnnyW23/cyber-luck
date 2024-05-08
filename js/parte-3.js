@@ -14,20 +14,20 @@ function verificador(){
                 return false;
             }
 
+            if(jogo.tentativas == 0){
+                delay = 4000
+            }
+
+            $('.codigo-wraper').html('<p style="color: white">' + '> ' + palpite + '</p>');
+
             if(jogo.tentativas == 6 && palpite == 'DOLPHIN'){
-                $('.codigo-wraper').html('<p style="color: white">' + '> ' + palpite + '</p>');
                 intelDolphin(gs, 1000);
                 return;
             }
 
             jogo.tentativas--;
 
-            if(jogo.tentativas == 0){
-                delay = 4000
-            }
-
             /* Descriptografar dura 2,8 segundos, na realidade */
-            $('.codigo-wraper').html('<p style="color: white">' + '> ' + palpite + '</p>');
             descriptografando(1000);
 
             if(palpite == jogo.senha){
