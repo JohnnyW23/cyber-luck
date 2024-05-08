@@ -19,6 +19,19 @@ function intelDolphin(el, tempo){
         inserir(el, 'p', '//EXECUTANDO DOLPHIN//', 5000);
         pularLinha(el, 5499);
         inserir(el, 'p', 'OLÁ, ' + jogo.nome + '. SEU DISPOSITIVO ESTÁ SOFRENDO UM GRAVE ATAQUE DDOS. POR FAVOR, SELECIONE OS CÓDIGOS DIVERGENTES PARA COMPILAÇÃO. AH! PERMITA-ME LHE PERGUNTAR, ' + jogo.nome + '. COMO VÃO SEUS PRIMOS?', 5500);
+        setTimeout(() => {
+            inserirImg($('.screen'), [
+                '<img class="dolphin-img" src="../assets/img-dolphin.jpg">',
+                '<img class="dolphin-img" src="../assets/img-dolphin.jpg">',
+                '<img class="dolphin-img" src="../assets/img-dolphin.jpg">',
+                '<img class="dolphin-img" src="../assets/img-dolphin.jpg">',
+                '<img class="dolphin-img" src="../assets/img-dolphin.jpg">',
+                '<img class="dolphin-img" src="../assets/img-dolphin.jpg">',
+                '<img class="dolphin-img" src="../assets/img-dolphin.jpg">',
+                '<img class="dolphin-img" src="../assets/img-dolphin.jpg">'
+            ],
+            '.dolphin-img', null, animacaoFotos.dolphin)
+        }, 5500);
         pularLinha(el, 5999);
 
         for(x = 2; x < 1000; x++){
@@ -41,60 +54,8 @@ function intelDolphin(el, tempo){
             el.append('<br><div class="dolphin-analise"></div>');
             $('.dolphin-analise').append($('<div class="dolphin-analise-unselected"></div>'));
             analiseDolphin($('.dolphin-analise-unselected'))
-            inserirImg($('.screen'))
-
         }, 6000);
-
     }, tempo);
-}
-
-
-function inserirImg(el){
-    el.append('\
-        <img class="dolphin-img" id="dol-img-1" src="../assets/img-dolphin.jpg">\
-        <img class="dolphin-img" id="dol-img-2" src="../assets/img-dolphin.jpg">\
-        <img class="dolphin-img" id="dol-img-3" src="../assets/img-dolphin.jpg">\
-        <img class="dolphin-img" id="dol-img-4" src="../assets/img-dolphin.jpg">\
-        <img class="dolphin-img" id="dol-img-5" src="../assets/img-dolphin.jpg">\
-        <img class="dolphin-img" id="dol-img-6" src="../assets/img-dolphin.jpg">\
-        <img class="dolphin-img" id="dol-img-7" src="../assets/img-dolphin.jpg">\
-        <img class="dolphin-img" id="dol-img-8" src="../assets/img-dolphin.jpg">\
-    ')
-    animarImg($('#dol-img-1'));
-    setTimeout(() => {animarImg($('#dol-img-2'));}, 100);
-    setTimeout(() => {animarImg($('#dol-img-3'));}, 200);
-    setTimeout(() => {animarImg($('#dol-img-4'));}, 300);
-    setTimeout(() => {animarImg($('#dol-img-4'));}, 400);
-    setTimeout(() => {animarImg($('#dol-img-4'));}, 500);
-    setTimeout(() => {animarImg($('#dol-img-4'));}, 600);
-    setTimeout(() => {animarImg($('#dol-img-4'));}, 700);
-}
-
-
-function animarImg(img){
-    if(jogo.vitoria == null){
-        let tempo = numeroAleatorio(10, 15) * 100 + 700
-        let valor = Number($('.screen').css('width').substring(0, $('.screen').width().length - 2));
-
-        if(valor > 1000){
-            img.css('width', numeroAleatorio(20, 25) + '%');
-        }else if(valor > 800){
-            img.css('width', numeroAleatorio(25, 30) + '%');
-        }else if(valor > 600){
-            img.css('width', numeroAleatorio(30, 35) + '%');
-        }else{
-            img.css('width', numeroAleatorio(35, 40) + '%');
-        }
-        img.css('height', 'auto');
-        img.css('left', (numeroAleatorio(0, 100) - ((img.width() / $('.screen').width()) * 100) / 2) + '%');
-        img.css('top', (numeroAleatorio(0, 100) - ((img.height() / $('.screen').height()) * 100) / 2) + '%');
-
-        setTimeout(() => {
-            img.show();
-            img.fadeOut(700);
-            animarImg(img)
-        }, tempo);
-    }
 }
 
 
@@ -286,6 +247,8 @@ function dolphinResultado(el){
         
                 }, 2000);
                 setTimeout(() => {
+                    $('.screen > img').remove();
+                    animacaoClown();
                     clearInterval(dolphinProgBar);
                     $('.porcentagem').html('100%');
                     $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
@@ -308,6 +271,8 @@ function dolphinResultado(el){
         /* Em caso de derrota depois da barra atingir 100% */
 
         jogo.vitoria = false;
+        $('.screen > img').remove();
+        animacaoClown();
 
         clearInterval(dolphinProgBar);
         $('.porcentagem').html('100%');

@@ -58,7 +58,7 @@ function criarJogo(){
         senha: null,
         limite: null,
         tentativas: null,
-        vitoria: null
+        vitoria: null,
     }
 }
 
@@ -99,5 +99,13 @@ function criarDolphin(){
         tempoLimite: true,
         codigos: [],
         compRound: 0
+    }
+}
+
+
+function criarRoundsAnim(){
+    animacaoFotos = {
+        dolphin: 0,
+        clown: 0
     }
 }

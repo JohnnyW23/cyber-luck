@@ -14,10 +14,6 @@ function verificador(){
                 return false;
             }
 
-            if(jogo.tentativas == 0){
-                delay = 4000
-            }
-
             $('.codigo-wraper').html('<p style="color: white">' + '> ' + palpite + '</p>');
 
             if(jogo.tentativas == 6 && palpite == 'DOLPHIN'){
@@ -26,6 +22,10 @@ function verificador(){
             }
 
             jogo.tentativas--;
+
+            if(jogo.tentativas == 0){
+                delay = 4000
+            }
 
             /* Descriptografar dura 2,8 segundos, na realidade */
             descriptografando(1000);
@@ -48,7 +48,6 @@ function verificador(){
                         inputCodigo(gs, 3000);
 
                     }else{
-                        jogo.vitoria = false;
                         inserir(gs, 'p', 'VOCÊ PERDEU!', 3000);
                         jogarNovamente(4000);
                     }
@@ -73,6 +72,7 @@ function jogarNovamente(tempo){
         scrollMax();
         $('#novo-jogo').click(() => {
             $('.game-screen').html('');
+            $('.screen > img').remove();
             novoJogo();
         })
 
@@ -153,4 +153,63 @@ function gerarCriptografiaAleatoria() {
         criptografia += caracteresPermitidos.charAt(indiceAleatorio);
     }
     return criptografia;
+}
+
+
+function inserirImg(el, imgList, classe, state, rounds){
+    let tempo = 0
+    for(i = 0; i < imgList.length + 1; i++){
+        el.append(imgList[i]);
+        let index = i
+        setTimeout(() => {animarImg($(classe).eq(index), state, rounds)}, tempo);
+        tempo += 150;
+    }
+}
+
+
+function animarImg(img, state, rounds){
+    if(jogo.vitoria == state){
+        let tempo;
+
+        if(rounds == 0)
+            tempo = 0
+        else
+            tempo = numeroAleatorio(10, 15) * 100 + 700
+        
+        let valor = Number($('.screen').css('width').substring(0, $('.screen').width().length - 2));
+
+        if(valor > 1000){
+            img.css('width', numeroAleatorio(20, 25) + '%');
+        }else if(valor > 800){
+            img.css('width', numeroAleatorio(25, 30) + '%');
+        }else if(valor > 600){
+            img.css('width', numeroAleatorio(30, 35) + '%');
+        }else{
+            img.css('width', numeroAleatorio(35, 40) + '%');
+        }
+        img.css('height', 'auto');
+        img.css('left', (numeroAleatorio(0, 100) - ((img.width() / $('.screen').width()) * 100) / 2) + '%');
+        img.css('top', (numeroAleatorio(0, 100) - ((img.height() / $('.screen').height()) * 100) / 2) + '%');
+
+        setTimeout(() => {
+            img.show();
+            img.fadeOut(700);
+            animarImg(img, state)
+        }, tempo);
+    }
+}
+
+
+function animacaoClown(){
+    inserirImg($('.screen'), [
+        '<img class="clown-img" src="../assets/clown-1.jpg">',
+        '<img class="clown-img" src="../assets/clown-2.jpg">',
+        '<img class="clown-img" src="../assets/clown-3.jpg">',
+        '<img class="clown-img" src="../assets/clown-4.jpg">',
+        '<img class="clown-img" src="../assets/clown-1.jpg">',
+        '<img class="clown-img" src="../assets/clown-2.jpg">',
+        '<img class="clown-img" src="../assets/clown-3.jpg">',
+        '<img class="clown-img" src="../assets/clown-4.jpg">'
+    ],
+    '.clown-img', false, animacaoFotos.clown)
 }

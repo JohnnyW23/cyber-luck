@@ -2,6 +2,7 @@ novoJogo();
 
 function novoJogo(){
     criarJogo();
+    criarRoundsAnim();
 
     setTimeout(() => {
         $('.game-screen').append(

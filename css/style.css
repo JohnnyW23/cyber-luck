@@ -164,9 +164,10 @@ header img {
 .dolphin-analise-unselected span {
     cursor: pointer;
 }
-.dolphin-img {
+.dolphin-img,
+.clown-img {
     position: absolute;
-    opacity: 0.05;
+    opacity: 0.1;
     display: none;
     z-index: -1;
 }
