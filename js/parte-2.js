@@ -121,11 +121,11 @@ function DataHora(tempo){
 function definirLimite(level){
     let limite;
     if(level == 1){
-        limite = '<span style="color: white">1 até 8</span>'
+        limite = '<span style="color: white">1 e 8</span>'
     }else if(level == 2){
-        limite = '<span style="color: white">1 até 16</span>'
+        limite = '<span style="color: white">1 e 16</span>'
     }else{
-        limite = '<span style="color: white">1 até 24</span>'
+        limite = '<span style="color: white">1 e 24</span>'
     }
     return limite;
 }
@@ -169,8 +169,8 @@ function entrada_hacker(){
     chatCyber(el, 1501); 
     inserir(el, 'p', '//FIREWALL DETECTOU CARREGAMENTO DE VÍRUS LETAL AO SISTEMA//', 2501)
     inserir(el, 'p', '//TENTATIVA DE NEUTRALIZAR VÍRUS EM ANDAMENTO//', 3000);
-    inserir(el, 'p', 'AVISO: FIREWALL SOBRECARREGADO. ENTRADA MANUAL NECESSÁRIA DE [USER ' + jogo.nome + '].', 3500);
-    inserir(el, 'p', 'DETECTADO CÓDIGO DE NÚMERO ENTRE ' + jogo.limite + '.', 4000);
+    inserir(el, 'p', 'AVISO: FIREWALL SOBRECARREGADO. ENTRADA MANUAL NECESSÁRIA DE [USER ' + jogo.nome + ']', 3500);
+    inserir(el, 'p', 'DETECTADO INTERVALO: CÓDIGO É UM NÚMERO INTEIRO ENTRE ' + jogo.limite, 4000);
     pularLinha(el, 4500);
     progressoVirus(4501);
     pularLinha(el, 4502);
