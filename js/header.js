@@ -14,6 +14,14 @@ $(() => {
         }
     })
 
+    $('#readme').click(function(){
+        $('.sobre-jogo-wraper').fadeIn(250);
+    })
+
+    $('#close-button').click(function(){
+        $('.sobre-jogo-wraper').fadeOut(250);
+    })
+
     $('.cores li').click(function(){
         mudarCorTema($(this), $(this).attr('id'))
     })
@@ -28,9 +36,13 @@ $(() => {
                 $('.loaded-bar').css('background-color', paleta.cores[i].loadedBarBGColor);
                 $('#novo-jogo').css('border', '2px solid ' + paleta.cores[i].novoJogoBdColor);
                 $('header').css('background-color', paleta.cores[i].headerBGColor);
-                $('.screen').css('background-color', paleta.cores[i].screenBGColor);
+                $('.screen').css('background', paleta.cores[i].screenBGColor);
                 $('.cores').css('background-color', paleta.cores[i].coresBGColor);
                 $('#palette').attr('src', 'assets/palette-' + i + '.svg');
+                $('#readme').attr('src', 'assets/readme-' + i + '.svg');
+                $('#github').attr('src', 'assets/github-' + i + '.svg');
+                $('.sobre-jogo').css('border-color', paleta.cores[i].novoJogoBdColor);
+                $('#close-button').css('border-color', paleta.cores[i].novoJogoBdColor);
                 paleta.selected = paleta.cores[i].color;
 
                 break

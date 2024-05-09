@@ -8,7 +8,7 @@ paleta = {
             loadedBarBGColor: 'lime',
             novoJogoBdColor: 'lime',
             headerBGColor: 'rgb(0, 10, 0)',
-            screenBGColor: 'rgb(0, 19, 0)',
+            screenBGColor: 'radial-gradient(70% 50% at bottom, rgb(0, 80, 0) 5%, rgb(0, 60, 0) 20%, rgb(0, 20, 0) 100%)',
             coresBGColor: 'rgb(0, 40, 0)'
         },{
             id: 'cor1',
@@ -16,7 +16,7 @@ paleta = {
             loadedBarBGColor: 'aqua',
             novoJogoBdColor: 'aqua',
             headerBGColor: 'rgb(0, 10, 10)',
-            screenBGColor: 'rgb(0, 19, 19)',
+            screenBGColor: 'radial-gradient(70% 50% at bottom, rgb(0, 80, 80) 5%, rgb(0, 60, 60) 20%, rgb(0, 20, 20) 100%)',
             coresBGColor: 'rgb(0, 40, 40)'
         },{
             id: 'cor2',
@@ -24,7 +24,7 @@ paleta = {
             loadedBarBGColor: 'red',
             novoJogoBdColor: 'red',
             headerBGColor: 'rgb(10, 0, 0)',
-            screenBGColor: 'rgb(19, 0, 0)',
+            screenBGColor: 'radial-gradient(70% 50% at bottom, rgb(80, 0, 0) 5%, rgb(60, 0, 0) 20%, rgb(20, 0, 0) 100%)',
             coresBGColor: 'rgb(40, 0, 0)'
         },{
             id: 'cor3',
@@ -32,7 +32,7 @@ paleta = {
             loadedBarBGColor: 'hotpink',
             novoJogoBdColor: 'hotpink',
             headerBGColor: 'rgb(10, 5, 7)',
-            screenBGColor: 'rgb(19, 10, 14)',
+            screenBGColor: 'radial-gradient(70% 50% at bottom, rgb(80, 40, 56) 5%, rgb(60, 30, 42) 20%, rgb(20, 10, 14) 100%)',
             coresBGColor: 'rgb(40, 19, 25)'
         },{
             id: 'cor4',
@@ -40,7 +40,7 @@ paleta = {
             loadedBarBGColor: 'fuchsia',
             novoJogoBdColor: 'fuchsia',
             headerBGColor: 'rgb(10, 0, 10)',
-            screenBGColor: 'rgb(19, 0, 19)',
+            screenBGColor: 'radial-gradient(70% 50% at bottom, rgb(80, 0, 80) 5%, rgb(60, 0, 60) 20%, rgb(20, 0, 20) 100%)',
             coresBGColor: 'rgb(40, 0, 40)'
         }
     ]
