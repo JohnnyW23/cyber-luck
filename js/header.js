@@ -80,4 +80,32 @@ $(() => {
             }, 150)
         }
     })
+
+    temporizador = setInterval(() => {
+
+        if(!menu.inicio){
+            if(menu.rounds == 17){
+                menu.rounds = 0;
+                setTimeout(() => {
+                    $('.glow-selected').attr('class', '');
+                    $('.titulo span').eq(0).attr('class', 'glow-selected')
+
+                }, 75);
+
+            }else{
+                let el = $('.glow-selected').next(':not(.blank-space)');
+                setTimeout(() => {
+                    $('.glow-selected').attr('class', '');
+                    el.attr('class', 'glow-selected');
+
+                }, 75);
+                menu.rounds++;
+            }
+
+        }else{
+            $('.glow-selected').attr('class', '');
+            $('.titulo h1').css('text-shadow', 'none')
+            clearInterval(temporizador)
+        }
+    }, 150);
 })

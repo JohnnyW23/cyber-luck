@@ -1,6 +1,7 @@
 menu = {
     inicio: false,
-    readme: false
+    readme: false,
+    rounds: 0
 }
 
 

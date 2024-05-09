@@ -43,7 +43,7 @@ header > nav > ul > li {
 }
 header img,
 .instrucoes img {
-    width: 30px;
+    width: 25px;
     cursor: pointer;
     transition: ease;
 }
@@ -147,14 +147,13 @@ header img:hover {
     outline: 2px solid white;
 }
 .sobre-jogo::-webkit-scrollbar {
-    width: 5px; /* width of the entire scrollbar */
-    height: 40px;
+    width: 5px;
 }
 .sobre-jogo::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0); /* color of the tracking area */
+    background: rgba(0, 0, 0, 0);
 }
 .sobre-jogo::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0); /* color of the scroll thumb */
+    background-color: rgba(0, 0, 0, 0);
 }
 .sobre-jogo {
     width: 100%;
@@ -173,7 +172,7 @@ header img:hover {
     width: 70%;
     min-width: 500px;
     height: max-content;
-    min-height: calc(100% - 50px);;
+    min-height: calc(100% - 50px);
     margin: 0 auto;
     padding: 20px;
     background: radial-gradient(70% 50% at bottom, rgb(0, 80, 0) 5%, rgb(0, 60, 0) 20%, rgb(0, 20, 0) 100%);
@@ -190,10 +189,16 @@ header img:hover {
     transition: 0.25s;
     width: max-content;
     margin: 0 auto;
+    text-shadow: 0 0 20px;
 }
-.titulo h1:hover {
+.glow-selected {
     color: white;
-    text-shadow: 0 0 20px white;
+    text-shadow: 0 0 10px white,
+    0 0 20px white,
+    0 0 50px white;
+}
+.titulo h1 span {
+    white-space: pre;
 }
 .titulo h5 {
     font-weight: lighter;
