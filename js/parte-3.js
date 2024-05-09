@@ -68,7 +68,7 @@ Se for a última tentativa, à partir da descriptografia leva 4 segundos a mais
 function jogarNovamente(tempo){
     setTimeout(() => {
         $('.game-screen').append('<br>');
-        $('.game-screen').append('<button id="novo-jogo" style="color: ' + paleta.selected + '; border: 2px solid ' + paleta.selected + '">JOGAR NOVAMENTE</button>');
+        $('.game-screen').append('<button id="novo-jogo" style="color: ' + paleta.selected + '; border: 2px solid ' + paleta.selected + '">jogarNovamente();</button>');
         scrollMax();
         $('#novo-jogo').click(() => {
             $('.game-screen').html('');

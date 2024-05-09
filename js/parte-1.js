@@ -1,4 +1,13 @@
-novoJogo();
+var inicio = false;
+
+$('#iniciar').click(function(){
+    if(!inicio){
+        inicio = true;
+        $('.principal').fadeOut(250);
+        novoJogo();
+    }
+})
+
 
 function novoJogo(){
     criarJogo();
@@ -118,11 +127,20 @@ function gerarSenha(level){
     return numeroAleatorio(min, max);
 }
 
+
 function scrollMax(){
     $('html, body').animate({
         scrollTop: $(document).height()
     }, 0);
 }
+
+
+function scrollMin(el){
+    el.animate({
+        scrollTop: $(document).height() * -1
+    }, 0)
+}
+
 
 function inserir(destino, tag, conteudo, tempo, style=false, br=false){
     setTimeout(() => {
