@@ -1,3 +1,9 @@
+menu = {
+    inicio: false,
+    readme: false
+}
+
+
 paleta = {
     open: false,
     selected: 'lime',

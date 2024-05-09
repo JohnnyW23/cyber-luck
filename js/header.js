@@ -15,12 +15,16 @@ $(() => {
     })
 
     $('#readme, #readme').click(function(){
+        menu.readme = true;
         $('.sobre-jogo-wraper').fadeIn(250);
-        scrollMin($('.sobre-jogo'))
+        scrollMin($('.sobre-jogo'));
+        $('body').css('overflow', 'hidden')
     })
 
     $('#close-button').click(function(){
+        menu.readme = false;
         $('.sobre-jogo-wraper').fadeOut(250);
+        $('body').css('overflow', 'auto')
     })
 
     $('.cores li').click(function(){
