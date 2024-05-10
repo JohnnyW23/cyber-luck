@@ -32,6 +32,7 @@ function verificador(){
 
             if(palpite == jogo.senha){
                 jogo.vitoria = true;
+                animacoes.caracteres = '###'
 
                 setTimeout(() => {
                     respostaCerta(gs);
@@ -71,8 +72,10 @@ function jogarNovamente(tempo){
         $('.game-screen').append('<button id="novo-jogo" style="color: ' + paleta.selected + '; border: 2px solid ' + paleta.selected + '">jogarNovamente();</button>');
         scrollMax();
         $('#novo-jogo').click(() => {
+            $('.codigo-cascata').remove();
             $('.game-screen').html('');
             $('.screen > img').remove();
+            animacoes.caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?@#$%&*'
             novoJogo();
         })
 

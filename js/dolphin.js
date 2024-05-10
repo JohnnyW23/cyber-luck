@@ -226,6 +226,8 @@ function dolphinResultado(el){
                 /* Caso tenha escolhido tudo certo */
 
                 jogo.vitoria = true;
+                animacoes.caracteres = '###'
+
                 vs.html('//PROCESSO INTERROMPIDO//');
                 clearInterval(dolphinProgBar);
                 $('.num-resto').animate({
@@ -239,6 +241,7 @@ function dolphinResultado(el){
                 /* Em caso de derrota */
 
                 jogo.vitoria = false;
+                animacoes.caracteres = '☠️☠️☠️'
 
                 vs.html('');
                 
@@ -271,6 +274,7 @@ function dolphinResultado(el){
         /* Em caso de derrota depois da barra atingir 100% */
 
         jogo.vitoria = false;
+        animacoes.caracteres = '☠️☠️☠️'
         $('.screen > img').remove();
         animacaoClown();
 

@@ -9,6 +9,7 @@ html, body {
     font-weight: 400;
     background-color: black;
     color: lime;
+    user-select: none;
 }
 @font-face {
     font-family: JB;
@@ -45,18 +46,6 @@ header img,
 .instrucoes img {
     width: 25px;
     cursor: pointer;
-    transition: ease;
-}
-header img:hover {
-    animation: girar 1s linear 0s infinite forwards;
-}
-@keyframes girar {
-    from {
-        transform: rotateY('0deg');
-    }
-    to {
-        transform: rotateY('360deg');
-    }
 }
 .cores {
     width: fit-content;
@@ -230,6 +219,7 @@ header img:hover {
     display: inline-block;
     transform: translateY(-50%);
     margin-left: 15px;
+    transition: .15s;
 }
 #name, #codigo {
     width: calc(100% - 19.2px);
@@ -300,6 +290,13 @@ header img:hover {
 .compilado span {
     white-space: pre;
 }
+.codigo-cascata {
+    position: absolute;
+    z-index: -1;
+}
+.codigo-cascata p {
+    transition: .15s;
+}
 
 @media screen and (max-width: 645px) {
     .sobre-jogo h1 {
@@ -334,6 +331,9 @@ header img:hover {
     .virus-bar-wraper {
         width: 90%;
         min-width: auto;
+    }
+    .codigo-cascata {
+        font-size: 12px;
     }
 }
 

@@ -78,6 +78,7 @@ function progressoVirus(tempo){
                 if(progressBar.porcentagemDinamica == 100){
                     $('.virus-state').html('//PROCESSO CONCLUÍDO//')
                     jogo.vitoria = false;
+                    animacoes.caracteres = '☠️☠️☠️'
                     animacaoClown();
                 }
                 

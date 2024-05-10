@@ -15,14 +15,14 @@ $(() => {
     })
 
     $('#readme, #readme').click(function(){
-        menu.readme = true;
+        animacoes.readme = true;
         $('.sobre-jogo-wraper').fadeIn(250);
         scrollMin($('.sobre-jogo'));
         $('body').css('overflow', 'hidden')
     })
 
     $('#close-button').click(function(){
-        menu.readme = false;
+        animacoes.readme = false;
         $('.sobre-jogo-wraper').fadeOut(250);
         $('body').css('overflow', 'auto')
     })
@@ -38,6 +38,7 @@ $(() => {
             if(id == paleta.cores[i].id){
                 $('.cores-selected').prependTo(el);
                 paleta.selected = paleta.cores[i].color;
+                paleta.cascataSelected = paleta.cores[i].cascataColor;
                 $('html, body, input[type=text], #novo-jogo, #iniciar').css('color', paleta.selected);
                 $('.loaded-bar').css('background-color', paleta.selected);
                 $('#novo-jogo, #iniciar').css('border', '2px solid ' + paleta.selected);
@@ -50,62 +51,11 @@ $(() => {
                 $('.sobre-jogo-wraper-3').css('border-color', paleta.selected);
                 $('#close-button').css('border-color', paleta.selected);
                 $('.instrucoes span').css('color', paleta.selected);
+                $('.codigo-cascata').css('color', paleta.cascataSelected)
 
                 break
             }
             i++;
         }
     }
-
-    $('.instrucoes img').on({
-        mouseenter: function(){
-            $(this).next().stop().animate({
-                color: 'white'
-            }, 150)
-        }, mouseleave: function(){
-            $(this).next().stop().animate({
-                color: paleta.selected
-            }, 150)
-        }
-    })
-
-    $('.instrucoes a').on({
-        mouseenter: function(){
-            $(this).next().stop().animate({
-                color: 'white'
-            }, 150)
-        }, mouseleave: function(){
-            $(this).next().stop().animate({
-                color: paleta.selected
-            }, 150)
-        }
-    })
-
-    temporizador = setInterval(() => {
-
-        if(!menu.inicio){
-            if(menu.rounds == 17){
-                menu.rounds = 0;
-                setTimeout(() => {
-                    $('.glow-selected').attr('class', '');
-                    $('.titulo span').eq(0).attr('class', 'glow-selected')
-
-                }, 75);
-
-            }else{
-                let el = $('.glow-selected').next(':not(.blank-space)');
-                setTimeout(() => {
-                    $('.glow-selected').attr('class', '');
-                    el.attr('class', 'glow-selected');
-
-                }, 75);
-                menu.rounds++;
-            }
-
-        }else{
-            $('.glow-selected').attr('class', '');
-            $('.titulo h1').css('text-shadow', 'none')
-            clearInterval(temporizador)
-        }
-    }, 150);
 })

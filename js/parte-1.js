@@ -1,6 +1,6 @@
 $('#iniciar').click(function(){
-    if(!menu.inicio){
-        menu.inicio = true;
+    if(!animacoes.inicio){
+        animacoes.inicio = true;
         $('.principal').fadeOut(250);
         novoJogo();
     }
@@ -127,7 +127,7 @@ function gerarSenha(level){
 
 
 function scrollMax(){
-    if(!menu.readme){
+    if(!animacoes.readme){
         $('html, body').animate({
             scrollTop: $(document).height()
         }, 0);

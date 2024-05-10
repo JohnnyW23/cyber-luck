@@ -1,13 +1,20 @@
-menu = {
+animacoes = {
     inicio: false,
     readme: false,
-    rounds: 0
+    rounds: 0,
+    caracteres: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?@#$%&*',
+    tela: {
+        altura: null,
+        largura: null
+    },
+    codigos: 0
 }
 
 
 paleta = {
     open: false,
     selected: 'lime',
+    cascataSelected: 'rgb(0, 60, 0)',
     cores: [
         {
             id: 'cor0',
@@ -16,7 +23,8 @@ paleta = {
             novoJogoBdColor: 'lime',
             headerBGColor: 'rgb(0, 10, 0)',
             screenBGColor: 'radial-gradient(70% 50% at bottom, rgb(0, 80, 0) 5%, rgb(0, 60, 0) 20%, rgb(0, 20, 0) 100%)',
-            coresBGColor: 'rgb(0, 40, 0)'
+            coresBGColor: 'rgb(0, 40, 0)',
+            cascataColor: 'rgb(0, 60, 0)'
         },{
             id: 'cor1',
             color: 'aqua',
@@ -24,7 +32,8 @@ paleta = {
             novoJogoBdColor: 'aqua',
             headerBGColor: 'rgb(0, 10, 10)',
             screenBGColor: 'radial-gradient(70% 50% at bottom, rgb(0, 80, 80) 5%, rgb(0, 60, 60) 20%, rgb(0, 20, 20) 100%)',
-            coresBGColor: 'rgb(0, 40, 40)'
+            coresBGColor: 'rgb(0, 40, 40)',
+            cascataColor: 'rgb(0, 60, 60)'
         },{
             id: 'cor2',
             color: 'red',
@@ -32,7 +41,8 @@ paleta = {
             novoJogoBdColor: 'red',
             headerBGColor: 'rgb(10, 0, 0)',
             screenBGColor: 'radial-gradient(70% 50% at bottom, rgb(80, 0, 0) 5%, rgb(60, 0, 0) 20%, rgb(20, 0, 0) 100%)',
-            coresBGColor: 'rgb(40, 0, 0)'
+            coresBGColor: 'rgb(40, 0, 0)',
+            cascataColor: 'rgb(60, 0, 0)'
         },{
             id: 'cor3',
             color: 'hotpink',
@@ -40,7 +50,8 @@ paleta = {
             novoJogoBdColor: 'hotpink',
             headerBGColor: 'rgb(10, 5, 7)',
             screenBGColor: 'radial-gradient(70% 50% at bottom, rgb(80, 40, 56) 5%, rgb(60, 30, 42) 20%, rgb(20, 10, 14) 100%)',
-            coresBGColor: 'rgb(40, 19, 25)'
+            coresBGColor: 'rgb(40, 20, 25)',
+            cascataColor: 'rgb(60, 30, 37.5)'
         },{
             id: 'cor4',
             color: 'fuchsia',
@@ -48,7 +59,8 @@ paleta = {
             novoJogoBdColor: 'fuchsia',
             headerBGColor: 'rgb(10, 0, 10)',
             screenBGColor: 'radial-gradient(70% 50% at bottom, rgb(80, 0, 80) 5%, rgb(60, 0, 60) 20%, rgb(20, 0, 20) 100%)',
-            coresBGColor: 'rgb(40, 0, 40)'
+            coresBGColor: 'rgb(40, 0, 40)',
+            cascataColor: 'rgb(60, 0, 60)'
         }
     ]
 }
@@ -65,7 +77,7 @@ function criarJogo(){
         senha: null,
         limite: null,
         tentativas: null,
-        vitoria: null,
+        vitoria: null
     }
 }
 
