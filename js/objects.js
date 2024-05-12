@@ -61,6 +61,15 @@ paleta = {
             screenBGColor: 'radial-gradient(70% 50% at bottom, rgb(80, 0, 80) 5%, rgb(60, 0, 60) 20%, rgb(20, 0, 20) 100%)',
             coresBGColor: 'rgb(40, 0, 40)',
             cascataColor: 'rgb(60, 0, 60)'
+        },{
+            id: 'cor5',
+            color: 'gold',
+            loadedBarBGColor: 'gold',
+            novoJogoBdColor: 'gold',
+            headerBGColor: 'rgb(10, 8.44, 0)',
+            screenBGColor: 'radial-gradient(70% 50% at bottom, rgb(80, 67.52, 0) 5%, rgb(60, 50.64, 0) 20%, rgb(20, 16.88, 0) 100%)',
+            coresBGColor: 'rgb(40, 33.76, 0)',
+            cascataColor: 'rgb(60, 50.64, 0)'
         }
     ]
 }
