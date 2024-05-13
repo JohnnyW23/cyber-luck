@@ -1,5 +1,4 @@
 $(() => {
-
     $('.instrucoes img').on({
         mouseenter: function(){
             $(this).next().css('color', 'white').css('text-shadow', '0 0 20px white')
@@ -44,11 +43,6 @@ $(() => {
         }
     }, 150);
 
-    
-    setInterval(() => {
-        criarCodigoCascata();
-
-    }, 200);
 
     setTimeout(() => {
         criarJogo();
@@ -93,5 +87,30 @@ $(() => {
         });
     }
 
+    $('.black-screen img').click(function(){
+        tocarMusica();
+        $('.black-screen').animate({
+            backgroundColor: 'white'
+        }, 500);
+        $('.black-screen img').fadeOut(500);
+        setTimeout(() => {
+            $('.black-screen').fadeOut(500);
+            setInterval(() => {
+                criarCodigoCascata();
+        
+            }, 200);
+        }, 500);
+    })
 
+    $('#sound-toggle').click(function(){
+        if(!animacoes.musica.current.muted){ 
+            animacoes.musica.current.muted = true;
+            $('#sound-toggle').attr('src', 'assets/sound-off.svg');
+
+        }else{
+            animacoes.musica.current.muted = false;
+            $('#sound-toggle').attr('src', 'assets/sound-on.svg')
+
+        }
+    })
 })

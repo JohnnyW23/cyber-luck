@@ -1,6 +1,7 @@
 $('#iniciar').click(function(){
     if(!animacoes.inicio){
         animacoes.inicio = true;
+        tocarMusica();
         $('.principal').fadeOut(250);
         novoJogo();
     }
@@ -183,4 +184,27 @@ function inicializar(){
     setTimeout(() => {
         entrada_hacker();
     }, 10000);
+}
+
+
+function tocarMusica(){
+    if(!animacoes.inicio){
+        animacoes.musica.current = animacoes.musica.intro;
+        animacoes.musica.current.play();
+
+    }else{
+        animacoes.musica.current.pause();
+        animacoes.musica.current = animacoes.musica.game;
+
+        if($('#sound-toggle').attr('src') == 'assets/sound-off.svg'){
+            animacoes.musica.current.muted = true;
+        }
+
+        animacoes.musica.current.play();
+    }
+
+    animacoes.musica.current.addEventListener('ended', function() {
+        this.currentTime = 0;
+        this.play();
+    }, false);
 }

@@ -7,9 +7,13 @@ animacoes = {
         altura: null,
         largura: null
     },
-    codigos: 0
+    codigos: 0,
+    musica: {
+        current: null,
+        intro: new Audio('../music/intro.mp3'),
+        game: new Audio('../music/game.mp3')
+    }
 }
-
 
 paleta = {
     open: false,
