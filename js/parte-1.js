@@ -189,21 +189,24 @@ function inicializar(){
 
 function tocarMusica(){
     if(!animacoes.inicio){
-        animacoes.musica.current = animacoes.musica.intro;
-        animacoes.musica.current.play();
+        caixaDeSom.musica.current = caixaDeSom.musica.intro;
+        caixaDeSom.musica.current.volume = 0.2;
+        caixaDeSom.musica.current.play();
 
     }else{
-        animacoes.musica.current.pause();
-        animacoes.musica.current = animacoes.musica.game;
+        caixaDeSom.musica.current.pause();
+        caixaDeSom.musica.current = caixaDeSom.musica.game;
+
+        caixaDeSom.musica.current.volume = 0.2;
 
         if($('#sound-toggle').attr('src') == 'assets/sound-off.svg'){
-            animacoes.musica.current.muted = true;
+            caixaDeSom.musica.current.muted = true;
         }
 
-        animacoes.musica.current.play();
+        caixaDeSom.musica.current.play();
     }
 
-    animacoes.musica.current.addEventListener('ended', function() {
+    caixaDeSom.musica.current.addEventListener('ended', function() {
         this.currentTime = 0;
         this.play();
     }, false);

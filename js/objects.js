@@ -1,4 +1,5 @@
 animacoes = {
+    powerOn: false,
     inicio: false,
     readme: false,
     rounds: 0,
@@ -7,13 +8,21 @@ animacoes = {
         altura: null,
         largura: null
     },
-    codigos: 0,
+    codigos: 0
+}
+
+
+caixaDeSom = {
     musica: {
         current: null,
         intro: new Audio('../music/intro.mp3'),
         game: new Audio('../music/game.mp3')
+    },
+    sfx: {
+        derrota: new Audio('../music/clown-laugh.mp3')
     }
 }
+
 
 paleta = {
     open: false,

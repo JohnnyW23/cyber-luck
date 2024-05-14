@@ -18,7 +18,7 @@ function intelDolphin(el, tempo){
         pularLinha(el, 4999);
         inserir(el, 'p', '//EXECUTANDO DOLPHIN//', 5000);
         pularLinha(el, 5499);
-        inserir(el, 'p', 'OLÁ, ' + jogo.nome + '. SEU DISPOSITIVO ESTÁ SOFRENDO UM GRAVE ATAQUE DDOS. POR FAVOR, SELECIONE OS CÓDIGOS DIVERGENTES PARA COMPILAÇÃO. AH! PERMITA-ME LHE PERGUNTAR, ' + jogo.nome + '. COMO VÃO SEUS PRIMOS?', 5500);
+        inserir(el, 'p', 'OLÁ, ' + jogo.nome + '. SEU DISPOSITIVO ESTÁ SOFRENDO UM GRAVE ATAQUE DDOS. POR FAVOR, SELECIONE OS CÓDIGOS DIVERGENTES PARA COMPILAÇÃO. AH! PERMITA-ME LHE PERGUNTAR, ' + jogo.nome + '. <span style="color: white">COMO VÃO SEUS PRIMOS?</span>', 5500);
         setTimeout(() => {
             inserirImg($('.screen'), [
                 '<img class="dolphin-img" src="../assets/img-dolphin.jpg">',
@@ -262,6 +262,10 @@ function dolphinResultado(el){
                         opacity: 0.1
                     }, 2500)
 
+                    if(!caixaDeSom.musica.current.muted){
+                        caixaDeSom.sfx.derrota.play();
+                    }
+
                 }, 2000);
     
                 inserir(el, 'p', 'CARREGAMENTO DE MALWARE BEM-SUCEDIDO', 2500);
@@ -281,6 +285,10 @@ function dolphinResultado(el){
         clearInterval(dolphinProgBar);
         $('.porcentagem').html('100%');
         $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
+
+        if(!caixaDeSom.musica.current.muted){
+            caixaDeSom.sfx.derrota.play();
+        }
 
         vs.html('//PROCESSO CONCLUÍDO//');
         inserir(el, 'p', 'CARREGAMENTO DE MALWARE BEM-SUCEDIDO // EXCEPTION(E): DOLPHIN COM DADOS INSUFICIENTES PARA COMPILAÇÃO', 500);

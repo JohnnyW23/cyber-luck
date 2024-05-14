@@ -80,6 +80,9 @@ function progressoVirus(tempo){
                     jogo.vitoria = false;
                     animacoes.caracteres = '☠️☠️☠️'
                     animacaoClown();
+                    if(!caixaDeSom.musica.current.muted){
+                        caixaDeSom.sfx.derrota.play();
+                    }
                 }
                 
                 if(progressBar.porcentagemDinamica == progressBar.porcentagemAtual){

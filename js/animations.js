@@ -88,29 +88,33 @@ $(() => {
     }
 
     $('.black-screen img').click(function(){
-        tocarMusica();
-        $('.black-screen').animate({
-            backgroundColor: 'white'
-        }, 500);
-        $('.black-screen img').fadeOut(500);
-        setTimeout(() => {
-            $('.black-screen').fadeOut(500);
-            setInterval(() => {
-                criarCodigoCascata();
-        
-            }, 200);
-        }, 500);
+        if(!animacoes.powerOn){
+            animacoes.powerOn = true;
+            tocarMusica();
+            $('.black-screen').animate({
+                backgroundColor: 'white'
+            }, 500);
+            $('.black-screen img').fadeOut(500);
+            setTimeout(() => {
+                $('.black-screen').fadeOut(500);
+                setInterval(() => {
+                    criarCodigoCascata();
+            
+                }, 200);
+            }, 500);
+        }
     })
 
     $('#sound-toggle').click(function(){
-        if(!animacoes.musica.current.muted){ 
-            animacoes.musica.current.muted = true;
+        if(!caixaDeSom.musica.current.muted){ 
+            caixaDeSom.musica.current.muted = true;
+            caixaDeSom.sfx.derrota.muted = true;
             $('#sound-toggle').attr('src', 'assets/sound-off.svg');
 
         }else{
-            animacoes.musica.current.muted = false;
+            caixaDeSom.musica.current.muted = false;
+            caixaDeSom.sfx.derrota.muted = false;
             $('#sound-toggle').attr('src', 'assets/sound-on.svg')
-
         }
     })
 })
