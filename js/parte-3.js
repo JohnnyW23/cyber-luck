@@ -205,14 +205,14 @@ function animarImg(img, state, rounds){
 
 function animacaoClown(){
     inserirImg($('.screen'), [
-        '<img class="clown-img" src="../assets/clown-1.jpg">',
-        '<img class="clown-img" src="../assets/clown-2.jpg">',
-        '<img class="clown-img" src="../assets/clown-3.jpg">',
-        '<img class="clown-img" src="../assets/clown-4.jpg">',
-        '<img class="clown-img" src="../assets/clown-1.jpg">',
-        '<img class="clown-img" src="../assets/clown-2.jpg">',
-        '<img class="clown-img" src="../assets/clown-3.jpg">',
-        '<img class="clown-img" src="../assets/clown-4.jpg">'
+        '<img class="clown-img" src="assets/clown-1.jpg">',
+        '<img class="clown-img" src="assets/clown-2.jpg">',
+        '<img class="clown-img" src="assets/clown-3.jpg">',
+        '<img class="clown-img" src="assets/clown-4.jpg">',
+        '<img class="clown-img" src="assets/clown-1.jpg">',
+        '<img class="clown-img" src="assets/clown-2.jpg">',
+        '<img class="clown-img" src="assets/clown-3.jpg">',
+        '<img class="clown-img" src="assets/clown-4.jpg">'
     ],
     '.clown-img', false, animacaoFotos.clown)
 }

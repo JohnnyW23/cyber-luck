@@ -21,14 +21,14 @@ function intelDolphin(el, tempo){
         inserir(el, 'p', 'OLÁ, ' + jogo.nome + '. SEU DISPOSITIVO ESTÁ SOFRENDO UM GRAVE ATAQUE DDOS. POR FAVOR, SELECIONE OS CÓDIGOS DIVERGENTES PARA COMPILAÇÃO. AH! PERMITA-ME LHE PERGUNTAR, ' + jogo.nome + '. <span style="color: white">COMO VÃO SEUS PRIMOS?</span>', 5500);
         setTimeout(() => {
             inserirImg($('.screen'), [
-                '<img class="dolphin-img" src="../assets/img-dolphin.jpg">',
-                '<img class="dolphin-img" src="../assets/img-dolphin.jpg">',
-                '<img class="dolphin-img" src="../assets/img-dolphin.jpg">',
-                '<img class="dolphin-img" src="../assets/img-dolphin.jpg">',
-                '<img class="dolphin-img" src="../assets/img-dolphin.jpg">',
-                '<img class="dolphin-img" src="../assets/img-dolphin.jpg">',
-                '<img class="dolphin-img" src="../assets/img-dolphin.jpg">',
-                '<img class="dolphin-img" src="../assets/img-dolphin.jpg">'
+                '<img class="dolphin-img" src="assets/img-dolphin.jpg">',
+                '<img class="dolphin-img" src="assets/img-dolphin.jpg">',
+                '<img class="dolphin-img" src="assets/img-dolphin.jpg">',
+                '<img class="dolphin-img" src="assets/img-dolphin.jpg">',
+                '<img class="dolphin-img" src="assets/img-dolphin.jpg">',
+                '<img class="dolphin-img" src="assets/img-dolphin.jpg">',
+                '<img class="dolphin-img" src="assets/img-dolphin.jpg">',
+                '<img class="dolphin-img" src="assets/img-dolphin.jpg">'
             ],
             '.dolphin-img', null, animacaoFotos.dolphin)
         }, 5500);
