@@ -8,52 +8,39 @@
         <script src="js/jquery-3.7.1.js"></script>
     </head>
     <body>
-        <div class="black-screen">
-                <img src="assets/power-off.svg">
-        </div><!--black-screen-->
+        <div class="idiomas-wraper">
+            <div class="idiomas">
+                <div class="portugues idioma">
+                    <img src="assets/br.svg" id="portugues">
+                    <h1>Português - BR</h1>
+                </div>
+                <div class="ingles idioma">
+                    <img src="assets/us.svg" id="ingles">
+                    <h1>English - USA</h1>
+                </div>
+                <div class="clear"></div>
+            </div><!--idiomas-->
+        </div><!--idiomas-wraper-->
+
         <header>
             <nav>
                 <ul>
                     <li><img id="palette" src="assets/palettes/palette-0.svg" title="Temas de cores"></li>
-                    <li><img style="margin-top: 3px;" id="readme" src="assets/readmes/readme-0.svg" title="Sobre o jogo"></li>
-                    <li><a href="https://github.com/JohnnyW23?tab=repositories" target="_blank"><img id="github" src="assets/githubs/github-0.svg" title="Meu GitHub"></a></li>
-                    <li><img id="sound-toggle" style="margin-top: 3px;" src="assets/sound-on.svg" title="Música On/Off"></li>
+                    <li><img style="margin-top: 3px;" id="readme" src="assets/readmes/readme-0.svg"></li>
+                    <li><a href="https://github.com/JohnnyW23?tab=repositories" target="_blank"><img id="github" src="assets/githubs/github-0.svg"></a></li>
+                    <li><img id="sound-toggle" style="margin-top: 3px;" src="assets/sound-on.svg"></li>
                     <div style="clear: both;"></div>
                 </ul>
                 <div class="cores">
-                    <ul>
-                        <li id="cor0"><span class="cores-selected">></span><span>NOVA ERA RETRÔ</span></li>
-                        <li id="cor1"><span>FANTASMA DA NEVE</span></li>
-                        <li id="cor2"><span>VULCÃO DE TRÓIA</span></li>
-                        <li id="cor3"><span>LAMENTO DE SAKURA</span></li>
-                        <li id="cor4"><span>FIM DE HALLOWEEN</span></li>
-                        <li id="cor5"><span>TROVÃO DE FISCHER</span></li>
-                    </ul>
-                </div>
+                    <ul></ul>
+                </div><!--cores-->
             </nav>
         </header>
         <div class="sobre-jogo-wraper">
             <div class="sobre-jogo-wraper-2">
                 <div id="close-button">X</div>
                 <div class="sobre-jogo-wraper-3">
-                    <div class="sobre-jogo">
-                        <h1>🎮 BOAS-VINDAS AO CYBER LUCK! 🎮</h1>
-                        <br>
-                        <p>Você está prestes a embarcar em uma emocionante aventura de códigos! Neste jogo, você terá <span>6 tentativas</span> para adivinhar um número dentro de um intervalo específico. Mas cuidado: se você não acertar, um hacker misterioso irá carregar um vírus em seu dispositivo, hehehe.</p>
-                        <br>
-                        <p>Como jogar:</p>
-                        <p><span>1. Escolha um nível de dificuldade:</span> O jogo irá gerar um número aleatório dentro de um intervalo conforme o nível que você escolher.</p>
-                        <p><span>2. Faça suas apostas:</span> Use suas 6 tentativas para adivinhar o número secreto. Digite um palpite e veja se você acertou!</p>
-                        <p><span>3. Modo DOLPHIN:</span> Ah, sim! O código DOLPHIN é especial. Só pode ser acessado na primeira tentativa. O próprio DOLPHIN te dirá pelo que procurar. Preste atenção e veja se você consegue decifrar o mistério!</p>
-                        <br>
-                        <p>Lembre-se: <span>não há hackers de verdade aqui!</span> Este jogo é puramente para entretenimento e diversão. Portanto, relaxe, divirta-se e boa sorte!</p>
-                        <br>
-                        <p style="font-style: italic;">Nota: Este jogo não coleta informações pessoais nem invade dispositivos. É apenas uma brincadeira!</p>
-                        <br>
-                        <p>Músicas por:</p>
-                        <p style="color: white">Ashot Danielyan</p>
-                        <p style="color: white">ShtakalBerry Music</p>
-                    </div><!--sobre-jogo-->
+                    <div class="sobre-jogo"></div><!--sobre-jogo-->
                 </div><!--sobre-jogo-wraper-3-->
             </div><!--sobre-jogo-wraper-2-->
         </div><!--sobre-jogo-wraper-->
@@ -68,21 +55,14 @@
                 </h5>
             </div><!--titulo-->
             <div class="principal">
-                <button id="iniciar">
-                    <p>
-                        iniciarJogo();
-                    </p>
-                </button>
+                <button id="iniciar"></button>
                 <div class="instrucoes">
-                    <ul>
-                        <li><img id="palette" src="assets/palettes/palette-0.svg" title="Temas de cores"><span>TEMAS DE CORES</span></li>
-                        <li><img id="readme" src="assets/readmes/readme-0.svg" title="Sobre o jogo"><span>SOBRE O JOGO</span></li>
-                        <li><a href="https://github.com/JohnnyW23?tab=repositories" target="_blank"><img id="github" src="assets/githubs/github-0.svg" title="Meu GitHub"></a><span>MEU GITHUB</span></li>
-                    </ul>
+                    <ul></ul>
                 </div><!--instrucoes-->
             </div><!--principal-->
             <div class="game-screen"></div>
         </div><!--screen-->
+        <script src="js/traducao.js"></script>
         <script src="js/header.js"></script>
         <script src="js/animations.js"></script>
         <script src="js/dolphin.js"></script>

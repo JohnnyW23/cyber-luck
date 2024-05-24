@@ -1,5 +1,5 @@
 animacoes = {
-    powerOn: false,
+    idioma: false,
     inicio: false,
     readme: false,
     rounds: 0,
@@ -116,16 +116,30 @@ function criarProgBar(){
 function criarHacker(){
     hacker = {};
     hacker.nome = 'cYber_death0';
-    hacker.mensagens = [
-        "Agora eu tenho controle total do seu dispositivo, " + jogo.nome + "! Hahahahahahaha! O código era " + jogo.senha + ". Eu sabia que você não ia acertar. Dê adeus aos seus dados.",
-        "Haha! Parece que finalmente estou prestes a infectar seu sistema. Só lhe resta mais uma chance de impedir minha invasão completa!",
-        "Sua persistência é admirável, mas inútil como você, " + jogo.nome + ". Enquanto você luta, eu avanço mais perto da vitória hahahahhaha!",
-        "Não adianta tentar. Logo, seu dispositivo será apenas um brinquedo em minhas mãos, " + jogo.nome + ".",
-        "Se esconda atrás de sua interface, se quiser. Mas não poderá escapar de mim. Meu controle está próximo.",
-        "Cada tentativa falha de quebrar meu vírus é um passo mais perto de sua derrota! XD",
-        "MWAHAHAHAHAHAHA! Seu dispositivo foi infectado pelo meu vírus! Ele está sendo carregado no seu sistema neste momento e não há nada que você possa fazer! A não ser que... Impossível. Você não vai adivinhar o código secreto a tempo, " + jogo.nome +  " hahaha!",
-        "O que? Você conseguiu?! Isso é impossível... Não... Maldição. " + jogo.nome + "... Se prepare para a próxima vez.</p><br><p>CONEXÃO DE SERVIDOR COM " + hacker.nome + " REMOVIDA POR FIREWALL DO SISTEMA."
-    ]
+    if(animacoes.idioma == 'portugues'){
+        hacker.mensagens = [
+            "Agora eu tenho controle total do seu dispositivo, " + jogo.nome + "! Hahahahahahaha! O código era " + jogo.senha + ". Eu sabia que você não ia acertar. Dê adeus aos seus dados.",
+            "Haha! Parece que finalmente estou prestes a infectar seu sistema. Só lhe resta mais uma chance de impedir minha invasão completa!",
+            "Sua persistência é admirável, mas inútil como você, " + jogo.nome + ". Enquanto você luta, eu avanço mais perto da vitória hahahahhaha!",
+            "Não adianta tentar. Logo, seu dispositivo será apenas um brinquedo em minhas mãos, " + jogo.nome + ".",
+            "Se esconda atrás de sua interface, se quiser. Mas não poderá escapar de mim. Meu domínio está próximo.",
+            "Cada tentativa falha de parar meu vírus é um passo mais perto de sua derrota! XD",
+            "MWAHAHAHAHAHAHA! Seu dispositivo foi infectado pelo meu vírus! Ele está sendo carregado no seu sistema neste momento e não há nada que você possa fazer! A não ser que... Impossível. Você não vai adivinhar o código secreto a tempo, " + jogo.nome +  " hahaha!",
+            "O que? Você conseguiu?! Isso é impossível... Não... Maldição. " + jogo.nome + "... Se prepare para a próxima vez.</p><br><p>CONEXÃO DE SERVIDOR COM " + hacker.nome + " REMOVIDA POR FIREWALL DO SISTEMA."
+        ]
+        
+    }else if(animacoes.idioma == 'ingles'){
+        hacker.mensagens = [
+            "Now I hold the entire control of your device, " + jogo.nome + "! Hahahahahahaha! The code was " + jogo.senha + ". I knew you wouldn't get it. Give a farewell to your data.",
+            "Haha! Looks like I'm about to finally infect your system. One chance left for you to stop my complete invasion!",
+            "Your persistence is wonderful, but useless like you, " + jogo.nome + ". While you struggle, I go forward closer to victory hahahahhaha!",
+            "It's useless to try. Soon, your device will be just a toy in my hands, " + jogo.nome + ".",
+            "Stay hidden behind your interface, if you want it. But you won't escape from me. My domain is close.",
+            "Each failed try to stop my virus is a step closer to your defeat! XD",
+            "MWAHAHAHAHAHAHA! Your device got infected by my virus! It's being loaded in your system right now and there is nothing you could possibly do! Unless you... Impossible. You'll never guess the secret code in time, " + jogo.nome +  " hahaha!",
+            "What? You made it?! This is impossible... No... Darn you. " + jogo.nome + "... Get ready for the next time.</p><br><p>SERVER CONNECTION WITH " + hacker.nome + " REMOVED BY SYSTEM FIREWALL."
+        ]
+    }
 }
 
 

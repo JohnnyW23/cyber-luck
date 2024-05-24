@@ -16,7 +16,7 @@ function novoJogo(){
         $('.game-screen').append(
             '<div class="introducao">\
                 <div class="nome">\
-                    <p>IDENTIFIQUE-SE:</p>\
+                    <p>' + traducao.parte1[0] + '</p>\
                     <div class="name-wraper">\
                         <span>> </span><input id="name" type="text" autocomplete="off" style="color: ' + paleta.selected + '">\
                         <div class="nome-sintaxe"></div>\
@@ -49,9 +49,9 @@ function nameSelect(){
             }else{
                 jogo.nomeTamanho = false;
                 if(amount < 4){
-                    $('.nome-tamanho').html('<p>MIN 4 CARACTERES</p>');
+                    $('.nome-tamanho').html('<p>' + traducao.parte1[1] + '</p>');
                 }else{
-                    $('.nome-tamanho').html('<p>MAX 20 CARACTERES</p>');
+                    $('.nome-tamanho').html('<p>' + traducao.parte1[2] + '</p>');
                 }
             }
 
@@ -61,7 +61,7 @@ function nameSelect(){
 
             }else{
                 jogo.nomeSintaxe = false;
-                $('.nome-sintaxe').html('<p>APENAS LETRAS E NÚMEROS</p>');
+                $('.nome-sintaxe').html('<p>' + traducao.parte1[3] + '</p>');
             }
 
             if(jogo.nomeSintaxe && jogo.nomeTamanho){
@@ -79,7 +79,7 @@ function levelSelect(){
         $('.introducao').append(
             '<br>\
             <div class="nivel">\
-            <p>SELECIONE NÍVEL DE ACESSO AO SISTEMA:</p>\
+            <p>' + traducao.parte1[4] + '</p>\
             <br>\
             <div class="niveis-unselected">\
                 <span id="1">\
@@ -164,9 +164,9 @@ function inserir(destino, tag, conteudo, tempo, style=false, br=false){
 function inicializar(){
     let el = $('.game-screen');
     pularLinha(el, 0);
-    inserir(el, 'p', 'Boas-vindas, ' + jogo.nome + '.', 500);
-    inserir(el, 'p', 'Executando algoritmo de verificação de segurança...', 1000);
-    inserir(el, 'p', 'Carregando módulos do firewall...', 1500);
+    inserir(el, 'p', traducao.parte1[5] + jogo.nome + '.', 500);
+    inserir(el, 'p', traducao.parte1[6], 1000);
+    inserir(el, 'p', traducao.parte1[7], 1500);
     inserir(el, 'p', 'import time', 1800);
     inserir(el, 'p', 'def encrypt_message(message):', 2100);
     inserir(el, 'p', 'encrypted_message = ""', 2400);
@@ -178,9 +178,9 @@ function inicializar(){
     inserir(el, 'p', 'message = "The bear is in the circus"', 4200);
     inserir(el, 'p', 'Encrypting message...', 4500);
     inserir(el, 'p', 'Encrypted message: 84 104 101 32 98 101 97 114 32 105 115 32 105 110 32 116 104 101 32 99 105 114 99 117 115', 7000);
-    inserir(el, 'p', 'In´´cializ#ndo~ //0P_SY5TEM//, agu%rd&.', 8000);
+    inserir(el, 'p', traducao.parte1[8], 8000);
     pularLinha(el, 8999);
-    inserir(el, 'p', '// PERIGO // PERIGO // PERIGO // PERIGO // PERIGO // PERIGO // PERIGO // PERIGO // PERIGO // PERIGO //', 9000);
+    inserir(el, 'p', traducao.parte1[9], 9000);
     setTimeout(() => {
         entrada_hacker();
     }, 10000);

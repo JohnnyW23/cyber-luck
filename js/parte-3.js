@@ -1,6 +1,5 @@
 function verificador(){
     var gs = $('.game-screen');
-    console.log('A SENHA É ' + jogo.senha)
     let palpite;
     let delay = 0;
 
@@ -49,7 +48,7 @@ function verificador(){
                         inputCodigo(gs, 3000);
 
                     }else{
-                        inserir(gs, 'p', 'VOCÊ PERDEU!', 3000);
+                        inserir(gs, 'p', traducao.parte3[0], 3000);
                         jogarNovamente(4000);
                     }
                     
@@ -69,7 +68,7 @@ Se for a última tentativa, à partir da descriptografia leva 4 segundos a mais
 function jogarNovamente(tempo){
     setTimeout(() => {
         $('.game-screen').append('<br>');
-        $('.game-screen').append('<button id="novo-jogo" style="color: ' + paleta.selected + '; border: 2px solid ' + paleta.selected + '">jogarNovamente();</button>');
+        $('.game-screen').append('<button id="novo-jogo" style="color: ' + paleta.selected + '; border: 2px solid ' + paleta.selected + '">' + traducao.parte3[1] + '</button>');
         scrollMax();
         $('#novo-jogo').click(() => {
             $('.codigo-cascata').remove();
@@ -83,8 +82,8 @@ function jogarNovamente(tempo){
 }
 
 function respostaCerta(el){
-    $('.virus-state').html('//PROCESSO INTERROMPIDO//')
-    inserir(el, 'p', '//FIREWALL DECODE SUCCESS: CÓDIGO CORRETO//', 0);
+    $('.virus-state').html(traducao.parte3[2])
+    inserir(el, 'p', traducao.parte3[3], 0);
     pularLinha(el, 999);
     jogo.tentativas = 7;
     chatCyber(el, 1000);
@@ -92,11 +91,11 @@ function respostaCerta(el){
     pularLinha(el, 1501);
     DataHora(2000);
     pularLinha(el, 2999);
-    inserir(el, 'p', 'VOCÊ VENCEU!', 3000);
+    inserir(el, 'p', traducao.parte3[4], 3000);
 }
 
 function respostaErrada(el){
-    inserir(el, 'p', '//FIREWALL ERROR EXCEPTION: CÓDIGO INCORRETO//', 0);
+    inserir(el, 'p', traducao.parte3[5], 0);
     pularLinha(el, 999);
     chatCyber(el, 1000);
     progressoVirus(1500);
@@ -105,7 +104,7 @@ function respostaErrada(el){
     pularLinha(el, 2499);
 
     if(jogo.tentativas == 5){
-        inserir(el, 'p', '//CÓDIGO DOLPHIN INDISPONÍVEL: TEMPO DE ATIVAÇÃO EXCEDIDO//', 2500);
+        inserir(el, 'p', traducao.parte3[6], 2500);
         pularLinha(el, 2999);
     }
 }
@@ -118,7 +117,7 @@ function descriptografando(tempo){
         $('.virus-bar-wraper').hide();
         $('.game-screen').html('<div class="decrypt"></div>');
         let el = $('.decrypt');
-        inserir(el, 'p', 'DESCRIPTOGRAFANDO...', 0);
+        inserir(el, 'p', traducao.parte3[7], 0);
         
         let linha1 = gerarCriptografiaAleatoria();
         let linha2 = gerarCriptografiaAleatoria();
@@ -134,8 +133,8 @@ function descriptografando(tempo){
         pularLinha(el, 1801);
 
         if(jogo.tentativas == 0){
-            inserir(el, 'p', '//TEMPERATURA DO DISPOSITIVO ACIMA DO RECOMENDADO//', 2800);
-            inserir(el, 'p', '//ANALISE FINAL DA SEGURANÇA DO DISPOSITIVO//', 2801);
+            inserir(el, 'p', traducao.parte3[8], 2800);
+            inserir(el, 'p', traducao.parte3[9], 2801);
             pularLinha(el, 2802)
         }
     }, tempo);

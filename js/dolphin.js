@@ -6,7 +6,7 @@ function intelDolphin(el, tempo){
         $('.virus-mensagem').hide();
         $('.virus-bar-wraper').hide();
         el.html('');
-        inserir(el, 'p', '//INTELIGENCIA D.O.L.P.H.I.N. ATIVADA//', 0);
+        inserir(el, 'p', traducao.dolphin[0], 0);
         pularLinha(el, 999);
         inserir(el, 'p', '<span style="color: white">D</span>ynamic', 1000);
         inserir(el, 'p', '<span style="color: white">O</span>ffensive', 1500);
@@ -16,9 +16,9 @@ function intelDolphin(el, tempo){
         inserir(el, 'p', '<span style="color: white">I</span>ntelligence and', 3500);
         inserir(el, 'p', '<span style="color: white">N</span>eural-defense', 4000);
         pularLinha(el, 4999);
-        inserir(el, 'p', '//EXECUTANDO DOLPHIN//', 5000);
+        inserir(el, 'p', traducao.dolphin[1], 5000);
         pularLinha(el, 5499);
-        inserir(el, 'p', 'OLÁ, ' + jogo.nome + '. SEU DISPOSITIVO ESTÁ SOFRENDO UM GRAVE ATAQUE DDOS. POR FAVOR, SELECIONE OS CÓDIGOS DIVERGENTES PARA COMPILAÇÃO. AH! PERMITA-ME LHE PERGUNTAR, ' + jogo.nome + '. <span style="color: white">COMO VÃO SEUS PRIMOS?</span>', 5500);
+        inserir(el, 'p', traducao.dolphin[2][0] + jogo.nome + traducao.dolphin[2][1] + jogo.nome + '. <span style="color: white">' + traducao.dolphin[2][2] + '</span>', 5500);
         setTimeout(() => {
             inserirImg($('.screen'), [
                 '<img class="dolphin-img" src="assets/img-dolphin.jpg">',
@@ -88,7 +88,7 @@ function analiseDolphin(el){
     dolphinOpcoes();
 
     inserir(el, 'p', '//1q743...")//9817kjha9h21q743...")//9817kjha9h2//', 0);
-    inserir(el, 'p', 'ITERAÇÃO ' + (dolphin.analise + 1) + '/' + dolphin.acertosMinimos, 1);
+    inserir(el, 'p', traducao.dolphin[3] + (dolphin.analise + 1) + '/' + dolphin.acertosMinimos, 1);
     pularLinha(el, 499);
 
     setTimeout(() => {
@@ -191,7 +191,7 @@ function dolphinResultado(el){
             }
         }
 
-        el.append('<p class="dolphin-msg">ESTOU DESCOMPILANDO OS CÓDIGOS. QUEIRA DEUS QUE VOCÊ TENHA ESCOLHIDO CERTO.</p>');
+        el.append('<p class="dolphin-msg">' + traducao.dolphin[4] + '</p>');
         el.append('<br><div class="compilado"><p></p><br></div>');
 
         randomComp = setInterval(() => {
@@ -228,13 +228,13 @@ function dolphinResultado(el){
                 jogo.vitoria = true;
                 animacoes.caracteres = '###'
 
-                vs.html('//PROCESSO INTERROMPIDO//');
+                vs.html(traducao.dolphin[5]);
                 clearInterval(dolphinProgBar);
                 $('.num-resto').animate({
                     color: 'white'
                 }, 2000);
-                inserir(el, 'p', 'CARREGAMENTO DE MALWARE MAL-SUCEDIDO', 0);
-                inserir(el, 'p', 'VOCÊ VENCEU O MODO DOLPHIN!', 1000);
+                inserir(el, 'p', traducao.dolphin[6], 0);
+                inserir(el, 'p', traducao.dolphin[7], 1000);
                 jogarNovamente(2000);
         
             }else{
@@ -255,8 +255,8 @@ function dolphinResultado(el){
                     clearInterval(dolphinProgBar);
                     $('.porcentagem').html('100%');
                     $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
-                    vs.html('//PROCESSO CONCLUÍDO//');
-                    $('.dolphin-msg').html('CÓDIGOS DIVERGENTES: ' + dolphin.acertos + '. VOCÊ FALHOU, E AGORA IREI ME AUTO-DESTRUIR.');
+                    vs.html(traducao.dolphin[8]);
+                    $('.dolphin-msg').html(traducao.dolphin[9] + dolphin.acertos + '/' + dolphin.acertosMinimos + '. ' + traducao.dolphin[10]);
 
                     $('.num-resto').animate({
                         opacity: 0.1
@@ -268,8 +268,8 @@ function dolphinResultado(el){
 
                 }, 2000);
     
-                inserir(el, 'p', 'CARREGAMENTO DE MALWARE BEM-SUCEDIDO', 2500);
-                inserir(el, 'p', 'VOCÊ PERDEU O MODO DOLPHIN', 3500);
+                inserir(el, 'p', traducao.dolphin[11], 2500);
+                inserir(el, 'p', traducao.dolphin[12], 3500);
                 jogarNovamente(4500)
             }
         }, 5000);
@@ -291,8 +291,8 @@ function dolphinResultado(el){
         }
 
         vs.html('//PROCESSO CONCLUÍDO//');
-        inserir(el, 'p', 'CARREGAMENTO DE MALWARE BEM-SUCEDIDO // EXCEPTION(E): DOLPHIN COM DADOS INSUFICIENTES PARA COMPILAÇÃO', 500);
-        inserir(el, 'p', 'VOCÊ PERDEU O MODO DOLPHIN', 1500);
+        inserir(el, 'p', traducao.dolphin[13], 500);
+        inserir(el, 'p', traducao.dolphin[12], 1500);
         jogarNovamente(2500)
     }
 }

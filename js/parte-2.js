@@ -16,7 +16,7 @@ function progressoVirus(tempo){
             criarProgBar();
             progressBar.porcentagemAntiga = 0;
             
-            $('.game-screen').append('<p class="virus-mensagem">Progresso do vírus no sistema:</p>');
+            $('.game-screen').append('<p class="virus-mensagem">' + traducao.parte2[0] + '</p>');
             $('.game-screen').append('<div class="virus-bar-wraper"></div>');
             $('.virus-bar-wraper').append('<div class="virus-bar"></div>');
             $('.virus-bar').append('<span class="porcentagem"></span>');
@@ -76,7 +76,7 @@ function progressoVirus(tempo){
                 $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
 
                 if(progressBar.porcentagemDinamica == 100){
-                    $('.virus-state').html('//PROCESSO CONCLUÍDO//')
+                    $('.virus-state').html(traducao.parte2[1])
                     jogo.vitoria = false;
                     animacoes.caracteres = '☠️☠️☠️'
                     animacaoClown();
@@ -115,8 +115,15 @@ function DataHora(tempo){
         let segundos = transformadorNum(dataAtual.getSeconds());
 
         $('.game-screen').append('<div class="tempo"></div>');
-        $('.tempo').append('<p>' + dia + '-' + mes + '-' + ano + '</p>\
-        <p>' + horas + ':' + minutos + ':' + segundos + '</p>');
+        if(animacoes.idioma == 'portugues'){
+            $('.tempo').append('<p>' + dia + '-' + mes + '-' + ano + '</p>\
+            <p>' + horas + ':' + minutos + ':' + segundos + '</p>');
+
+        }else if(animacoes.idioma == 'ingles'){
+            $('.tempo').append('<p>' + mes + '-' + dia + '-' + ano + '</p>\
+            <p>' + horas + ':' + minutos + ':' + segundos + '</p>');
+
+        }
         scrollMax();
         
     }, tempo);
@@ -125,11 +132,11 @@ function DataHora(tempo){
 function definirLimite(level){
     let limite;
     if(level == 1){
-        limite = '<span style="color: white">1 e 8</span>'
+        limite = '<span style="color: white">' + traducao.parte2[2][0] + '</span>'
     }else if(level == 2){
-        limite = '<span style="color: white">1 e 16</span>'
+        limite = '<span style="color: white">' + traducao.parte2[2][1] + '</span>'
     }else{
-        limite = '<span style="color: white">1 e 24</span>'
+        limite = '<span style="color: white">' + traducao.parte2[2][2] + '</span>'
     }
     return limite;
 }
@@ -151,8 +158,8 @@ function chatCyber(destino, tempo){
 }
 
 function inputCodigo(destino, tempo){
-    inserir(destino, 'p', 'TENTATIVAS: ' + jogo.tentativas, tempo);
-    inserir(destino, 'p', 'CÓDIGO:', tempo + 1);
+    inserir(destino, 'p', traducao.parte2[3][0] + jogo.tentativas, tempo);
+    inserir(destino, 'p', traducao.parte2[3][1], tempo + 1);
     setTimeout(() => {
         destino.append('\
         <div class="codigo-wraper">\
@@ -168,13 +175,13 @@ function entrada_hacker(){
     let el = $('.game-screen');
     jogo.tentativas = 6;
     pularLinha(el, 500)
-    inserir(el, 'p', '//AVISO DO LOG// ' + hacker.nome + ' conectou ao sistema há 5 minutos.', 501);
+    inserir(el, 'p', traducao.parte2[4] + hacker.nome + traducao.parte2[5], 501);
     pularLinha(el, 1500);
     chatCyber(el, 1501); 
-    inserir(el, 'p', '//FIREWALL DETECTOU CARREGAMENTO DE VÍRUS LETAL AO SISTEMA//', 2501)
-    inserir(el, 'p', '//TENTATIVA DE NEUTRALIZAR VÍRUS EM ANDAMENTO//', 3000);
-    inserir(el, 'p', 'AVISO: FIREWALL SOBRECARREGADO. ENTRADA MANUAL NECESSÁRIA DE [USER ' + jogo.nome + ']', 3500);
-    inserir(el, 'p', 'DETECTADO INTERVALO: CÓDIGO É UM NÚMERO INTEIRO ENTRE ' + jogo.limite, 4000);
+    inserir(el, 'p', traducao.parte2[6], 2501)
+    inserir(el, 'p', traducao.parte2[7], 3000);
+    inserir(el, 'p', traducao.parte2[8] + ' [USER ' + jogo.nome + ']', 3500);
+    inserir(el, 'p', traducao.parte2[9] + jogo.limite, 4000);
     pularLinha(el, 4500);
     progressoVirus(4501);
     pularLinha(el, 4502);

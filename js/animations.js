@@ -37,7 +37,7 @@ $(() => {
             }
 
         }else{
-            $('.glow-selected').attr('class', '');
+            $('.glow-selected').removeClass();
             $('.titulo h1').css('text-shadow', 'none')
             clearInterval(temporizador)
         }
@@ -87,16 +87,16 @@ $(() => {
         });
     }
 
-    $('.black-screen img').click(function(){
-        if(!animacoes.powerOn){
-            animacoes.powerOn = true;
+    $('.idiomas-wraper img').click(function(){
+        if(!animacoes.idioma){
+            animacoes.idioma = $(this).attr('id');
+            criarTraducao();
+            traduzirInicio();
+            animarHeader();
             tocarMusica();
-            $('.black-screen').animate({
-                backgroundColor: 'white'
-            }, 500);
-            $('.black-screen img').fadeOut(500);
+            $('.idiomas').fadeOut(500)
             setTimeout(() => {
-                $('.black-screen').fadeOut(500);
+                $('.idiomas-wraper').fadeOut(500);
                 setInterval(() => {
                     criarCodigoCascata();
             

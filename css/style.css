@@ -34,20 +34,40 @@ input[type=text] {
 input[type=text]:focus {
     outline: 0;
 }
-.black-screen {
-    position: absolute;
+.idiomas-wraper {
     width: 100%;
     height: 100%;
-    background-color: black;
-    z-index: 3;
-}
-.black-screen img {
+    background-color: #001100;
     position: absolute;
-    width: 20%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.idiomas {
+    color: white;
+    width: 95%;
+    max-width: 600px;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.idioma {
+    width: 50%;
+    float: left;
+    text-align: center;
+    padding: 30px;
+}
+.idioma img {
+    width: 100%;
+    box-shadow: 0 0 20px black;
     cursor: pointer;
+}
+.idioma h1 {
+    text-shadow: 0 0 10px black,
+    0 0 20px black,
+    0 0 50px black;
+    font-size: 20px;
 }
 header {
     width: 70%;
@@ -98,6 +118,7 @@ header img,
     position: absolute;
     left: 7px;
 }
+
 #cor0 {
     color: lime;
 }
@@ -116,6 +137,7 @@ header img,
 #cor5 {
     color: gold;
 }
+
 .sobre-jogo-wraper {
     display: none;
     position: absolute;
@@ -271,9 +293,13 @@ header img,
     width: 100%;
     max-width: 720px
 }
+.virus-mensagem, p:not(.sobre-jogo p) {
+    max-width: 720px
+}
 .virus-bar-wraper {
     width: 70%;
     min-width: 400px;
+    max-width: 720px;
 }
 .virus-bar {
     margin: 5px 0;
@@ -329,6 +355,17 @@ header img,
 }
 
 @media screen and (max-width: 645px) {
+    .idioma {
+        width: 100%;
+        padding: 20px 0;
+    }
+    .idioma img {
+        max-width: 300px;
+        width: 50%;
+    }
+    .idioma h1 {
+        font-size: 25px;
+    }
     .sobre-jogo h1 {
         font-size: 20px;
     }

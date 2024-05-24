@@ -1,4 +1,4 @@
-$(() => {
+function animarHeader(){
     $('#palette, #palette').click(function(e){
         if(!paleta.open){
             e.stopPropagation();
@@ -58,4 +58,4 @@ $(() => {
             i++;
         }
     }
-})
+}
