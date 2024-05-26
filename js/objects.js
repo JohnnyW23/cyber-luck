@@ -173,7 +173,7 @@ function criarHacker(){
                 "Hahahahahahahahahahaha! Didn't you realize that I'm just buying time to prepare a little surprise?",
                 "I also have my tricks. When my firewall blocks you, it will be me who will attack you.",
                 "I'm loving watching you try and squirm like a desperate worm.",
-                "Who are you? What do you think you're doing? Oh, how cute. Do you really think you're going to hack me with that outdated virus? My firewall will be much faster than your kludge. This will be fun :)”",
+                "Who are you? What do you think you're doing? Oh, how cute. Do you really think you're going to hack me with that outdated virus? My firewall will be much faster than your kludge. This will be fun :)",
                 "You… Darn it! My data! You can't do this. YOU BETTER BE CAREFUL I'M GOING TO HUNT YOU DOWN AND--</p><br><p>CONNECTION OF " + hacker.nome + " ELIMINATED BY DEPLOYED MALWARE.",
                 "I knew this would be fun… It's you who holds the DOLPHIN but doesn't have the intellect to decipher it! Hahahaha",
                 "You hold the DOLPHIN and managed to decipher it?! This… I'm speechless. This is too much for me."

@@ -357,6 +357,12 @@ header img,
     text-shadow: 0 0 20px white;
 }
 
+.dolphin-analise-selected div,
+.dolphin-analise-unselected div {
+    width: 100%;
+    height: 42px;
+}
+
 .dolphin-analise-unselected span {
     cursor: pointer;
 }

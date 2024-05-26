@@ -53,7 +53,14 @@ function intelDolphin(el, tempo){
             progressoVirusDinamico();
             el.append('<br><div class="dolphin-analise"></div>');
             $('.dolphin-analise').append($('<div class="dolphin-analise-unselected"></div>'));
-            analiseDolphin($('.dolphin-analise-unselected'))
+
+            let dau = $('.dolphin-analise-unselected')
+            inserir(dau, 'p', '//1q743...")//9817kjha9h21q743...")//9817kjha9h2//', 0);
+            pularLinha(dau, 499);
+            setTimeout(() => {
+                $('.dolphin-analise-unselected').append('<div></div>');
+                analiseDolphin(dau, $('.dolphin-analise-unselected div'));
+            }, 500);
         }, 6000);
     }, tempo);
 }
@@ -84,20 +91,21 @@ function progressoVirusDinamico(){
 }
 
 
-function analiseDolphin(el){
+function analiseDolphin(el, child){
     dolphinOpcoes();
 
-    inserir(el, 'p', '//1q743...")//9817kjha9h21q743...")//9817kjha9h2//', 0);
-    inserir(el, 'p', traducao.dolphin[3] + (dolphin.analise + 1) + '/' + dolphin.acertosMinimos, 1);
-    pularLinha(el, 499);
+    inserir(child, 'p', traducao.dolphin[3] + (dolphin.analise + 1) + '/' + dolphin.acertosMinimos, 0);
+
+    inserir(child, 'p', '\
+        <span>[' + dolphin.opcoes[0] + ']</span>\
+        <span>[' + dolphin.opcoes[1] + ']</span>\
+        <span>[' + dolphin.opcoes[2] + ']</span>\
+    ', 1);
 
     setTimeout(() => {
-        el.append('\
-            <span>[' + dolphin.opcoes[0] + ']</span>\
-            <span>[' + dolphin.opcoes[1] + ']</span>\
-            <span>[' + dolphin.opcoes[2] + ']</span>\
-        ')
-        scrollMax();
+        if(dolphin.analise == 1){
+            scrollMax();
+        }
 
         $('.dolphin-analise-unselected span').click(function(){
             if(dolphin.primoSelect == false){
@@ -129,10 +137,10 @@ function analiseDolphin(el){
                 if(dolphin.analise < dolphin.acertosMinimos){
                     setTimeout(() => {
                         if(dolphin.tempoLimite){
-                            $('.dolphin-analise-selected').html('');
+                            $('.dolphin-analise-selected div').html('');
                             $('.dolphin-analise-selected').attr('class', 'dolphin-analise-unselected');
                             dolphin.primoSelect = false;
-                            analiseDolphin(el);
+                            analiseDolphin(el, child);
 
                         }else{
                             dolphinResultado($('.dolphin-analise'));
@@ -144,7 +152,7 @@ function analiseDolphin(el){
                 }
             }
         })
-    }, 500);
+    }, 2);
 }
 
 
