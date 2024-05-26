@@ -82,9 +82,6 @@ function progressoVirus(tempo){
                     if(animacoes.modo == 'defesa'){
                         animacaoClown(false);
                     }
-                    if(!caixaDeSom.musica.current.muted){
-                        caixaDeSom.sfx.clown.play();
-                    }
                 }
                 
                 if(progressBar.porcentagemDinamica == progressBar.porcentagemAtual){
