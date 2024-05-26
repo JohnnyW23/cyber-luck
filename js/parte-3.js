@@ -31,7 +31,6 @@ function verificador(){
 
             if(palpite == jogo.senha){
                 jogo.vitoria = true;
-                animacoes.caracteres = '###'
 
                 setTimeout(() => {
                     respostaCerta(gs);
@@ -97,11 +96,15 @@ function respostaCerta(el){
     pularLinha(el, 999);
     jogo.tentativas = 7;
     chatCyber(el, 1000);
-    if(animacoes.modo == 'ataque'){
-        setTimeout(() => {
+    setTimeout(() => {
+        if(animacoes.modo == 'ataque'){
             animacaoClown(true);
-        }, 1000);
-    }
+            animacoes.caracteres = '☠️☠️☠️'
+
+        }else{
+            animacoes.caracteres = '###'
+        }
+    }, 1000);
     progressoVirus(1500);
     if(animacoes.modo == 'ataque'){
         setTimeout(() => {

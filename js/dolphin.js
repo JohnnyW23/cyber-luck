@@ -226,7 +226,6 @@ function dolphinResultado(el){
                 /* Caso tenha escolhido tudo certo */
 
                 jogo.vitoria = true;
-                animacoes.caracteres = '###'
 
                 vs.html(traducao.dolphin[5]);
                 clearInterval(dolphinProgBar);
@@ -234,7 +233,10 @@ function dolphinResultado(el){
                     color: 'white'
                 }, 2000);
                 if(animacoes.modo == 'ataque'){
+                    animacoes.caracteres = '☠️☠️☠️'
                     animacaoClown(true)
+                }else{
+                    animacoes.caracteres = '###'
                 }
                 el.append('<p class="hacker"><span style="color: white">' + hacker.nome + '</span><span>: ' + hacker.mensagens[9] + '</span></p><br>');
                 scrollMax();
@@ -248,7 +250,6 @@ function dolphinResultado(el){
                 /* Em caso de derrota */
 
                 jogo.vitoria = false;
-                animacoes.caracteres = '☠️☠️☠️'
 
                 vs.html('');
                 
@@ -259,7 +260,11 @@ function dolphinResultado(el){
                 setTimeout(() => {
                     $('.screen > img').remove();
                     if(animacoes.modo == 'defesa'){
+                        animacoes.caracteres = '☠️☠️☠️'
                         animacaoClown(false);
+
+                    }else{
+                        animacoes.caracteres = '###'
                     }
                     clearInterval(dolphinProgBar);
                     $('.porcentagem').html('100%');
@@ -289,10 +294,12 @@ function dolphinResultado(el){
         /* Em caso de derrota depois da barra atingir 100% */
 
         jogo.vitoria = false;
-        animacoes.caracteres = '☠️☠️☠️'
         $('.screen > img').remove();
         if(animacoes.modo == 'defesa'){
+            animacoes.caracteres = '☠️☠️☠️'
             animacaoClown(false);
+        }else{
+            animacoes.caracteres = '###'
         }
 
         clearInterval(dolphinProgBar);
