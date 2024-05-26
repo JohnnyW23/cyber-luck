@@ -39,9 +39,9 @@ function animarHeader(){
                 $('.cores-selected').prependTo(el);
                 paleta.selected = paleta.cores[i].color;
                 paleta.cascataSelected = paleta.cores[i].cascataColor;
-                $('html, body, input[type=text], #novo-jogo, #iniciar').css('color', paleta.selected);
+                $('html, body, input[type=text], #novo-jogo, #iniciar, #ataque, #defesa').css('color', paleta.selected);
                 $('.loaded-bar').css('background-color', paleta.selected);
-                $('#novo-jogo, #iniciar').css('border', '2px solid ' + paleta.selected);
+                $('#novo-jogo, #iniciar, #ataque, #defesa').css('border', '2px solid ' + paleta.selected);
                 $('header').css('background-color', paleta.cores[i].headerBGColor);
                 $('.screen').css('background', paleta.cores[i].screenBGColor);
                 $('.cores').css('background-color', paleta.cores[i].coresBGColor);

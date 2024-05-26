@@ -233,9 +233,16 @@ function dolphinResultado(el){
                 $('.num-resto').animate({
                     color: 'white'
                 }, 2000);
-                inserir(el, 'p', traducao.dolphin[6], 0);
-                inserir(el, 'p', traducao.dolphin[7], 1000);
-                jogarNovamente(2000);
+                if(animacoes.modo == 'ataque'){
+                    animacaoClown(true)
+                }
+                el.append('<p class="hacker"><span style="color: white">' + hacker.nome + '</span><span>: ' + hacker.mensagens[9] + '</span></p><br>');
+                scrollMax();
+                inserir(el, 'p', traducao.dolphin[6], 1000);
+                inserir(el, 'p', traducao.dolphin[7], 2000);
+                pularLinha(el, 2001)
+                DataHora(2500);
+                jogarNovamente(3000);
         
             }else{
                 /* Em caso de derrota */
@@ -251,7 +258,9 @@ function dolphinResultado(el){
                 }, 2000);
                 setTimeout(() => {
                     $('.screen > img').remove();
-                    animacaoClown();
+                    if(animacoes.modo == 'defesa'){
+                        animacaoClown(false);
+                    }
                     clearInterval(dolphinProgBar);
                     $('.porcentagem').html('100%');
                     $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
@@ -262,15 +271,17 @@ function dolphinResultado(el){
                         opacity: 0.1
                     }, 2500)
 
-                    if(!caixaDeSom.musica.current.muted){
-                        caixaDeSom.sfx.derrota.play();
-                    }
-
                 }, 2000);
     
-                inserir(el, 'p', traducao.dolphin[11], 2500);
-                inserir(el, 'p', traducao.dolphin[12], 3500);
-                jogarNovamente(4500)
+                setTimeout(() => {
+                    el.append('<p class="hacker"><span style="color: white">' + hacker.nome + '</span><span>: ' + hacker.mensagens[8] + '</span></p><br>');
+                    scrollMax();
+                }, 2500);
+                inserir(el, 'p', traducao.dolphin[11], 3500);
+                inserir(el, 'p', traducao.dolphin[12], 4500);
+                pularLinha(el, 4501)
+                DataHora(5000)
+                jogarNovamente(5500)
             }
         }, 5000);
 
@@ -280,20 +291,24 @@ function dolphinResultado(el){
         jogo.vitoria = false;
         animacoes.caracteres = '☠️☠️☠️'
         $('.screen > img').remove();
-        animacaoClown();
+        if(animacoes.modo == 'defesa'){
+            animacaoClown(false);
+        }
 
         clearInterval(dolphinProgBar);
         $('.porcentagem').html('100%');
         $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
 
-        if(!caixaDeSom.musica.current.muted){
-            caixaDeSom.sfx.derrota.play();
-        }
-
         vs.html('//PROCESSO CONCLUÍDO//');
         inserir(el, 'p', traducao.dolphin[13], 500);
-        inserir(el, 'p', traducao.dolphin[12], 1500);
-        jogarNovamente(2500)
+        setTimeout(() => {
+            el.append('<p class="hacker"><span style="color: white">' + hacker.nome + '</span><span>: ' + hacker.mensagens[8] + '</span></p><br>');
+            scrollMax();
+        }, 1500);
+        inserir(el, 'p', traducao.dolphin[12], 2500);
+        pularLinha(el, 2501)
+        DataHora(3000);
+        jogarNovamente(3500)
     }
 }
 

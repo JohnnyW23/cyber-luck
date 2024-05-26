@@ -249,7 +249,7 @@ header img,
     margin-top: 15vh;
     margin-inline: auto;
 }
-#iniciar {
+#iniciar, #defesa, #ataque {
     font-family: JB;
     font-size: 40px;
     font-weight: 400;
@@ -260,6 +260,10 @@ header img,
     transition: 0.25s;
     color: lime;
     border: 2px solid lime;
+}
+#defesa, #ataque {
+    font-size: 20px;
+    margin: 15px 5px;
 }
 .instrucoes ul {
     list-style-type: none;
@@ -274,6 +278,23 @@ header img,
     margin-left: 15px;
     transition: .15s;
 }
+
+.modo-wraper {
+    margin-top: 15vh;
+    margin-inline: auto;
+    width: fit-content;
+    display: none;
+}
+.modo-wraper h2 {
+    font-weight: 400;
+    width: fit-content;
+    margin: 0 auto;
+}
+.modo {
+    margin: 0 auto;
+    width: fit-content;
+}
+
 #name, #codigo {
     width: calc(100% - 19.2px);
     display: inline-block;
@@ -328,7 +349,9 @@ header img,
     transition: 0.25s all;
 }
 #novo-jogo:hover,
-#iniciar:hover {
+#iniciar:hover,
+#defesa:hover,
+#ataque:hover {
     border: 2px solid white !important;
     color: white !important;
     text-shadow: 0 0 20px white;
@@ -395,6 +418,12 @@ header img,
     }
     #iniciar {
         font-size: 27px;
+    }
+    .modo-wraper h2 {
+        font-size: 18px;
+    }
+    #ataque, #defesa {
+        font-size: 16px;
     }
     .virus-bar-wraper {
         width: 90%;

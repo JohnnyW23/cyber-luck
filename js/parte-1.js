@@ -3,12 +3,23 @@ $('#iniciar').click(function(){
         animacoes.inicio = true;
         tocarMusica();
         $('.principal').fadeOut(250);
+        setTimeout(() => {
+            $('.modo-wraper').fadeIn(250);
+        }, 250);
+    }
+})
+
+$('.modo button').click(function(){
+    if(animacoes.modo == null){
+        animacoes.modo = $(this).attr('id');
+        $('.modo-wraper').fadeOut(500);
         novoJogo();
     }
 })
 
 
 function novoJogo(){
+    criarTraducaoJogo();
     criarJogo();
     criarRoundsAnim();
 

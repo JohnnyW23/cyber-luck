@@ -49,6 +49,15 @@ function verificador(){
 
                     }else{
                         inserir(gs, 'p', traducao.parte3[0], 3000);
+                        if(animacoes.modo == 'ataque'){
+                            setTimeout(() => {
+                                el.append('<br><p>SISTEMA DE ' + jogo.nome + ' REESTABELECIDO. DELETANDO AMEAÇAS RESTANTES.<p>')
+                            }, 3500);
+                        }else{
+                            setTimeout(() => {
+                                el.append('<br><p>SISTEMA DE ' + jogo.nome + ' INFECTADO. ' + hacker.nome + ' EXTRAINDO TODOS OS DADOS DO SERVIDOR.<p>')
+                            }, 3500);
+                        }
                         jogarNovamente(4000);
                     }
                     
@@ -74,8 +83,9 @@ function jogarNovamente(tempo){
             $('.codigo-cascata').remove();
             $('.game-screen').html('');
             $('.screen > img').remove();
-            animacoes.caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?@#$%&*'
-            novoJogo();
+            animacoes.caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?@#$%&*';
+            animacoes.modo = null;
+            $('.modo-wraper').fadeIn(250);
         })
 
     }, tempo);
@@ -87,8 +97,22 @@ function respostaCerta(el){
     pularLinha(el, 999);
     jogo.tentativas = 7;
     chatCyber(el, 1000);
+    if(animacoes.modo == 'ataque'){
+        setTimeout(() => {
+            animacaoClown(true);
+        }, 1000);
+    }
     progressoVirus(1500);
-    pularLinha(el, 1501);
+    if(animacoes.modo == 'ataque'){
+        setTimeout(() => {
+            el.append('<br><p>SISTEMA DE ' + jogo.nome + ' INFECTADO. EXTRAINDO TODOS OS DADOS DE SERVIDORES.<p>')
+        }, 1502);
+    }else{
+        setTimeout(() => {
+            el.append('<br><p>SISTEMA DE ' + jogo.nome + ' SEGURO. DELETANDO AMEAÇAS RESTANTES.<p>')
+        }, 1502);
+    }
+    pularLinha(el, 1503);
     DataHora(2000);
     pularLinha(el, 2999);
     inserir(el, 'p', traducao.parte3[4], 3000);
@@ -202,7 +226,7 @@ function animarImg(img, state, rounds){
 }
 
 
-function animacaoClown(){
+function animacaoClown(state){
     inserirImg($('.screen'), [
         '<img class="clown-img" src="assets/clown-1.jpg">',
         '<img class="clown-img" src="assets/clown-2.jpg">',
@@ -213,5 +237,9 @@ function animacaoClown(){
         '<img class="clown-img" src="assets/clown-3.jpg">',
         '<img class="clown-img" src="assets/clown-4.jpg">'
     ],
-    '.clown-img', false, animacaoFotos.clown)
+    '.clown-img', state, animacaoFotos.clown);
+
+    if(!caixaDeSom.musica.current.muted){
+        caixaDeSom.sfx.clown.play();
+    }
 }

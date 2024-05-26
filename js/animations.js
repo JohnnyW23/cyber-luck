@@ -18,7 +18,7 @@ $(() => {
     temporizador = setInterval(() => {
 
         if(!animacoes.inicio){
-            if(animacoes.rounds == 17){
+            if(animacoes.rounds == 18){
                 animacoes.rounds = 0;
                 setTimeout(() => {
                     $('.glow-selected').attr('class', '');
@@ -90,7 +90,7 @@ $(() => {
     $('.idiomas-wraper img').click(function(){
         if(!animacoes.idioma){
             animacoes.idioma = $(this).attr('id');
-            criarTraducao();
+            criarTraducaoInicio();
             traduzirInicio();
             animarHeader();
             tocarMusica();

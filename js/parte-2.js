@@ -79,9 +79,11 @@ function progressoVirus(tempo){
                     $('.virus-state').html(traducao.parte2[1])
                     jogo.vitoria = false;
                     animacoes.caracteres = '☠️☠️☠️'
-                    animacaoClown();
+                    if(animacoes.modo == 'defesa'){
+                        animacaoClown(false);
+                    }
                     if(!caixaDeSom.musica.current.muted){
-                        caixaDeSom.sfx.derrota.play();
+                        caixaDeSom.sfx.clown.play();
                     }
                 }
                 
@@ -180,7 +182,7 @@ function entrada_hacker(){
     chatCyber(el, 1501); 
     inserir(el, 'p', traducao.parte2[6], 2501)
     inserir(el, 'p', traducao.parte2[7], 3000);
-    inserir(el, 'p', traducao.parte2[8] + ' [USER ' + jogo.nome + ']', 3500);
+    inserir(el, 'p', traducao.parte2[8] + '[USER ' + jogo.nome + ']', 3500);
     inserir(el, 'p', traducao.parte2[9] + jogo.limite, 4000);
     pularLinha(el, 4500);
     progressoVirus(4501);
