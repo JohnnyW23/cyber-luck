@@ -30,10 +30,11 @@ function intelDolphin(el, tempo){
                 '<img class="dolphin-img" src="assets/img-dolphin.jpg">',
                 '<img class="dolphin-img" src="assets/img-dolphin.jpg">'
             ],
-            '.dolphin-img', null, animacaoFotos.dolphin)
+            '.dolphin-img', null)
         }, 5500);
         pularLinha(el, 5999);
 
+        // Função para criar números primos e não primos. Exclui números pares e múltiplos de 5
         for(x = 2; x < 1000; x++){
             for(y = 2; y < x; y++){
                 if(x % 2 == 0 || x % 5 == 0){
@@ -66,6 +67,7 @@ function intelDolphin(el, tempo){
 }
 
 
+// Função chamada no modo DOLPHIN para fazer a barra de progresso encher enquanto o modo de jogo ainda não foi finalizado
 function progressoVirusDinamico(){
     $('.virus-mensagem').show();
     $('.virus-bar-wraper').show();
@@ -77,7 +79,7 @@ function progressoVirusDinamico(){
 
     }, 12000 * dolphin.acertosMinimos, "linear");
 
-    dolphinProgBar = setInterval(() => {
+    dolphinProgressBar = setInterval(() => {
         $('.porcentagem').html(Math.floor(($('.loaded-bar').width() / $('.bar-space').width()) * 100) + '%');
         $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
 
@@ -91,6 +93,7 @@ function progressoVirusDinamico(){
 }
 
 
+// Função que cuida do processo de analisar se os códigos divergentes são ou não os corretos, até que o valor de tentativas alcance o valor de acertos mínimos
 function analiseDolphin(el, child){
     dolphinOpcoes();
 
@@ -114,19 +117,17 @@ function analiseDolphin(el, child){
                 $('.dolphin-analise-unselected').attr('class', 'dolphin-analise-selected');
                 
                 let numero;
-                if($(this).html().length == 5){
+                if($(this).html().length == 5)
                     numero = $(this).html().substring(1, 4)
 
-                }else if($(this).html().length == 4){
+                else if($(this).html().length == 4)
                     numero = $(this).html().substring(1, 3)
 
-                }else{
+                else
                     numero = $(this).html().substring(1, 2)
-                }
-
-                if(dolphin.primos.includes(Number(numero))){
+                
+                if(dolphin.primos.includes(Number(numero)))
                     dolphin.acertos++;
-                }
 
                 $(this).css('color', 'white');
 
@@ -156,6 +157,7 @@ function analiseDolphin(el, child){
 }
 
 
+// Função que embaralha uma lista com números escolhidos e outros números determinados de forma aleatória
 function embaralhaLista(lista) {
     for (let i = lista.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -165,6 +167,7 @@ function embaralhaLista(lista) {
 }
 
 
+// Função que posiciona os números de forma harmônica na lista de códigos compilados, a depender do tamanho desses números
 function adequarNum(num){
     if(num.length == 2){
         num = num + ' '
@@ -176,11 +179,12 @@ function adequarNum(num){
 }
 
 
+// Dtermina os 3 resultados possíveis do modo DOLPHIN: Vitória por escolher os códigos certos, derrota por não escolher todos os códigos certos e derrota por não escolher todos os códigos a tempo
 function dolphinResultado(el){
     el.html('');
-    var vs = $('.virus-state');
+    var virusState = $('.virus-state');
     $('.loaded-bar').stop();
-    vs.html('//BACKDOOR DNS/' + numeroAleatorio(100, 999) + ':' + numeroAleatorio(10, 99) + '//');
+    virusState.html('//BACKDOOR DNS/' + numeroAleatorio(100, 999) + ':' + numeroAleatorio(10, 99) + '//');
 
     if(dolphin.tempoLimite){
         /* Caso tenha escolhido todos os códigos a tempo */
@@ -202,31 +206,29 @@ function dolphinResultado(el){
         el.append('<p class="dolphin-msg">' + traducao.dolphin[4] + '</p>');
         el.append('<br><div class="compilado"><p></p><br></div>');
 
-        randomComp = setInterval(() => {
-            dolphin.compRound++;
+        embaralharCompilacaoInterval = setInterval(() => {
+            dolphin.compilacaoRound++;
 
             dolphin.compilacao = embaralhaLista(dolphin.compilacao);
 
             var compScreen = '';
 
             for(i = 1; i < (dolphin.acertosMinimos * 15) + 1; i++){
-                if(i % 10 == 0){
+                if(i % 10 == 0)
                     compScreen += dolphin.compilacao[i - 1] + '<br>'
-                }else{
+
+                else
                     compScreen += dolphin.compilacao[i - 1] + ' ';
-                }
             }
 
             $('.compilado p').html(compScreen)
             
-            if(dolphin.compRound == 1){
+            if(dolphin.compilacaoRound == 1)
                 scrollMax();
-            }
-
-            if(dolphin.compRound == 10){
-                clearInterval(randomComp)
-            }
-
+            
+            if(dolphin.compilacaoRound == 10)
+                clearInterval(embaralharCompilacaoInterval)
+            
         }, 500);
 
         setTimeout(() => {
@@ -235,12 +237,12 @@ function dolphinResultado(el){
 
                 jogo.vitoria = true;
 
-                vs.html(traducao.dolphin[5]);
-                clearInterval(dolphinProgBar);
+                virusState.html(traducao.dolphin[5]);
+                clearInterval(dolphinProgressBar);
                 $('.num-resto').animate({
                     color: 'white'
                 }, 2000);
-                if(animacoes.modo == 'ataque'){
+                if(controle.modo == 'ataque'){
                     animacoes.caracteres = '☠️☠️☠️'
                     animacaoClown(true)
                 }else{
@@ -255,11 +257,11 @@ function dolphinResultado(el){
                 jogarNovamente(3000);
         
             }else{
-                /* Em caso de derrota */
+                /* Caso nem todas as escolhas sejam as certas */
 
                 jogo.vitoria = false;
 
-                vs.html('');
+                virusState.html('');
                 
                 $('.loaded-bar').animate({
                     width: 100 + '%'
@@ -267,17 +269,17 @@ function dolphinResultado(el){
                 }, 2000);
                 setTimeout(() => {
                     $('.screen > img').remove();
-                    if(animacoes.modo == 'defesa'){
+                    if(controle.modo == 'defesa'){
                         animacoes.caracteres = '☠️☠️☠️'
                         animacaoClown(false);
 
                     }else{
                         animacoes.caracteres = '###'
                     }
-                    clearInterval(dolphinProgBar);
+                    clearInterval(dolphinProgressBar);
                     $('.porcentagem').html('100%');
                     $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
-                    vs.html(traducao.dolphin[8]);
+                    virusState.html(traducao.dolphin[8]);
                     $('.dolphin-msg').html(traducao.dolphin[9] + dolphin.acertos + '/' + dolphin.acertosMinimos + '. ' + traducao.dolphin[10]);
 
                     $('.num-resto').animate({
@@ -299,22 +301,23 @@ function dolphinResultado(el){
         }, 5000);
 
     }else{
-        /* Em caso de derrota depois da barra atingir 100% */
+        /* Em caso de derrota por não escolher tudo a tempo e a barra atingir 100% */
 
         jogo.vitoria = false;
+
         $('.screen > img').remove();
-        if(animacoes.modo == 'defesa'){
+        if(controle.modo == 'defesa'){
             animacoes.caracteres = '☠️☠️☠️'
             animacaoClown(false);
         }else{
             animacoes.caracteres = '###'
         }
 
-        clearInterval(dolphinProgBar);
+        clearInterval(dolphinProgressBar);
         $('.porcentagem').html('100%');
         $('.bar-space').css('width', 'calc(100% - ' + ($('.porcentagem').width() + 10) + 'px)');
 
-        vs.html('//PROCESSO CONCLUÍDO//');
+        virusState.html('//PROCESSO CONCLUÍDO//');
         inserir(el, 'p', traducao.dolphin[13], 500);
         setTimeout(() => {
             el.append('<p class="hacker"><span style="color: white">' + hacker.nome + '</span><span>: ' + hacker.mensagens[8] + '</span></p><br>');
@@ -328,22 +331,22 @@ function dolphinResultado(el){
 }
 
 
+// Fornece as opções de cada round do mood DOLPHIN, além de embaralhar as posições
 function dolphinOpcoes(){
-    let op1 = numeroAleatorio(0, 2);
-    let op2 = numeroAleatorio(0, 2);
-    let op3 = numeroAleatorio(0, 2);
+    let opcao1 = numeroAleatorio(0, 2);
+    let opcao2 = numeroAleatorio(0, 2);
+    let opcao3 = numeroAleatorio(0, 2);
 
     dolphin.opcoes = []
     dolphin.opcoes.push(dolphin.naoprimos[numeroAleatorio(0, 232)]);
     dolphin.opcoes.push(dolphin.naoprimos[numeroAleatorio(0, 232)]);
     dolphin.opcoes.push(dolphin.primos[numeroAleatorio(0, 165)]);
 
-    while(op2 == op1){
-        op2 = numeroAleatorio(0, 2);
-    }
-    while(op3 == op2 || op3 == op1){
-        op3 = numeroAleatorio(0, 2);
-    }
-
-    dolphin.opcoes = [dolphin.opcoes[op1], dolphin.opcoes[op2], dolphin.opcoes[op3]]
+    while(opcao2 == opcao1)
+        opcao2 = numeroAleatorio(0, 2);
+    
+    while(opcao3 == opcao2 || opcao3 == opcao1)
+        opcao3 = numeroAleatorio(0, 2);
+    
+    dolphin.opcoes = [dolphin.opcoes[opcao1], dolphin.opcoes[opcao2], dolphin.opcoes[opcao3]]
 }

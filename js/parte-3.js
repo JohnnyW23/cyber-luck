@@ -1,5 +1,5 @@
 function verificador(){
-    var gs = $('.game-screen');
+    var gameScreen = $('.game-screen');
     let palpite;
     let delay = 0;
 
@@ -9,23 +9,21 @@ function verificador(){
     
             palpite = $('#codigo').val();
 
-            if(palpite == ''){
+            if(palpite == '')
                 return false;
-            }
-
+            
             $('.codigo-wraper').html('<p style="color: white">' + '> ' + palpite + '</p>');
 
             if(jogo.tentativas == 6 && palpite == 'DOLPHIN'){
-                intelDolphin(gs, 1000);
+                intelDolphin(gameScreen, 1000);
                 return;
             }
 
             jogo.tentativas--;
 
-            if(jogo.tentativas == 0){
+            if(jogo.tentativas == 0)
                 delay = 4000
-            }
-
+            
             /* Descriptografar dura 2,8 segundos, na realidade */
             descriptografando(1000);
 
@@ -33,7 +31,7 @@ function verificador(){
                 jogo.vitoria = true;
 
                 setTimeout(() => {
-                    respostaCerta(gs);
+                    respostaCerta(gameScreen);
                     jogarNovamente(4000)
 
                 }, 3800 + delay);
@@ -41,20 +39,20 @@ function verificador(){
             }else{
 
                 setTimeout(() => {
-                    respostaErrada(gs);
+                    respostaErrada(gameScreen);
 
                     if(jogo.tentativas > 0){
-                        inputCodigo(gs, 3000);
+                        inputCodigo(gameScreen, 3000);
 
                     }else{
-                        inserir(gs, 'p', traducao.parte3[0], 3000);
-                        if(animacoes.modo == 'ataque'){
+                        inserir(gameScreen, 'p', traducao.parte3[0], 3000);
+                        if(controle.modo == 'ataque'){
                             setTimeout(() => {
-                                el.append('<br><p>SISTEMA DE ' + jogo.nome + ' REESTABELECIDO. DELETANDO AMEAÇAS RESTANTES.<p>')
+                                gameScreen.append('<br><p>SISTEMA DE ' + jogo.nome + ' REESTABELECIDO. DELETANDO AMEAÇAS RESTANTES.<p>')
                             }, 3500);
                         }else{
                             setTimeout(() => {
-                                el.append('<br><p>SISTEMA DE ' + jogo.nome + ' INFECTADO. ' + hacker.nome + ' EXTRAINDO TODOS OS DADOS DO SERVIDOR.<p>')
+                                gameScreen.append('<br><p>SISTEMA DE ' + jogo.nome + ' INFECTADO. ' + hacker.nome + ' EXTRAINDO TODOS OS DADOS DO SERVIDOR.<p>')
                             }, 3500);
                         }
                         jogarNovamente(4000);
@@ -66,12 +64,6 @@ function verificador(){
     });
 }
 
-/* CRONOLOGIA DOS FATOS:
-1 segundo: descriptografar - duração 2,8 segundos
-3,8 segundos: Caso de vitória, derrota ou novo código - duração 3 segundos
-7,8 segundos: Botão de novo jogo (1 segundo após a ação anterior)
-Se for a última tentativa, à partir da descriptografia leva 4 segundos a mais
-*/
 
 function jogarNovamente(tempo){
     setTimeout(() => {
@@ -83,7 +75,7 @@ function jogarNovamente(tempo){
             $('.game-screen').html('');
             $('.screen > img').remove();
             animacoes.caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?@#$%&*';
-            animacoes.modo = null;
+            controle.modo = null;
             $('.modo-wraper').fadeIn(250);
         })
 
@@ -97,7 +89,7 @@ function respostaCerta(el){
     jogo.tentativas = 7;
     chatCyber(el, 1000);
     setTimeout(() => {
-        if(animacoes.modo == 'ataque'){
+        if(controle.modo == 'ataque'){
             animacaoClown(true);
             animacoes.caracteres = '☠️☠️☠️'
 
@@ -106,7 +98,7 @@ function respostaCerta(el){
         }
     }, 1000);
     progressoVirus(1500);
-    if(animacoes.modo == 'ataque'){
+    if(controle.modo == 'ataque'){
         setTimeout(() => {
             el.append('<br><p>SISTEMA DE ' + jogo.nome + ' INFECTADO. EXTRAINDO TODOS OS DADOS DE SERVIDORES.<p>')
         }, 1502);
@@ -167,43 +159,46 @@ function descriptografando(tempo){
     }, tempo);
 }
 
-// Função para gerar uma criptografia aleatória de 50 caracteres
+// Função para gerar uma criptografia aleatória de 75 caracteres
 function gerarCriptografiaAleatoria() {
-    // Defina o tamanho desejado da string
-    const tamanho = 75;
+    let tamanho = 75;
 
-    // Caracteres permitidos na criptografia
-    const caracteresPermitidos = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let caracteresPermitidos = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
     let criptografia = '';
-    for (let i = 0; i < tamanho; i++) {
-        // Gera um número aleatório para selecionar um caractere da string de caracteres permitidos
-        const indiceAleatorio = Math.floor(Math.random() * caracteresPermitidos.length);
+    for(i = 0; i < tamanho; i++){
+        let indiceAleatorio = Math.floor(Math.random() * caracteresPermitidos.length);
         criptografia += caracteresPermitidos.charAt(indiceAleatorio);
     }
     return criptografia;
 }
 
 
-function inserirImg(el, imgList, classe, state, rounds){
+// Insere imagens em uma lista em determinado elemento do site, e dando uma mesma classe pra essas imagens, e então chama uma função para animar
+function inserirImg(el, imgList, classe, state){
     let tempo = 0
     for(i = 0; i < imgList.length + 1; i++){
         el.append(imgList[i]);
         let index = i
-        setTimeout(() => {animarImg($(classe).eq(index), state, rounds)}, tempo);
+        setTimeout(() => {
+            animarImg($(classe).eq(index), state)
+        }, tempo);
         tempo += 150;
     }
 }
 
 
-function animarImg(img, state, rounds){
+// Anima imagens através de seus nomes de classe e index dentro destas classes. Atribui uma posição aleatória na tela e faz a imagem piscar
+function animarImg(img, state, first=true){
     if(jogo.vitoria == state){
         let tempo;
 
-        if(rounds == 0)
+        if(first){
             tempo = 0
-        else
+            
+        }else{
             tempo = numeroAleatorio(10, 15) * 100 + 700
+        }
         
         let valor = Number($('.screen').css('width').substring(0, $('.screen').width().length - 2));
 
@@ -223,12 +218,13 @@ function animarImg(img, state, rounds){
         setTimeout(() => {
             img.show();
             img.fadeOut(700);
-            animarImg(img, state)
+            animarImg(img, state, false)
         }, tempo);
     }
 }
 
 
+// Função específica para as imagens do palhaço. Insere e anima as imagens. O parâmetro state indica se a função é chamada em caso de vitória ao atacar ou derrota ao defender. Deve estar em conformidade com o atributo jogo.vitoria
 function animacaoClown(state){
     inserirImg($('.screen'), [
         '<img class="clown-img" src="assets/clown-1.jpg">',
@@ -240,7 +236,7 @@ function animacaoClown(state){
         '<img class="clown-img" src="assets/clown-3.jpg">',
         '<img class="clown-img" src="assets/clown-4.jpg">'
     ],
-    '.clown-img', state, animacaoFotos.clown);
+    '.clown-img', state);
 
     if(!caixaDeSom.musica.current.muted){
         caixaDeSom.sfx.clown.play();

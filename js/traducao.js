@@ -1,6 +1,6 @@
 function criarTraducaoInicio(){
     traducao = {}
-    if(animacoes.idioma == 'portugues'){
+    if(controle.idioma == 'portugues'){
         traducao.inicio = {
             cores: [
                 'NOVA ERA RETRO',
@@ -43,7 +43,7 @@ function criarTraducaoInicio(){
             ]
         }
 
-    }else if(animacoes.idioma == 'ingles'){
+    }else if(controle.idioma == 'ingles'){
         traducao.inicio = {
             cores: [
                 'NEW ERA RETRO',
@@ -90,15 +90,15 @@ function criarTraducaoInicio(){
 
 
 function criarTraducaoJogo(){
-    if(animacoes.modo == 'defesa'){
-        if(animacoes.idioma == 'portugues'){
+    if(controle.modo == 'defesa'){
+        if(controle.idioma == 'portugues'){
             traducao.parte1 = [
                 'IDENTIFIQUE-SE:',
                 'MIN 4 CARACTERES',
                 'MAX 20 CARACTERES',
                 'APENAS LETRAS E NÚMEROS SEM ACENTOS',
                 'SELECIONE NÍVEL DE ACESSO AO SISTEMA:',
-                'Boas-vindas,',
+                'Boas-vindas, ',
                 'Executando algoritmo de verificação de segurança...',
                 'Carregando módulos do firewall...',
                 'In´´cializ#ndo~ //0P_SY5TEM//, p%r f4v0r agu%rd&.',
@@ -149,14 +149,14 @@ function criarTraducaoJogo(){
                 'ELIMINAÇÃO DE MALWARE SEM SUCESSO // DOLPHIN EXCEPTION(E): DADOS INSUFICIENTES PARA COMPILAÇÃO'
             ]
 
-        }else if(animacoes.idioma == 'ingles'){
+        }else if(controle.idioma == 'ingles'){
             traducao.parte1 = [
                 'IDENTIFY YOURSELF:',
                 'MIN 4 CHARACTERS',
                 'MAX 20 CHARACTERS',
                 'ONLY LETTERS AND NUMBERS',
                 'SELECT ACCESS LEVEL TO THE SYSTEM:',
-                'Welcome,',
+                'Welcome, ',
                 'Running security check algorithm...',
                 'Loading firewall modules...',
                 'In´´tializ*ng~ //0P_SY5TEM//, pl3as& w%it',
@@ -209,7 +209,7 @@ function criarTraducaoJogo(){
         }
     
     }else{
-        if(animacoes.idioma == 'portugues'){
+        if(controle.idioma == 'portugues'){
             traducao.parte1 = [
                 'DIGITE O USUÁRIO ALVO PARA ATAQUE:',
                 'MIN 4 CARACTERES',
@@ -267,7 +267,7 @@ function criarTraducaoJogo(){
                 'CARREGAMENTO DE MALWARE INTERROMPIDO // DOLPHIN EXCEPTION(E): DADOS INSUFICIENTES PARA COMPILAÇÃO'
             ]
             
-        }else if(animacoes.idioma == 'ingles'){
+        }else if(controle.idioma == 'ingles'){
             traducao.parte1 = [
                 "ENTER THE TARGET USER TO ATTACK:",
                 'MIN 4 CHARACTERS',
@@ -347,4 +347,6 @@ function traduzirInicio(){
     $('.modo-wraper h2').append(traducao.inicio.modo[0]);
     $('#defesa').append(traducao.inicio.modo[1]);
     $('#ataque').append(traducao.inicio.modo[2]);
+
+    ativarInstrucoes();
 }

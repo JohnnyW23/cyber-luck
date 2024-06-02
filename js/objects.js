@@ -1,18 +1,19 @@
+// Objeto que guarda condições de alguns eventos
 animacoes = {
-    idioma: false,
-    inicio: false,
-    modo: null,
-    readme: false,
-    rounds: 0,
-    caracteres: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?@#$%&*',
-    tela: {
-        altura: null,
-        largura: null
-    },
-    codigos: 0
+    readme: false, // Se a tela sobre o jogo está ou não ativa
+    rounds: 0, // Controla iteração para o piscar do letreiro do nome do jogo
+    caracteres: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?@#$%&*', // Caracteres para geração do código em cascata
+    codigos: 0 // Quantidade de códigos em cascata gerados
 }
 
+// Objeto que guarda definições maleáveis e se o jogo foi iniciado
+controle = {
+    idioma: false, // Guarda o idioma definido
+    inicio: false, // Se o botão de iniciar jogo já foi clicado
+    modo: null // Guarda o modo de jogo escolhido
+}
 
+// Objeto que guarda os áudios do jogo
 caixaDeSom = {
     musica: {
         current: null,
@@ -24,11 +25,11 @@ caixaDeSom = {
     }
 }
 
-
+// Objeto que guarda todos os temas de cores do site
 paleta = {
-    open: false,
-    selected: 'lime',
-    cascataSelected: 'rgb(0, 60, 0)',
+    open: false, // Se o menu de cores está ou não aberto
+    selected: 'lime', // Guarda a cor principal para adição dinâmica de elementos. Lime é a cor padrão
+    cascataSelected: 'rgb(0, 60, 0)', // Guarda a cor dos códigos cascata, sendo esse a padrão
     cores: [
         {
             id: 'cor0',
@@ -88,7 +89,7 @@ paleta = {
     ]
 }
 
-
+// Função para resetar valores de um novo jogo
 function criarJogo(){
     jogo = {
         nome: null,
@@ -104,22 +105,28 @@ function criarJogo(){
     }
 }
 
-
-function criarProgBar(){
+// Função para resetar valores da barra de progresso
+function criarProgressBar(){
     progressBar = {
         porcentagemAtual: null,
         porcentagemAntiga: null,
         porcentagemDinamica: null,
+
+        /*
+            Porcentagem atual = guardará o novo valor da porcentagem, que será definido a cada tentativa
+            Porcentagem antiga = guardará o valor da porcentagem da tentativa anterior, que servirá de base para o funcionamento da porcentagem dinâmica
+            Porcentagem dinâmica = guardará o valor da porcentagem antiga e sofrerá alterações até alcançar o valor da porcentagem atual
+        */
     }
 }
 
-
+// Função para resetar e criar um novo hacker. É adaptado conforme idioma e modo de jogo escolhido
 function criarHacker(){
     hacker = {};
-    if(animacoes.modo == 'defesa'){
+    if(controle.modo == 'defesa'){
 
         hacker.nome = 'cYber_death0';
-        if(animacoes.idioma == 'portugues'){
+        if(controle.idioma == 'portugues'){
             hacker.mensagens = [
                 "Agora eu tenho controle total do seu dispositivo, " + jogo.nome + "! Hahahahahahaha! O código era " + jogo.senha + ". Eu sabia que você não ia acertar. Dê adeus aos seus dados.",
                 "Haha! Parece que finalmente estou prestes a infectar seu sistema. Só lhe resta mais uma chance de impedir minha invasão completa!",
@@ -133,7 +140,7 @@ function criarHacker(){
                 "Você... detém o DOLPHIN e ainda o decifrou? Veja bem, acho que cometi um mal-entendido. Eu pensei que-- // CONEXÃO COM " + hacker.nome + " ELIMINADA // DOLPHIN REALIZANDO RASTREIO DE INVASOR //"
             ]
         
-        }else if(animacoes.idioma == 'ingles'){
+        }else if(controle.idioma == 'ingles'){
             hacker.mensagens = [
                 "Now I hold the entire control of your device, " + jogo.nome + "! Hahahahahahaha! The code was " + jogo.senha + ". I knew you wouldn't get it. Give a farewell to your data.",
                 "Haha! Looks like I'm about to finally infect your system. One chance left for you to stop my complete invasion!",
@@ -151,7 +158,7 @@ function criarHacker(){
     }else{
 
         hacker.nome = jogo.nome;
-        if(animacoes.idioma == 'portugues'){
+        if(controle.idioma == 'portugues'){
             hacker.mensagens = [
                 "Exatamente como eu previ. Hahahahahaha você não pode fazer mais nada xD. Seu IP está sendo rastreado na velocidade da luz. Eu não gostaria de estar na sua pele :(",
                 "Meu firewall está quase detectando sua conexão. Não há mais volta. Em poucos segundos irei lhe bloquear e lhe rastrear!",
@@ -165,7 +172,7 @@ function criarHacker(){
                 'Você detém o DOLPHIN e conseguiu decifrá-lo?! Isso... Estou sem palavras. Isso é demais pra mim.'
             ]
         
-        }else if(animacoes.idioma == 'ingles'){
+        }else if(controle.idioma == 'ingles'){
             hacker.mensagens = [
                 "Exactly as I predicted. Hahahahahaha you're unable to do anything from now xD'. Your IP is being tracked at the speed of light. I wouldn't want to be in your shoes :(",
                 "My firewall is almost detecting your connection. There's no turning back. In a few seconds, I will block you and track you down!",
@@ -182,7 +189,7 @@ function criarHacker(){
     }
 }
 
-
+// Cria novos valores para o modo DOLPHIN
 function criarDolphin(){
     dolphin = {
         acertos: 0,
@@ -193,14 +200,6 @@ function criarDolphin(){
         primoSelect: false,
         tempoLimite: true,
         codigos: [],
-        compRound: 0
-    }
-}
-
-
-function criarRoundsAnim(){
-    animacaoFotos = {
-        dolphin: 0,
-        clown: 0
+        compilacaoRound: 0
     }
 }

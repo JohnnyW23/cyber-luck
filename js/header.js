@@ -1,3 +1,4 @@
+// Ativa as funções dos elementos do header que são adicionados de forma dinâmica
 function animarHeader(){
     $('#palette, #palette').click(function(e){
         if(!paleta.open){
@@ -31,6 +32,7 @@ function animarHeader(){
         mudarCorTema($(this), $(this).attr('id'))
     })
 
+    // Função que troca as cores de praticamente todos os elementos do site
     function mudarCorTema(el, id){
         let i = 0;
 

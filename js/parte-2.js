@@ -1,10 +1,6 @@
-function numeroAleatorio(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
+// Função que cria e anima a barra de progresso do vírus/barra de progresso de recuperação do firewall
 function progressoVirus(tempo){
     setTimeout(() => {
-
         if(jogo.tentativas < 6 || jogo.tentativas == 7){
             progressBar.porcentagemAntiga = progressBar.porcentagemAtual;
             $('.virus-mensagem').show();
@@ -13,7 +9,7 @@ function progressoVirus(tempo){
             $('.virus-bar-wraper').appendTo('.game-screen');
 
         }else{
-            criarProgBar();
+            criarProgressBar();
             progressBar.porcentagemAntiga = 0;
             
             $('.game-screen').append('<p class="virus-mensagem">' + traducao.parte2[0] + '</p>');
@@ -27,41 +23,30 @@ function progressoVirus(tempo){
         }
         
         if(!jogo.vitoria){
+            let min, max;
 
-            let min;
-            let max;
+            if(jogo.tentativas == 6)
+                [min, max] = [2, 3];
 
-            if(jogo.tentativas == 6){
-                min = 2
-                max = 3;
+            else if(jogo.tentativas == 5)
+                [min, max] = [10, 21];
 
-            }else if(jogo.tentativas == 5){
-                min = 10;
-                max = 21;
-
-            }else if(jogo.tentativas == 4){
-                min = 22;
-                max = 41;
+            else if(jogo.tentativas == 4)
+                [min, max] = [22, 41];
                 
-            }else if(jogo.tentativas == 3){
-                min = 42;
-                max = 61;
+            else if(jogo.tentativas == 3)
+                [min, max] = [42, 61];
                 
-            }else if(jogo.tentativas == 2){
-                min = 62;
-                max = 81;
+            else if(jogo.tentativas == 2)
+                [min, max] = [62, 81];
                 
-            }else if(jogo.tentativas == 1){
-                min = 82;
-                max = 99;
+            else if(jogo.tentativas == 1)
+                [min, max] = [82, 99];
                 
-            }else{
-                min = 100;
-                max = 100;
-            }
+            else
+                [min, max] = [100, 100];
 
             progressBar.porcentagemAtual = numeroAleatorio(min, max);
-
             progressBar.porcentagemDinamica = progressBar.porcentagemAntiga;
 
             interval = setInterval(() => {
@@ -78,7 +63,7 @@ function progressoVirus(tempo){
                 if(progressBar.porcentagemDinamica == 100){
                     $('.virus-state').html(traducao.parte2[1])
                     jogo.vitoria = false;
-                    if(animacoes.modo == 'defesa'){
+                    if(controle.modo == 'defesa'){
                         animacaoClown(false);
                         animacoes.caracteres = '☠️☠️☠️'
                     }else{
@@ -86,50 +71,17 @@ function progressoVirus(tempo){
                     }
                 }
                 
-                if(progressBar.porcentagemDinamica == progressBar.porcentagemAtual){
+                if(progressBar.porcentagemDinamica == progressBar.porcentagemAtual)
                     clearInterval(interval)
-                }
-                
+
             }, 100);
-
         }
         scrollMax();
         
     }, tempo);
 }
 
-function transformadorNum(num){
-    if(num < 10){
-        num = '0' + num
-    }
-    return num
-};
-
-function DataHora(tempo){
-    setTimeout(() => {
-        let dataAtual = new Date();
-        let ano = transformadorNum(dataAtual.getFullYear());
-        let mes = transformadorNum(dataAtual.getMonth() + 1);
-        let dia = transformadorNum(dataAtual.getDate());
-        let horas = transformadorNum(dataAtual.getHours());
-        let minutos = transformadorNum(dataAtual.getMinutes());
-        let segundos = transformadorNum(dataAtual.getSeconds());
-
-        $('.game-screen').append('<div class="tempo"></div>');
-        if(animacoes.idioma == 'portugues'){
-            $('.tempo').append('<p>' + dia + '-' + mes + '-' + ano + '</p>\
-            <p>' + horas + ':' + minutos + ':' + segundos + '</p>');
-
-        }else if(animacoes.idioma == 'ingles'){
-            $('.tempo').append('<p>' + mes + '-' + dia + '-' + ano + '</p>\
-            <p>' + horas + ':' + minutos + ':' + segundos + '</p>');
-
-        }
-        scrollMax();
-        
-    }, tempo);
-}
-
+// Define o intervalo de números inteiros que o código pode estar presente baseado no nível escolhido
 function definirLimite(level){
     let limite;
     if(level == 1){
@@ -142,15 +94,7 @@ function definirLimite(level){
     return limite;
 }
 
-function pularLinha(destino, tempo, duas=false){
-    if(duas == false){
-        inserir(destino, 'br', '', tempo, false, true);
-    }else{
-        inserir(destino, 'br', '', tempo, false, true);
-        inserir(destino, 'br', '', tempo, false, true);
-    }
-}
-
+// Adiciona falas do hacker dependendo de quantas tentativas o jogador tem
 function chatCyber(destino, tempo){
     setTimeout(() => {
         destino.append('<p class="hacker"><span style="color: white">' + hacker.nome + '</span><span>: ' + hacker.mensagens[jogo.tentativas] + '</span></p>');
@@ -158,6 +102,7 @@ function chatCyber(destino, tempo){
     pularLinha(destino, tempo + 1);
 }
 
+// Função que insere o elemento input para se colocar o palpite
 function inputCodigo(destino, tempo){
     inserir(destino, 'p', traducao.parte2[3][0] + jogo.tentativas, tempo);
     inserir(destino, 'p', traducao.parte2[3][1], tempo + 1);
@@ -172,6 +117,7 @@ function inputCodigo(destino, tempo){
     }, tempo + 2);
 }
 
+// Eventos que se seguem após a parte 1. Introdução do hacker e dica de senha
 function entrada_hacker(){
     let el = $('.game-screen');
     jogo.tentativas = 6;

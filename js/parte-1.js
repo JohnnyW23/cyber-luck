@@ -1,6 +1,7 @@
+// Ao clicar no botão de iniciar jogo
 $('#iniciar').click(function(){
-    if(!animacoes.inicio){
-        animacoes.inicio = true;
+    if(!controle.inicio){
+        controle.inicio = true;
         tocarMusica();
         $('.principal').fadeOut(250);
         setTimeout(() => {
@@ -9,19 +10,19 @@ $('#iniciar').click(function(){
     }
 })
 
+// Ao definir modo de jogo
 $('.modo button').click(function(){
-    if(animacoes.modo == null){
-        animacoes.modo = $(this).attr('id');
+    if(controle.modo == null){
+        controle.modo = $(this).attr('id');
         $('.modo-wraper').fadeOut(500);
         novoJogo();
     }
 })
 
-
+// Começa um novo jogo, resetando todos os valores e definições como roteiro e atributos do jogo
 function novoJogo(){
     criarTraducaoJogo();
     criarJogo();
-    criarRoundsAnim();
 
     setTimeout(() => {
         $('.game-screen').append(
@@ -43,7 +44,7 @@ function novoJogo(){
     }, 1000);
 }
 
-
+// Controla os critérios para a seleção de nome do usuário
 function nameSelect(){
     $('#name').keyup(function(e) {
         // Verifica se a tecla pressionada é a tecla Enter (código 13)
@@ -85,6 +86,7 @@ function nameSelect(){
     });
 }
 
+// Função que controla eventos sobre a escolha do nível do jogo
 function levelSelect(){
     setTimeout(() => {
         $('.introducao').append(
@@ -121,6 +123,7 @@ function levelSelect(){
     }, 500);
 };
 
+// Função que gera o código secreto baseado no nível escolhido
 function gerarSenha(level){
     let min, max;
 
@@ -137,41 +140,7 @@ function gerarSenha(level){
     return numeroAleatorio(min, max);
 }
 
-
-function scrollMax(){
-    if(!animacoes.readme){
-        $('html, body').animate({
-            scrollTop: $(document).height()
-        }, 0);
-    }
-}
-
-
-function scrollMin(el){
-    el.animate({
-        scrollTop: $(document).height() * -1
-    }, 0)
-}
-
-
-function inserir(destino, tag, conteudo, tempo, style=false, br=false){
-    setTimeout(() => {
-        if(br == false){
-            let first_tag;
-            if(style == false){
-                first_tag = '<' + tag + '>'
-            }else{
-                first_tag = '<' + tag + ' style="' + style + '">'
-            }
-            destino.append(first_tag +conteudo+'</'+tag+'>')
-        }else{
-            destino.append('<' + tag + '>' + conteudo);
-        };
-        scrollMax();
-        
-    }, tempo);
-}
-
+// Função ativada após definição do nome (do usuário ou do alvo) e nível escolhido
 function inicializar(){
     let el = $('.game-screen');
     pularLinha(el, 0);
@@ -195,30 +164,4 @@ function inicializar(){
     setTimeout(() => {
         entrada_hacker();
     }, 10000);
-}
-
-
-function tocarMusica(){
-    if(!animacoes.inicio){
-        caixaDeSom.musica.current = caixaDeSom.musica.intro;
-        caixaDeSom.musica.current.volume = 0.2;
-        caixaDeSom.musica.current.play();
-
-    }else{
-        caixaDeSom.musica.current.pause();
-        caixaDeSom.musica.current = caixaDeSom.musica.game;
-
-        caixaDeSom.musica.current.volume = 0.2;
-
-        if($('#sound-toggle').attr('src') == 'assets/sound-off.svg'){
-            caixaDeSom.musica.current.muted = true;
-        }
-
-        caixaDeSom.musica.current.play();
-    }
-
-    caixaDeSom.musica.current.addEventListener('ended', function() {
-        this.currentTime = 0;
-        this.play();
-    }, false);
 }
